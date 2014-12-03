@@ -1,0 +1,36 @@
+
+%%  -Inference procedures
+
+ 
+
+
+
+
+\begin{framed}
+\begin{verbatim}
+
+x= c( 166.0 ,168.9 , 164.5, 161.0, 169.0, 160.5, 166.5, 158.0, 154.6, 167.7, 167.1,
+
+164.0, 165.5, 160.9, 170.0, 151.8, 161.7, 175.6, 157.5, 165.5)
+\end{verbatim}
+\end{framed}
+
+ 
+A confidence interval is automatically computed.
+
+The confidence level can be specified, but the default setting is the commonly used 95\% confidence level.
+
+\begin{framed}
+\begin{verbatim}
+t.test(x,mu=161)
+\end{verbatim}
+\end{framed}
+%=============================================%
+\begin{framed}
+\begin{verbatim}
+
+t.test(x,mu=160,conf.level = 0.99)
+\end{verbatim}
+\end{framed} 
+
+
