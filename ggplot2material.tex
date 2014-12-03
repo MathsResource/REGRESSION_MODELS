@@ -1,0 +1,138 @@
+
+
+
+R Workshop: ggplot2
+
+Hadley Wickham
+
+ggplot2
+
+
+
+http://crantastic.org/packages/ggplot2
+
+
+This book describes ggplot2, a new data visualization package for R that uses the insights from Leland Wilkison's Grammar of Graphics to create 
+
+a powerful and flexible system for creating data graphics. With ggplot2, it's easy to: produce handsome, publication-quality plots, with automatic 
+
+legends created from the plot specification superpose multiple layers (points, lines, maps, tiles, box plots to name a few) from different data 
+
+sources, with automatically adjusted common scales add customisable smoothers that use the powerful modelling capabilities of R, such 
+
+as loess, linear models, generalised additive models and robust regression save any ggplot2 plot (or part thereof) for later 
+
+modification or reuse create custom themes that capture in-house or journal style requirements, and that can easily be 
+
+applied to multiple plots approach your graph from a visual perspective, thinking about how each component of the data is represented on the final plot. 
+
+
+This book will be useful to everyone who has struggled with displaying their data in an informative and attractive way. 
+
+You will need some basic knowledge of R (i.e. you should be able to get your data into R), but ggplot2 is a mini-language 
+
+specifically tailored for producing graphics, and you'll learn everything you need in the book. 
+
+
+After reading this book you'll be able to produce graphics customized precisely for your problems, and you'll find it easy 
+
+to get graphics out of your head and on to the screen or page. 
+
+
+Hadley Wickham
+
+
+Hadley Wickham is an Assistant Professor of Statistics at Rice University,  and is interested in developing computational and cognitive tools for making data preparation, visualization, and analysis easier. He has developed 15 R packages and in 2006 he won the John Chambers Award for Statistical Computing for his work on the ggplot and reshape R packages.
+
+ggplot2
+
+
+An implementation of the grammar of graphics in R. It combines the advantages of both base and lattice graphics: conditioning and shared axes are handled automatically, and you can still build up a plot step by step from multiple data sources. It also implements a sophisticated multidimensional conditioning system and a consistent interface to map data to aesthetic attributes.
+
+
+http://learnr.wordpress.com/2010/08/16/consultants-chart-in-ggplot2/#more-2445
+
+
+
+
+
+
+
+
+set.seed(9876)
+
+DF <- data.frame(variable = 1:10, value = sample(10,replace = TRUE))
+
+library(ggplot2)
+
+ggplot(DF, aes(factor(variable), value, fill = factor(variable))) + geom_bar(width = 1)
+
+last_plot() + scale_y_continuous(breaks = 0:10) + coord_polar() + labs(x = "", y = "") + opts(legend.position = "none", 
+
+    axis.text.x = theme_blank(), 
+
+    axis.text.y = theme_blank(), 
+
+    axis.ticks = theme_blank())
+ 
+
+
+
+
+
+
+
+
+ggplot(DF, aes(factor(variable))) + geom_bar(width = 1, + aes(y = value, fill = factor(variable)))
+
++ geom_bar(aes(y = border, width = 1), position = "stack", + stat = "identity", fill = NA, colour = "white")  
+
++ scale_y_continuous(breaks = 0:10)
+
++ coord_polar()  
+
++ labs(x = "", y = "")
+
++ opts(legend.position = "none", axis.text.x = theme_blank(), axis.text.y = theme_blank(), + axis.ticks = theme_blank())
+ 
+
+
+
+
+
+
+
+
+
+ggplot(msleep, aes(sleep_rem / sleep_total, awake)) + geom_point()
+
+
+# which is equivalent to
+
+
+qplot(sleep_rem / sleep_total, awake, data = msleep)
+
+
+# You can add layers to qplot too:
+
+
+qplot(sleep_rem / sleep_total, awake, data = msleep) + geom_smooth()
+
+
+# This is equivalent to
+
+
+qplot(sleep_rem / sleep_total, awake, data = msleep,
+
+
+geom = c("point", "smooth"))
+
+
+# or
+
+
+ggplot(msleep, aes(sleep_rem / sleep_total, awake)) + geom_point() + geom_smooth()
+ 
+
+
+
