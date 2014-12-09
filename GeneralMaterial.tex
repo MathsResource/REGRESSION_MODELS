@@ -31,6 +31,178 @@
 
 \tableofcontents
 
+
+R and EVT
+
+R and EVT
+Overview of Proposal
+Simple R Programming
+vectors
+integer
+Character
+logical
+numeric
+Packages
+Inference procedures
+Regression models and bivariate data
+Tinn-R
+Packages
+Using and Installing packages
+Installing additional packages
+
+Overview of Proposal
+how to access R
+using modules
+setting up projects
+statistics
+designing a statistical analysis
+practical element focusing carrying out basic statistics and extreme value analysis on an annual maximum series
+ 
+ 
+head()
+length()
+rbind()
+cbind()
+
+x=c(x,16)
+
+adding a value
+deleting a value
+x=x[-9]
+
+commenting #######
+
+
+basic R editor
+ - new script
+ - updating script
+ - running script
+ -
+
+Introduction to R
+ - What is R
+ - History of R
+Simple R Programming
+ - Important R functions
+  - help()
+  - summary()
+"summary" is a generic function used to produce result summaries of the results of various model fitting functions. 
+The function invokes particular methods which depend on the class of the first argument. 
+  - attach()
+  - data()
+   - Loads specified data sets, or list the available data sets. 
+  - ?
+  - data.entry
+  - c()
+- Combine Values into a Vector or List
+  - assignment operator
+  - Sys.time and Sys.Date returns the system's idea of the current date with and without time. 
+  - q()
+
+
+mode() - storage mode of a data object( data structure)
+
+The expression as(object, value) is the way to coerce an object to a particular class. 
+
+vectors
+
+vector produces a vector of the given length and mode.
+as.vector, a generic, attempts to coerce its argument into a vector of mode mode (the default is to coerce to whichever mode is most convenient).
+is.vector returns TRUE if x is a vector of the specified mode having no attributes other than names. It returns FALSE otherwise.  
+integer
+Creates or tests for objects of type "integer".
+integer(length = 0)
+as.integer(x, ...)
+is.integer(x)
+ Character
+Create or test for objects of type "character".
+character(length = 0)
+as.character(x, ...)
+is.character(x)
+logical
+Create or test for objects of type "logical", and the basic logical constants.
+logical(length = 0)
+as.logical(x, ...)
+is.logical(x)
+numeric
+Creates or coerces objects of type "numeric". 
+numeric(length = 0)
+as.numeric(x, ...)
+is.numeric(x)
+
+
+
+more data structures
+ - lists
+   - list() Functions to construct, coerce and check for both kinds of R lists. 
+ - vectors
+ - dataframes
+ 
+Packages
+
+ - What are pacakges
+- extending the program
+ - where are packages to be found
+ - some notable packages
+ - installing packages
+ - loading packages
+ - updating packages
+ 
+Probability distributions
+ - Continuous: Normal / Student's 't' / Chi-square distribution
+ - discrete: Binomial / Poisson / geometric distribution
+Inference procedures
+ - t.test
+Performs one and two sample t-tests on vectors of data. 
+ - prop.test
+	    prop.test can be used for testing the null that the proportions (probabilities of success) in several groups are the same, or that they equal certain given values.
+ - Kolmogorov-Smirnov test      [ks.test()]
+Performs one or two sample Kolmogorov-Smirnov tests. 
+ - Anderson Darling test        [ad.test()]
+ - Grubbs test for outliers     [Grubbs.test()]
+ - Dixon test for outliers
+ - correlation test [cor.test()]
+ - Analysis of variance. [anova()]
+ 
+
+Logical functions and coercion
+ - as.vector
+ - is.na
+ - NA is a logical constant of length 1 which contains a missing value indicator.
+ - Missing value/ not available. 
+Regression models and bivariate data
+ - simple linear regression 
+ - multiple linear regression 
+ - lm()
+ - lm is used to fit linear models. It can be used to carry out regression, single stratum analysis of variance and analysis of covariance 
+
+Control Loops
+ - do 
+ - if 
+
+Writing Functions
+
+Goodness of Fit statistics
+ - AIC()
+
+
+
+
+Tinn-R
+Tinn-R is a free open-source editor that is tailor-made for R. 
+
+A simple way to keep output and selected graphs so they can eventually become part of a report is to copy and paste output and graphs into a Word file. Graphs can be copied and pasted as 'Windows metafiles' without loss of resolution. Text in the R output window should be pasted with a 'fixed width font' such as Courier New.
+
+Setting up project directories
+
+It is helpful to organize your work in project directories.
+Create a directory for your project.
+Copy a workspace (a .Rdata file) to the directory
+You can then start R by clicking on the .Rdata file's icon
+All directory references in the R session will be relative to the project directory. For example, you can read a file 'data.csv' in the directory with
+
+
+
 \newpage
 %------------------------------------------%
 
