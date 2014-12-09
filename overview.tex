@@ -1,0 +1,248 @@
+1. The R Environment
+
+a) demo
+b) script editor
+c) working directory
+getwd
+ 		setwd
+
+2. Data Entry
+a) scan
+b) data entry spreadsheet style data input interface
+
+3. Complex Numbers 
+a) Im(), Re(), Conj()
+
+4. Text parsing
+a) Letters
+
+5. Data manipulation
+a) unique
+if A is a vector or data frame, this command returns a similar object but with duplicate objects surpressed.
+
+
+6. Set theory and sampling
+a) sample sampling with or without replacement
+
+7) Mathematics
+
+
+Letters(4)
+letters(5)
+
+#############################################################
+# The DEMO function 
+
+demo() #  list of Demonstrations
+
+demo(graphics) # demonstration of graphics functions
+
+
+#############################################################
+# The APROPOS function 
+
+# Useful function for determining revelant commands or functions
+
+# Suppose we want to find what inference tests are currently feasible
+
+# Pick a short "string" that would match what you are searching for
+
+apropos("test")
+
+# Try this: Find a function relevant to using a) letters b) correlation
+
+
+#############################################################
+
+System Time and System Data
+
+
+Time1 = Sys.time()
+Time2 = Sys.time()
+
+Time1-Time2
+Time2-Time1
+
+
+
+
+#############################################################
+
+# The jitter functions - add some "noise" to a numeric value. Sometimes useful in graphics.
+
+x = 2
+
+jitter(x)
+
+#############################################################
+
+# Complex Number
+
+X1 = 0 + 5i
+
+X1	#print the complex number to screen
+
+class(X1); str(X1)
+
+Im(X1)		# The imaginary component
+
+Re(X1)		# The Real component	
+
+Conj(X1)	# The complex conjugate 
+
+# Lets Mutliply two complex numbers
+
+############################################################
+
+# Using R for Categorical Data
+
+# Two variables; nationality (NATS) and gender (GEND)
+
+NATS = c("Irish","German","French","Irish","Spanish","Danish", "Swiss", "Greek", "Irish", "Irish","French")
+GEND = c("Male","Female","Male","Female","Male","Female","Male","Male","Male","Female","Female")
+
+
+#Check the number of items in each set
+
+length(GEND)
+length(NATS) 
+
+# Produce a pair of Frequency Tables
+
+table(GEND)
+table(NATS)
+
+# Produce a 2X2 Contingency Table
+
+table(GEND,NATS)
+
+############################################################
+
+# The SCAN function
+
+Vec = scan()
+
+# Enter some numbers, hitting return each time
+# Hit Return twice to complete input
+
+# Print output to Screen
+
+Vec 
+
+# We will use this vector again later
+
+############################################################
+
+# RANK and ORDER functions
+
+# using the vector from the SCAN() exercise
+
+order(Vec)
+
+	#Discuss the output for this function
+
+rank(Vec)
+
+	# Notice how it handles "ties"	
+
+
+#closer look
+
+rbind(Vec,rank(Vec))
+
+#####################
+
+#The WHICH function
+
+which(Vec>4)
+	
+	#Discuss the output for this function
+	#Contrast this with the ORDER function output
+
+
+###########################################################
+
+# Tukey's five number summary
+# Returns the minimum, Q1, Median, Q3 and maximum of dataset
+# Compare output to that of SUMMARY function. You may get different estimates for Quartiles
+
+
+fivenum(Vec)
+summary(Vec)
+
+###########################################################
+
+# Set Theory and Sampling
+
+# Construct two vectors K and J
+
+K = 1:6
+J = 3:10
+
+union (K,J)		#Union of J and K
+intersect(K,J)		#Intersection of J and K	
+			
+setdiff(K,J)		#Elements of K that are not in J
+setdiff(J,K)		#Elements of J that are not in K
+
+# Are the two sets equal ( sometimes useful in programming)
+# Output is TRUE or FALSE
+
+setequal(K,J)
+
+##########
+
+# Sampling with replacement and without replacement
+
+sample(K,4)
+
+sample(K,7,replace=TRUE)
+
+
+
+# A potential pitfall associated with the SAMPLE function
+
+M = 9			#Vector that only one element
+
+sample(M,1)
+
+############################################################
+
+
+
+############################################################
+
+
+
+############################################################
+
+sink data output function 
+which returns a vector of which elements fulfil a certain condition
+
+table calculates a frequency table for a vector
+
+
+Set theory : union interesction set difference
+
+cholesky decomposition
+ chol ()
+jacobi nethod 
+decompose a matrix into D and R
+fivenum tukeys five number summary
+
+Exercise
+slope intercept estimates through matrices
+
+rbind
+rev reverse the order of a vector
+reverse
+jitter
+
+order values order() rank
+
+apropos function
+
+ useful from prograaming long simulations
+sys.time()w
+sys.date()
+
