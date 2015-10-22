@@ -56,7 +56,7 @@ prop.test
 
 test for proportions. Speciify the number if successes.  The number of trials, and the expected value of the probability under the null hypothesis.
 
-
+%============================================================================================================%
 Two-Tailed Test of Population Mean with Known Variance
 
 The null hypothesis of the two-tailed test of the population mean can be expressed as follows:
@@ -195,11 +195,11 @@ The paired t test is another important inference procedure. It takes two sets of
 
 P values are the probability of a test statistic under the null hypothesis. They are commonly misinterpreted as the probability that a hypothesis is true. Including court cases with tragic consequences.
 
+%============================================================================================%
 
 
 
-
-T-test
+\subsection{T-test}
 
 The t-test is used to determine statistical differences between two samples. There is also a version that can be used as a paired test i.e. when you have measurements collected as matched pairs.
 
@@ -208,7 +208,8 @@ Attach your data set so that the individual variables are read into memory.
 
 To perform a t-test you type:
 
-
+\begin{framed}
+\begin{verbatim}
 > t.test(var1, var2)
 
 Welch Two Sample t-test
@@ -229,7 +230,8 @@ mean of x mean of y
 
 8.733333 4.133333
 
->
+\end{verbatim}
+\end{framed}
 
 This version of the test does not assume that the variance of the two samples is equal and performs a Welch two sample t-test. The "classic" version of the t-test can be run as follows:
 
