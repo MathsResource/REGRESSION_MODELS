@@ -1,9 +1,6 @@
 
-
 
-R Workshop
-
-Matrices
+\section{R Workshop : Matrices}
 
 Creating a matrix
 
@@ -25,7 +22,7 @@ Solving a System of Linear Equations
 
  
 
-Creating a matrix
+\subsection{Creating a matrix}
 
 
 Matrices can be created using the matrix() command. 
@@ -45,88 +42,61 @@ By default they are allocated by column.
 
 
 
-
-
-
-
-
-
+\begin{framed}
+\begin{verbatim}
 Vec1 = c(1,4,5,6,4,5,5,7,9)             # 9 elements
-
 
 A = matrix(Vec1,nrow=3)                 #3 by 3 matrix. Values assigned by column.
 
-
 A
-
 
 C= matrix(  c(1,6,7,0.6,0.5,0.3,1,2,1), ncol=3 , byrow =TRUE)
 
-
 C                                               #3 by 3 matrix. Values assigned by row.
 
- 
+ \end{verbatim}
+\end{framed}
+%===========================================================================%
 
 
-Accessing Rows and Columns
 
+\section{Accessing Rows and Columns}
 
 Particular rows and columns can be accessed by specifying the row number or column number, leaving the other value blank.
 
-
-
-
-
-
-
-
-
+\begin{framed}
+\begin{verbatim}
 A[1,]   # access first row of A
-
-
 C[,2]   # access second column of C
- 
+\end{verbatim}
+\end{framed}
+%===========================================================================%
+\subsection{Addition and subtractions}
 
+\begin{itemize}
+\item For matrices, addition and subtraction works on an element- wise basis. 
+\item The first elements of the respective matrices are added, and so on.
+\end{itemize}
 
+%----------------------%
 
-
-
-Addition and subtractions
-
-
-For matrices, addition and subtraction works on an element- wise basis. 
-
-The first elements of the respective matrices are added, and so on.
-
-
-
-
-
-
-
-
-
-
+\begin{framed}
+\begin{verbatim}
 A+C                                             
-
-
 A–C
- 
+\end{verbatim}
+\end{framed}
+%========================================================================%
+\subsection{Matrix Multiplication}
 
-
-
-
-
-Matrix Multiplication
 
 
 To multiply matrices, we require a special operator for matrices; “%*%”. 
 
 
 If we just used the normal multiplication, we would get an element-wise multiplication.
-
-
-Basic Matrix Calculations
+%========================================================================%
+\subsection{Basic Matrix Calculations}
 
 
 1) Inverting a matrix 
@@ -144,83 +114,55 @@ We would specify the vector b as the additional argument.
 2) Computing the determinant
 
 
-To compute the determinant, the command is simply det()
+To compute the determinant, the command is simply \texttt{det()}
 
 
 
 3) Compute the transpose 
 
 
-To compute the transpose of matrix A, we use the command t().
+To compute the transpose of matrix A, we use the command \texttt{t()}.
 
-
+%----------%
 
 4) Determining the dimensions 
 
 
-To find the dimensions of matrix A, we use the dim() command
+To find the dimensions of matrix A, we use the \texttt{dim()} command
 
 
 5) Cross Products
 
 
-We can compute cross products using the crossprod () command. 
+We can compute cross products using the \texttt{crossprod()} command. 
 
-
-
-
-
-
-
-
-
+\begin{framed}
+\begin{verbatim}
 solve(A)                            # Inverse of Matrix A    
-
-
 t(A)                                  # tranpose of A
-
-
 det(A)                               # determinant of A  
-
-
 det(t(A))                           # determinant of the transpose of A
-
-
 A %*% C                           # Matrix Multiplication
-
-
 C * A                                #Casewise Multiplication
- 
+\end{verbatim}
+\end{framed}
+%------------------------------------------------------%
+\subsection{Diagonals and the Identity Matrix}
 
-
-
-Diagonals and the Identity Matrix
-
-
-The diag() command is a very versatile function for using matrices.
-
+The \texttt{diag()} command is a very versatile function for using matrices.
 
 It can be used to create a diagonal matrix with elements of a vector in the principal diagonal. 
 
 For an existing matrix, it can be used to return a vector containing the elements of the principal diagonal. 
 
-
 Most importantly, if k is a scalar, diag() will create a k x k identity matrix.
 
-
-
-
-
-
-
-
-
+\begin{framed}
+\begin{verbatim}
 
 Vec2=c(1,2,3)
 
-
 diag(Vec2)     #       Constructs a diagonal matrix based on values of Vec2
-
 
 diag(A)          #        Returns diagonal elements of A as a vector
 
@@ -229,12 +171,11 @@ diag(3)          #       creates a 3 x 3 identity matrix
 
 
 diag(diag(A)) #        Creates the diagonal matrix D of matrix A ( Jacobi Method)
- 
 
-
-
-
-Linear Algebra Functions
+\end{verbatim}
+\end{framed}
+%=========================================%
+\subsection{Linear Algebra Functions}
 
 
 R supports many import linear algebra functions such as cholesky decomposition, trace, rank, eigenvalues etc.
@@ -242,53 +183,31 @@ R supports many import linear algebra functions such as cholesky decomposition, 
 
 The required results may be determinable from the output of a command that pertains to an overall approach.
 
-
-
-
-
-
-
-
-
+\begin{framed}
+\begin{verbatim}
 eigen(A)       #eigenvalues and eigenvectors       
-
-                                                                      
-
 qr(A)            #returns Rank of a matrix
-
-
 svd(A)
- 
-
-
-
-Eigenvalues and Eigenvectors
-
-
-The eigenvalues and eigenvectors can be computed using the eigen() function.  A data object is created.
-
-
+\end{verbatim}
+\end{framed}
+%=========================================%
+\subsection{Eigenvalues and Eigenvectors}
+The eigenvalues and eigenvectors can be computed using the \texttt{eigen()} function.  A data object is created.
 This is a very important type of matrix analysis, and many will encounter it again in future modules.
 
-
-
-
-
-
-
-
-
+\begin{framed}
+\begin{verbatim}
 
 Y = eigen(A)
-
-
 names(Y)
-
 
 #   y$val are the eigenvalues of A
 
 #   y$vec are the eigenvectors of A 
 
+\end{verbatim}
+\end{framed}
+%=========================================%
  
 
 
@@ -301,6 +220,8 @@ More on Matrices
 Note that the following commands are useful for Experimental Design.
 
  
+\begin{framed}
+\begin{verbatim}
 
 rowMeans(A)                                         Returns vector of row means.
 
@@ -309,16 +230,10 @@ rowSums(A)                                             Returns vector of row sum
 colMeans(A)                                             Returns vector of column means. 
 
 colSums(A)                                               Returns vector of coumn means. 
-
+\end{verbatim}
+\end{framed}
  
-
-
-
-
-
-
-
---------------------------------------------------------------------------------
+%------------------------------------------------------------------------------%
 
 
 
@@ -328,13 +243,8 @@ Another methods of creating a matrix is to “bind” a number of vectors togeth
 
 The commands are rbind() and cbind() respectively.
 
-
-
-
-
-
-
-
+\begin{framed}
+\begin{verbatim}
 > x1 =c(1,2) ; x2 = c(3,8)                                                
 
 
@@ -355,29 +265,22 @@ The commands are rbind() and cbind() respectively.
 
 [1] 2
 
- 
+ \end{verbatim}
+ \end{framed}
+ %==========================================%
+\subsection{Solving a System of Linear Equations}
 
 
-Solving a System of Linear Equations
+To solve a system of linear equations in the form Ax=b , where A is a square matrix, and b is a column vector of known values, we use the \texttt{solve()} command to determine the values of the unknown vector x.
 
-
-To solve a system of linear equations in the form Ax=b , where A is a square matrix, and b is a column vector of known values, we use the solve() command to determine the values of the unknown vector x.
-
-
-
-
-
-
-
-
-
-
+\begin{framed}
+\begin{verbatim}
 b=vec2  # from before
-
-
 solve(A, b) 
- 
-
+\end{verbatim}
+\end{framed}
+%======================================%
+\end{document}
 
 
 
