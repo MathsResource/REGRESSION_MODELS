@@ -50,14 +50,14 @@ t test
 null hypothesis alternative hypothesis
 
 pairedt test 
-
-prop.test
+%==================================%
+\subsection{ \texttt{prop.test()} }
 
 
 test for proportions. Speciify the number if successes.  The number of trials, and the expected value of the probability under the null hypothesis.
 
 %============================================================================================================%
-Two-Tailed Test of Population Mean with Known Variance
+\subsection{Two-Tailed Test of Population Mean with Known Variance}
 
 The null hypothesis of the two-tailed test of the population mean can be expressed as follows:
 
@@ -71,14 +71,16 @@ Let us define the test statistic z in terms of the sample mean, the sample size 
 
 Then the null hypothesis of the two-tailed test is to be rejected if z ≤−zα∕2 or z ≥ zα∕2 , wherezα∕2 is the 100(1 − α∕2) percentile of the standard normal distribution.
 
-Problem
+\subsection{Problem}
 
 Suppose the mean weight of King Penguins found in an Antarctic colony last year was 15.4 kg. In a sample of 35 penguins same time this year in the same colony, the mean penguin weight is 14.6 kg. Assume the population standard deviation is 2.5 kg. At .05 significance level, can we reject the null hypothesis that the mean penguin weight does not differ from last year?
 
-Solution
+\subsection{Solution}
 
 The null hypothesis is that μ = 15.4. We begin with computing the test statistic.
 
+\begin{framed}
+\begin{verbatim}
 > xbar = 14.6            # sample mean 
 
 > mu0 = 15.4             # hypothesized value 
@@ -92,9 +94,12 @@ The null hypothesis is that μ = 15.4. We begin with computing the test statisti
 > z                      # test statistic 
 
 [1] −1.8931
-
+\end{verbatim}
+\end{framed}
 We then compute the critical values at .05 significance level.
 
+\begin{framed}
+\begin{verbatim}
 > alpha = .05 
 
 > z.half.alpha = qnorm(1−alpha/2) 
@@ -102,13 +107,13 @@ We then compute the critical values at .05 significance level.
 > c(−z.half.alpha, z.half.alpha) 
 
 [1] −1.9600  1.9600
-
+\end{verbatim}
+\end{framed}
 Answer
 
 The test statistic -1.8931 lies between the critical values -1.9600 and 1.9600. Hence, at .05 significance level, we do not reject the null hypothesis that the mean penguin weight does not differ from last year.
 
-
-Population Mean Between Two Matched Samples
+\subsection{Population Mean Between Two Matched Samples}
 
 Two data samples are matched if they come from repeated observations of the same subject. Here, we assume that the data populations follow the normal distribution. Using the paired t-test, we can obtain an interval estimate of the difference of the population means.
 
@@ -117,6 +122,8 @@ Example
 
 In the built-in data set named immer, the barley yield in years 1931 and 1932 of the same field are recorded. The yield data are presented in the data frame columns Y1 and Y2.
 
+\begin{framed}
+\begin{verbatim}
 > library(MASS)         # load the MASS package 
 
 > head(immer) 
@@ -129,6 +136,8 @@ In the built-in data set named immer, the barley yield in years 1931 and 1932 of
 
    .....
 
+\end{verbatim}
+\end{framed}
 Problem
 
 Assuming that the data in immer follows the normal distribution, find the 95% confidence interval estimate of the difference between the mean barley yields between years 1931 and 1932.
@@ -163,12 +172,9 @@ mean of the differences
 
 Answer
 
-Between years 1931 and 1932 in the data set immer, the 95% confidence interval of the difference in means of the barley yields is the interval between 6.122 and 25.705.
+Between years 1931 and 1932 in the data set immer, the 95\% confidence interval of the difference in means of the barley yields is the interval between 6.122 and 25.705.
 
-
-
-
-Test for variances
+\subsection{Test for variances}
 
 
 var.test test that two data sets have equal variance.
@@ -186,9 +192,7 @@ mean is not equal to 3.50
 
 The test for equality of variances is important, as many other inference procedures rely on the assumption that the two data sets under consideration have equal variance. Two Sample T test.
 
-
-
-The paired t test 
+\subsection{The paired t test }
 
 The paired t test is another important inference procedure. It takes two sets of paired measurements and tests for a difference. It is called a paired test because each value in one data set  correspond to a value in the other data set. Necessarily there must be equal numbers of elements in both sets.
 
@@ -235,6 +239,8 @@ mean of x mean of y
 
 This version of the test does not assume that the variance of the two samples is equal and performs a Welch two sample t-test. The "classic" version of the t-test can be run as follows:
 
+\begin{framed}
+\begin{verbatim}
 > t.test(var1, var2, var.equal=T)
 
 Two Sample t-test
@@ -255,14 +261,15 @@ mean of x mean of y
 
 8.733333 4.133333
 
->
+\end{verbatim}
+\end{framed}
+%=====================================================%
 
- 
 
+A paired t-test is simple to run; just add \texttt{paired= TRUE} to the basic command. Now the variances of the two samples are considered equal and the basic version is performed. To run a t-test on paired data you add a new term:
 
-
-A paired t-test is simple to run; just add paired= TRUE to the basic command. Now the variances of the two samples are considered equal and the basic version is performed. To run a t-test on paired data you add a new term:
-
+\begin{framed}
+\begin{verbatim}
 > t.test(var1, var2, paired=T)
 
 Paired t-test
@@ -283,35 +290,20 @@ mean of the differences
 
 4.6
 
->
-
- 
-
+\end{verbatim}
+\end{framed}
 
 
+\section{Part 2 More inference procedures}
+\subsection{Formal tests for Normality}
 
-
-
-Part 2 More inference procedures
-
-Formal tests for Normality
-
-
-
-ad.test for outliers Anderson Darling test
-
-
-shapiro Wilk test for normality
-
-
-ks.test for distributions
-
-Kolmogorov Smirnov test
-
-grubbs test for outliers
-
-chi square test
-
+\begin{itemize}
+\item ad.test for outliers Anderson Darling test
+\item shapiro Wilk test for normality
+\item ks.test for distributions (Kolmogorov Smirnov test)
+\item grubbs test for outliers
+\item chi square test
+\end{itemize}
 
 useful for categorical data. Consider a two by two contingency table.
 
@@ -333,7 +325,7 @@ qqplot
 histograms
 
 
-Quantile-Quantile Plots
+\subsection{Quantile-Quantile Plots}
 
 Description
 
@@ -343,9 +335,7 @@ qqplot produces a QQ plot of two datasets.
 
 Graphical parameters may be given as arguments to qqnorm, qqplot and qqline.
 
-
-
---------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------%
 
 
 Part 3 linear model
@@ -353,7 +343,7 @@ Part 3 linear model
 scatterplots
 
 
-Scatter Plot:
+\subsection{Scatter Plot:}
 
  A scatter plot of two variables shows the values of one variable on the Y axis and the values of the other variable on the X axis. Scatter plots are well suited for revealing the relationship between two variables. The scatter plot shown in Figure 4 illustrates data from one of Galileo's classic experiments in which he observed the distance traveled balls traveled after being dropped on a incline as a function of their release height.
 
@@ -373,44 +363,48 @@ The symbol for Pearson's correlation is "ρ" when it is measured in the populati
 Pearson's r can range from -1 to 1. An r of -1 indicates a perfect negative linear relationship between variables, an r of 0 indicates no linear relationship between variables, and an r of 1 indicates a perfect positive relationship between variables. 
 
 
-http://onlinestatbook.com/chapter4/intro.html
+%% - http://onlinestatbook.com/chapter4/intro.html
 
-Simple Linear Regression
+%=====================================================%
+\subsection{Simple Linear Regression}
 
 
 The intercept is the estimated value of the response variable when the predictor variable is set to zero. In many cases it would make sense that there would be a non zero value in this instance.
 
 The slope is the rate at which response variable changes as the predictor cbanfes. A negative slope insicates a negative linear relationship.
 
-Fitting a Model
+%=====================================================%
+\subsection{Fitting a Model}
 
  To fit an ordinary linear model with fertility change as the response and setting and effort as predictors, try
 
+\begin{framed}
+\begin{verbatim}
  > lmfit = lm( change ~ setting + effort )
+\end{verbatim}
+\end{framed}
 
  Note first that lm is a function, and we assign the result to an object that we choose to call lmfit (for linear model fit). This stores the results of the fit for later examination
 
 
-Correlation 
+\subsection{Correlation }
 
-Correlation describes the strength of a relationship between two numeric variables.
+\begin{itemize}
+\item Correlation describes the strength of a relationship between two numeric variables.
+\item The strength of the relation is represented in a numeric value known at the correlation coefficient. This coefficient can take a value between -1 and1. Additionally there are no units.
 
-The strength of the relation is represented in a numeric value known at the correlation coefficient. This coefficient can take a value between -1 and1. Additionally there are no units.
+\item A value close to 1 indicates strong linear relation. A value close to Zero indicates no linear relationship at all.importantly it is assumed that the relationship is linear. Some variables will have a non linear relationship.
 
-A value close to 1 indicates strong linear relation. A value close to Zero indicates no linear relationship at all.importantly it is assumed that the relationship is linear. Some variables will have a non linear relationship.
-
-The relevant R command is cor().
-
-There is also a more complex command called cor.test. This command additionally provides a hypothesis test for the estimate.
-
-Ho: The correlation coefficient for the population of values is zero. No linear relationship.
-
-Ha: The coefficient is not zero. Linear relationship exists.
-
-A confidence interval for the coefficient is provided for in the R output. If the interval includes 0 then we fail to reject the null hypothesis.
-
+\item The relevant R command is cor(). There is also a more complex command called cor.test. This command additionally provides a hypothesis test for the estimate.
+\begin{itemize}
+\item[Ho:] The correlation coefficient for the population of values is zero. No linear relationship.
+\item[Ha:] The coefficient is not zero. Linear relationship exists.
+\end{itemize}
+\item A confidence interval for the coefficient is provided for in the R output. If the interval includes 0 then we fail to reject the null hypothesis.
+\end{itemize}
+\subsection{Anscombe Quartet}
 Anscombe quartet is a famous data set used to demonstrate why a full set of statistical analyses should be used in conjunction, rather than rely on one analysis. This data set comprises four set of data.
-
+%====================================================================================%
 
 Correlation and Significance tests
 
@@ -418,8 +412,11 @@ Getting a correlation coefficient is generally only half the story; you will wan
 
 
 To run a correlation test we type:
-
+\begin{framed}
+\begin{veratim}
 > cor.test(var1, var2, method = "method")
+\end{verbatim}
+\end{framed}
 
 The default method is "pearson" so you may omit this if that is what you want. If you type "kendall" or "spearman" then you will get the appropriate significance test.
 
@@ -468,10 +465,10 @@ histograms
 
 underlying assumptions normal distribution of residual terms
 
-
+%======================================================================================%
 influence
 
-outluers
+outliers
 
  non linear regression
 
