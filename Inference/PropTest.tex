@@ -1,0 +1,117 @@
+\newpage
+
+\section{Hypothesis Tests for a Proportion}
+
+We can also perform a hypothesis test for a population proportion “p”. 
+
+The \texttt{R} function to carry out such a test is \texttt{prop.test}.
+
+A manufacturer claims that the proportion of defective items produced is approximately 4\%. 
+A random sample of size 50 is taken, 3 of which are defective. Is the manufacturer's claim justified?
+
+The inputs to prop.test are 
+\begin{description}
+\item[x] - the number of defective items in the sample, 
+\item[n] - the sample size, 
+\item[p] - the probability being tested in the hypothesis	
+\end{description}
+
+(We can also specify the confidence  level and number of tails. See \texttt{?prop.test})
+ 
+\begin{framed}
+\begin{verbatim}
+> prop.test(x=3, n=50, p = 0.04)
+
+        1-sample proportions test with continuity correction
+
+data:  3 out of 50, null probability 0.04 
+X-squared = 0.1302, df = 1, p-value = 0.7182
+alternative hypothesis: true p is not equal to 0.04 
+95 percent confidence interval:
+ 0.01562459 0.17541874 
+sample estimates:
+   p 
+0.06 
+\end{verbatim}
+\end{framed}
+%=============================================================================%
+The outputs are essentially the same as those for t.test:
+- test statistic value,
+- p-value,
+- 95% CI,
+- sample estimate, etc
+
+%=============================================================================%
+2 sample case
+
+To compare the sample proportions of two groups, we require two inputs for the prop.test() command.
+
+\begin{itemize}
+\item[x] - the number of “successes” in the both samples ,specified as a vector of length 2.
+\item[n] - the number of “trials” in the both samples, again specified as a vector of length 2.
+\end{itemize}
+
+Here the null hypothesis that both groups have the same proportion of “successes”, while the alternative is that they have different proportions of “successes”.
+\begin{framed}
+\begin{verbatim}
+> prop.test(c(110,210),c(200,300))
+
+        2-sample test for equality of proportions with continuity correction
+
+data:  c(110, 210) out of c(200, 300) 
+X-squared = 11.0768, df = 1, p-value = 0.0008742
+alternative hypothesis: two.sided 
+95 percent confidence interval:
+ -0.24043848 -0.05956152 
+sample estimates:
+prop 1 prop 2 
+  0.55   0.70
+\end{verbatim}
+\end{Framed}
+%----------------------------------------------------------------------------------------%
+\section{Exercise 4}
+A poll on social issues interviewed 1025 people randomly selected from the United States. 450 of people said that they do not get enough time to themselves. A report claims that over 41\% of the population are not satisfied with personal time. Is this the case?
+\begin{framed}
+\begin{verbatim}
+
+> prop.test(450,1025,p=0.40,alternative="greater")
+
+        1-sample proportions test with continuity correction
+
+data:  450 out of 1025, null probability 0.4
+X-squared = 6.3425, df = 1, p-value = 0.005894
+alternative hypothesis: true p is greater than 0.4
+95 percent confidence interval:
+ 0.413238 1.000000
+sample estimates:
+        p
+0.4390244
+\end{verbatim}
+\end{framed}
+\subsection{Exercise 23b:}
+
+A company wants to investigate the proportion of males and females promoted in the last year. 
+
+45 out of 400 female candidates were promoted, while 520 out of 3270 male candidates were promoted. Is there evidence of sexism in the company?
+
+\begin{verbatim}
+> x.vec=c(45,520)
+> n.vec=c(400,3270)
+>  prop.test(x.vec,n.vec)
+\end{verbatim}
+\begin{framed}
+\begin{verbatim}
+ 2-sample test for equality of proportions with continuity correction
+
+data:  x.vec out of n.vec
+X-squared = 5.5702, df = 1, p-value = 0.01827
+alternative hypothesis: two.sided
+95 percent confidence interval:
+ -0.08133043 -0.01171238
+sample estimates:
+   prop 1    prop 2
+0.1125000 0.1590214
+\end{verbatim}
+\end{framed}
+
+\end{document}

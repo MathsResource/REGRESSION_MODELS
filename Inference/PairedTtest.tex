@@ -1,0 +1,25 @@
+\section{Paired t-test}
+
+In paired t-tests, we examine the case wise differences in both data sets. 
+This procedure is of interest in studies with a “before / After” structure.  Both data sets must be of equal length. 
+
+\begin{quoatation} 
+Ho :  The average case-wise difference is zero
+Ha :  The average case-wise difference is not zero.
+\end{quotation}
+
+\begin{verbatim}
+# paired t-test
+# t.test(y1,y2,paired=TRUE)  where y1 & y2 are numeric and are of the same length.
+t.test(mod, unmod,paired=T)
+\end{verbatim}
+ 
+Another way of implementing the paired t-test is to first compute the vector of casewise differences, and then apply a simple one sample test.
+\begin{framed}
+\begin{verbatim}
+# t.test(y1-y2) # Ho: mu=0
+t.test(mod- unmod)
+\end{verbatim}
+ \end{framed}
+
+\end{document}

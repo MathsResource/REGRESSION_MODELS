@@ -1,0 +1,19 @@
+
+\subsection{Grubbs’ Test}
+Grubbs' test is a formal hypothesis test for assessing whether or not a  data set contains an outlier.
+This data set is univariate and approximately normal distributed. This test is designed for assessing one outlier only.  If more outliers are suspected, alternative tests, such as the Tietjen-Moore test, are recommended.
+Hypotheses: Grubbs' test is defined for the hypothesis: 
+\begin{description}
+\item[Ho] :  There are no outliers in the data set  
+\item[Ha] :  There is exactly one outlier in the data set  
+\end{description}
+
+\begin{framed}
+\begin{verbatim}
+install.packages("outliers")
+library(outliers)
+#Package Author : Lukasz Komsta (UMLUB, Poland)
+
+grubbs.test(DAT002)
+\end{verbatim}
+\end{framed}

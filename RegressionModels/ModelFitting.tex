@@ -1,0 +1,323 @@
+
+
+\section{Linear Regression Models}
+
+
+\begin{itemize}
+\item Simple Linear Regression Models
+\item Multiple Linear Regression Models
+\item  Influence and Outliers
+\end{itemize}
+
+\subsection{The Line of Best Fit}
+
+Note that the data in the above scatter-plot is approximately linear. As the age increases, the average height increases at an approximately constant rate.
+
+One could not fit a single line through each and every data point, but one could imagine a line that is fairly close to each data point, with some of the data points appearing above the line, others below for balance. 
+
+In this section, we will calculate and plot the Line of Best Fit, or the Least Squares Regression Line.
+
+
+We will use R's \texttt{lm} command to compute a "linear model" that fits the data in the scatterplot.
+
+The command lm is a very sophisticated command with a host of options (type ?lm to view a full description), but in its simplest form, it is quite easy to use. 
+
+
+The syntax height~age is called a model equation and is a very sophisticated R construct. 
+
+We are using its most simple form here.
+
+The symbol separating "height" and "age" in the syntax height~age is a "tilde."
+
+
+It is located on the key to the immediate left of the the #1 key on your keyboard.
+
+You must use the Shift Key to access the "tilde."
+
+
+%-------------------------------------------------------------------------------
+\begin{framed}
+\begin{verbatim}
+> res=lm(height~age)
+\end{verbatim}
+\end{framed}
+
+
+Let's examine what is returned in the variable res.
+
+\begin{framed}
+\begin{verbatim}
+> res
+
+Call:
+lm(formula = height ~ age)
+
+Coefficients:
+(Intercept)          age  
+     64.928        0.635  
+
+\end{verbatim}
+\end{framed}
+
+Note the "Coefficients" part of the contents of res. These coefficients are the intercept and slope of the line of best fit. Essentially, we are being told that the equation of the line of best fit is:
+
+height = 0.635 age + 64.928.
+
+Note that this result has the form y = m x + b, where m is the slope and b is the intercept of the line.
+
+It is a simple matter to superimpose the "Line of Best Fit" provided by the contents of the variable res. The command abline will use the data in res to draw the "Line of Best Fit."
+
+\begin{framed}
+\begin{verbatim}
+> abline(res)
+
+\end{verbatim}
+\end{framed}
+
+The result of this command is the "Line of Best Fit" shown in Figure 2.
+
+
+%-------------------------------------------------------------------------------%
+
+
+
+The estimates (i.e regression coefficients) may be determined directly using the coef() command.
+
+
+Investigate this using the RESID command.
+
+.
+
+The basic function for fitting ordinary model is lm().
+
+Syntax
+
+Fitted.Model = lm(formula, data=data.frame)
+
+The R command summary() provides a comprehensive summary of the results of the regression analysis.
+%==========================================================================================%
+\subsection{Updating fitted models}
+
+The update function is a convenient function that allows a previously fitted model to be altered with new specifications.
+
+
+\subsection{Useful Commands}
+
+The estimates (i.e regression coefficients) may be determined directly using the coef() command. coef(fit1) returns the intercept and slope estimates for the model.
+
+
+The summary function provides a comprehensive overview of all inference estimates for a model fit, including p-values for all predictor variables.
+
+
+The summary output is constructed as a list, and as such, components can be aaccessed using the dollar sign.(Find the names of the component using the names command)
+
+\subsection{Residuals}
+
+Residuals are normally distributed with mean zero. 
+
+Investigate this using the RESID command.
+
+Testing Residuals for Normality
+
+
+A fundamental assumption of linear models is that the
+
+Residuals are normally distributed with mean zero.
+
+
+The Anderson Darling test is the conventional inference test for assessing whether a data set is normally distributed. It requires liading the normtest pagkage into the R environment. A nother inference procedure for testing normality is the Shapiro Wilk test. (We will use this one fir this module, but use Anderson Darling in future).
+
+
+shapiro.test(x)
+
+%====-------------------------------------------------------------------------------%
+
+\section{Regression}
+%======================================================================================================== %
+\subsection{5. Simple Linear Regression}
+
+
+You're probably thinking that it would be a mistake to use simple linear regression considering the plot we just produced. Well, there are ways of transforming data so that we can use linear regression methods. We'll fit a Michaelis-Menten function to these data. Using our data, the form of this function is as follows: 
+
+Vm and K are the parameters we are interested in estimating from these data. With a little bit of algebraic gymnastics, we can get the above equation to look like this: 
+
+It may not look like this helped, but it did. If you look closely, you'll see that this has the form of a simple linear regression model. Making these substitutions, conc/vel=ytrans, K/Vm=a, and 1/Vm=b, the equation becomes: 
+
+Here's our game plan. We'll first create the new transformed variable ytrans, then fit the linear regression to estimate the parameter a and b. Then we can calculate Vm and K from there. 
+We can easily add another variable to our data frame: 
+> df$ytrans <- df$conc/df$vel
+Take a look at df and see that there is a new column added. Plot the new variable against conc to check whether a linear regression model is appropriate. 
+> plot(df$conc, df$ytrans)
+Now we are ready to fit our regression model. We'll use the function lm(), which stands for linear model. 
+> lmfit <- lm(ytrans~conc, data=df)
+By default, you will get an error if there are any missing values in your data when you run this function. If this happens, you may want to omit those cases that contain missing values and fit the model on the remaining cases. To do so, run the same function with an argument to specify the desired action. 
+> lmfit <- lm(ytrans~conc, data=df, na.action=na.omit)
+
+%======================================================================================= %
+
+This might make more sense if you know that R designates missing values by NA. Now let's look at this function call. The desired model is specified with ytrans~conc. Think of the tilde as an equal sign when specifying a model. ytrans is our response, so it goes on the left side. conc is our explanatory variable, so it goes on the right. An intercept term is assumed so you do not need to include it in the model definition. However, it is possible to force a zero intercept if you wanted. 
+Notice that there was not any output automatically generated when you fit the regression. The results have been saved in an object we called lmfit. This object is actually a list that contains several objects, which you can see with the function names() 
+\begin{framed}
+\begin{verbatim}
+> names(lmfit)
+[1] "coefficients"  "residuals"     "effects"       "rank"      
+[5] "fitted.values" "assign"        "qr"            "df.residual"  
+[9] "xlevels"       "call"          "terms"         "model"  
+\end{verbatim}
+\end{framed}
+Any of these terms can be viewed or used with the same method you used to view a variable in a data frame: object name, followed by a dollar sign, then the element name. For example, lmfit$call. If you want to view most of the standard regression output, use the summary() function: 
+\begin{framed}
+	\begin{verbatim}
+	> summary(lmfit)
+	
+	Call:
+	lm(formula = ytrans ~ conc, data = df)
+	
+	Residuals:
+	1          2          3          4          5          6          7 
+	8.333e-04 -1.727e-03 -1.864e-04  5.013e-04  1.363e-04  9.112e-05  3.515e-04 
+	
+	Coefficients:
+	Estimate Std. Error t value Pr(>|t|)    
+	(Intercept) 0.004303   0.000451   9.541 0.000214 ***
+	conc        0.259603   0.003102  83.703 4.61e-09 ***
+	---
+	Signif. codes:  0 `***' 0.001 `**' 0.01 `*' 0.05 `.' 0.1 ` ' 1 
+	
+	Residual standard error: 0.0009071 on 5 degrees of freedom
+	Multiple R-Squared: 0.9993,     Adjusted R-squared: 0.9991 
+	F-statistic:  7006 on 1 and 5 DF,  p-value: 4.612e-09 
+	\end{verbatim}
+\end{framed}
+You can also easily view diagnostic plots (residuals, observed vs fitted, Cook's distance, etc.): 
+> plot(lmfit)
+R knows that this is the output from a linear model and will generate the appropriate plots. How does it know? Check to see what class it is: 
+> class(lmfit)
+[1] "lm"
+You can get the coefficients from your model fit with the coef() function: 
+> coef(lmfit)
+(Intercept)        conc 
+0.004303145 0.259602617
+These are estimates for the parameters we called a and b, respectively. The output from coef() is just a vector of length 2. Let's use the coefficients to add a line to our graph of ytrans vs conc: 
+> plot(df$conc, df$ytrans)
+> abline(coef(lmfit))
+Here's what it looks like:
+
+The last thing we have to do is back-calculate to get our non-linear parameters, Vm and K: 
+> Vm <- 1/coef(lmfit)[2]
+> K <- Vm*coef(lmfit)[1]
+> Vm
+conc 
+3.852041 
+> K
+conc 
+0.01657589 
+Remember that the output from the coef function is a vector of length 2 so we can access the desired coefficient using the brackets as shown. We now have our parameter estimates! 
+
+%======================================================================================================== %
+\subsection{6. Non-linear Regression}
+
+
+We can also directly fit the Michaelis-Menten function to our data using non-linear regression. Remember the term "sum-of-squares" from your old regression class? When you fit a regression model, you get a "fitted value" for every data point used to fit the model. If you take the difference between the fitted value and the observed value, you get what we call a residual. Then if you square all the residuals and add them up, you get the residual sum-of-squares. The smaller that is, the better the model fits your data. You may have heard this called the least-squares method. Well, non-linear regression works the same way. With non-linear regression, we specify the form of the model we want to fit and the parameters that need to be estimated. R then searches for parameter values that will minimize the residual sum-of-squares. 
+To run the analysis, we use the function nls(), which stands for non-linear least squares. Use the summary() function to view the results. 
+\begin{framed}
+	\begin{verbatim}
+	> nlsfit <- nls(vel~Vm*conc/(K+conc),data=df, start=list(K=0.0166, Vm=3.852))
+	> summary(nlsfit)
+	
+	Formula: vel ~ Vm * conc/(K + conc)
+	
+	Parameters:
+	Estimate Std. Error t value Pr(>|t|)    
+	K  0.0178867  0.0009928   18.02 9.68e-06 ***
+	Vm 3.9109354  0.0557700   70.13 1.12e-08 ***
+	---
+	Signif. codes:  0 `***' 0.001 `**' 0.01 `*' 0.05 `.' 0.1 ` ' 1 
+	
+	Residual standard error: 0.06719 on 5 degrees of freedom
+	
+	Correlation of Parameter Estimates:
+	K
+	Vm 0.7535 
+	\end{verbatim}
+\end{framed}
+
+You can view the estimates for K and Vm from the summary output, or you can use the coef() function again. How do the estimates compare with those from the previous analysis? We want to plot our non-linear fit to see how well it matches the data. First, plot the original variables again. Remember to create a new graphsheet if you want to keep your previous graph. 
+> plot(df$conc, df$vel, xlim=c(0,0.4), ylim=c(0,4))
+
+
+%======================================================================================================== %
+There's something new here. We used the xlim and ylim arguments to specify the limits for the x and y axes, respectively. By default, R will set the limits just enough to plot all the data. Sometimes you may want to plot beyond the data if you're going to add other things later or just to make the plot look a little better. 
+To add the model fit to the plot is going to take a little more work than with simple linear regression. The x-axis on our plot goes from 0 to 0.4, so we're going to need to generate a vector that covers this range and then calculate a y-value for each x-value using the parameters we just estimated. The number of x-values you generate will determine how smooth the line is going to look. You will almost always get a smooth line with 100 x-values. 
+> x <- seq(0, 0.4, length=100)
+This does just what you think it does. It generates a sequence of 100 numbers from 0 to 0.4. Now we calculate the associated y-values: 
+> y2 <- (coef(nlsfit)["Vm"]*x)/(coef(nlsfit)["K"]+x)
+
+
+%======================================================================================================== %
+This shows you another way that you can reference elements in a vector. If the elements are named, you can use that in the brackets instead of its position number. There's another way to get our y-values for the plot that's perhaps the simplest. We'll use the function predict() that will predict fitted response values for a given set of x-values. The function wants the x-values in a dataframe and with the same variable name(s) as the original data. Here's how we do it: 
+> y2 <- predict(nlsfit,data.frame(conc=x))
+The function predict() can be used with results from linear models, non-linear models, and generalized linear models. Check the online help to see all it can do. Now to add the line to our plot: 
+> lines(x, y2)
+I'm sure you noticed I called the y-values y2. This is the fit from our second model. Let's add a line from our first model to see how they compare. We can use the same vector of x-values to calculate a new set of y-values and add the line to our plot. 
+> y1 <- (Vm*x)/(K+x)
+> lines(x, y1, lty="dotted", col="red")
+For this to work, you must have created the objects Vm and K as we did in the previous section. Also note that we used the line type argument (lty) for a dotted line and the color argument (col) to get a different color. Here is what the resulting plot should look like: 
+
+
+%======================================================================================================== %
+\subsection*{7. Polynomial Regression}
+
+
+The last method we'll use to fit these data is polynomial regression, where the model takes on the form y = b0 + b1x + b2x2 + b3x3 + ... , etc. We're going to fit a second order polynomial like this: 
+\begin{framed}
+	\begin{verbatim}
+	> polyfit2 <- lm(vel~conc+I(conc^2), data=df)
+	We're using the same function lm() as linear regression, but we're adding multiple instances of the explanatory variable to generate our polynomial formula. Note that we need to use the identity function, I(), because the caret (^) has special meaning in a formula. Another way to build this formula is to create a matrix where each column contains the explanatory variable raised to a power. Use the function cbind() to bind columns together to form a matrix. This is what that would look like: 
+	> polyfit2a <- lm(vel~cbind(conc, conc^2), data=df)
+	Run either of these commands and view the summary or just take a look at the coefficients: 
+	\begin{framed}
+	\begin{verbatim}
+	> coef2 <- coef(polyfit2)
+	> coef2
+	(Intercept)        conc   I(conc^2) 
+	1.288439   25.652243  -56.500264 
+	Now we want to draw this line on our graph. We could add it to the plot with the other two lines, but let's create a new graph and label the x and y axes: 
+	> plot(df$conc, df$vel, xlim=c(0,0.4), ylim=c(0,5), 
+	+ xlab="Substrate Concentration", ylab="Reaction Rate")
+	There's something new with this line. You can enter the entire command on a single line if you want, but if you hit Enter before the command is complete, you get the "+" prompt on the second line where you finish the command. NOTE: the "+" on the second line IS NOT part of the command, it is the prompt to continue. So if you enter this all together on a single line, DO NOT include the "+". 
+	There are a couple ways to generate the y-values for the line. Perhaps the most straightforward is the following: 
+	> y3 <- coef2[1] + coef2[2]*x + coef2[3]*x^2
+	We just plug in the coefficients and the appropriate x-values and we're done. There's another way that doesn't involve so much typing, especially when dealing with higher order polynomials. It involves matrix multiplication so hopefully you remember something about linear algebra. We're going to create a matrix of x-values and then multiply that by our coefficient vector. 
+	\begin{framed}
+	\begin{verbatim}
+	> y3 <- cbind(1,x,x^2) %*% coef2
+	You saw the function cbind() just a second ago. (FYI: There is also a function called rbind() that binds vectors together as rows instead of columns.) The operator %*% is used for matrix multiplication. Add the line to the graph: 
+	> lines(x,y3)
+	And it should look like this: 
+	
+	The last thing we're going to do is increase the polynomial order to the maximum. There are seven data points so the maximum order is six. (Why?) First we fit the new regression, then transform the coefficients, generate new y-values, and add the new line to our graph. 
+	> polyfit6 <- lm(vel~conc+I(conc^2)+I(conc^3)+I(conc^4)+I(conc^5)+I(conc^6),data=df)
+	> coef6 <- coef(polyfit6)
+	> y4 <- cbind(1,x,x^2,x^3,x^4,x^5,x^6) %*% coef6
+	> lines(x,y4,lty=2)
+	When you add the lines, you will see several warnings go by because some of the resulting y-values greatly exceed the range of the graph. The plot should now look like this: 
+	
+	It's a good fit (the line goes through every point) but how useful is it for predicting new points? Take a look at the summaries from each fit. Ever seen an R2 of 1 before? 
+	
+	%======================================================================================================== %
+	
+\section{Model Selection}
+
+
+The adjusted coefficient of determination is computed to account for the presence of more than one predictor variable.
+
+
+The law of parsimony, the simplest model that adequately explains the outcomes is the best.
+
+
+
+
+--------------------------------------------------------------------------------
+
+
