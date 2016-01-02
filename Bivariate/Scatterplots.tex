@@ -1,0 +1,62 @@
+
+%=====================================================================%
+\begin{frame}[fragile]
+\frametitle{Scatterplot}
+One of the first steps in a regression analysis is to determine if any
+kind of relationship exists between the two variables.
+A scatterplot is created and can initially be used to get an idea
+about the nature of the relationship between the variables, e.g. if
+the relationship is linear, curvilinear, or no relationship exists.
+Read the data from the file SLRex1.txt into a data frame called
+SLR1.
+\end{frame}
+%=====================================================================%
+\begin{frame}[fragile]
+\frametitle{Scatterplot}
+SLR1 <- read.table("C:/.../SLRex1.txt", header=T)
+SLR1
+x y
+1 5.366516 26.76595
+2 6.435778 46.89376
+3 7.831232 34.11415
+4 7.587142 45.49667
+5 5.380939 33.22162
+6 8.254098 39.98920
+...
+
+\end{frame}
+%=====================================================================%
+\begin{frame}[fragile]
+\frametitle{Scatterplot}
+This file contains readings for a response variable y and an
+explanatory variable x.
+To create a scatterplot in R, simply use the plot command.
+Remember y is the response variable and x is the explanatory
+variable:
+plot(x=SLR1$x, y=SLR1$y, main="Scatterplot")
+OR
+attach(SLR1)
+plot(x=x, y=y, main="Scatterplot")
+\end{frame}
+%=====================================================================%
+\begin{frame}[fragile]
+\frametitle{Scatterplot}
+\begin{itemize}
+\item (The attach command makes the variables in the data frame
+SLR1 accessible by name rather than using the $ notation). 
+\item Need
+to be careful as if there are other variables in use with the same
+names as those in the data frame, R will get confused. 
+\item When
+finished working with SLR1, need to use detach(SLR1).
+\end{itemize}
+\end{frame}
+%=====================================================================%
+\begin{frame}[fragile]
+\frametitle{Scatterplot}
+There is clearly a positive linear relationship between x and y. As x
+increases y also increases. No obvious outliers. SLR is appropriate
+here.
+\end{frame}
+%=====================================================================%
+\end{document}
