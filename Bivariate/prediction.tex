@@ -8,15 +8,16 @@ Alternatively, could use the predict function:
 predict(model,list(x=30))
 1
 82.19289
+%=============================%
 For linear plots use abline for superimposing the model on a
 scatterplot of the data points. For curved responses, use the
 predict function to generate the lines.
 
-Condence and Prediction Intervals
+\subsection*{Confidence and Prediction Intervals}
 Fitted lines are often presented with uncertainty bands around
 them. There are two types of bands:
- Condence bands - refer to the POPULATION.
- Prediction bands - refer to an INDIVIDUAL.
+\item Confidence bands - refer to the POPULATION.
+\item  Prediction bands - refer to an INDIVIDUAL.
 One way to get intervals:
 predict(model, interval="confidence")
 predict(model, interval="prediction")
@@ -30,3 +31,4 @@ matlines(grid, pi, lty=c(1,2,2), col=c("black", "blue","blue"))
 matlines(grid, ci, lty=c(1,3,3), col=c("black", "red","red"))
 legend("bottomright", legend=c("Prediction Interval", "Confidence Interval"),
 lty=2:3, col=c("blue","red"), bty="n")
+\end{document}
