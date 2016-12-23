@@ -1,5 +1,5 @@
-#################################################
-Weighted Linear Regression and Polynomial Regression
+
+\section*{Weighted Linear Regression and Polynomial Regression}
 
 Compute the average value snd standard deviation for Fluoresence at each level of concentration.
 
@@ -11,6 +11,7 @@ Using the following R code. sketch the scatterplot.
 
 Repeat the regression model fitting procedure using each observation of Fluoresence. 
 
+\begin{verbatim}
 Conc=c(0,10,20,30,40,50)
 Conc.M=rep(Conc,5)
 Fluo.M=c(4,22,44,60,75,104,
@@ -18,8 +19,9 @@ Fluo.M=c(4,22,44,60,75,104,
 4,21,45,60,79,107,
 5,22,44,63,78,101,
 4,21,44,63,77,105)
-
-
+\end{verbatim}
+%========================================%
+\begin{verbatim}
 ##################################################
 Fluo.Matrix=matrix(
 c(4,22,44,60,75,104,
@@ -30,25 +32,27 @@ c(4,22,44,60,75,104,
 byrow=T,ncol=6)
 
 apply(Fluo.Matrix,2,mean)
-
-#################################################
-
+\end{verbatim}
+%========================================%
+\begin{verbatim}
 Fit1 = lm(Fluo.M ~ Conc.M)
 summary(Fit1)
 
 Fluo.Mean = apply(Fluo.Matrix,2,mean)
 Fit2 = lm(Fluo.Mean ~ Conc)
 summary(Fit2)
-
-#################################################
-
+\end{verbatim}
+%========================================%
+\begin{verbatim}
 plot(Conc.M,Fluo.M)
 plot(Conc.M,Fluo.M,pch=18,col="red")
 abline(coef(Fit2))
 
 
 Perform a weighting linear regression model using the following code.
-#################################################
+\end{verbatim}
+%========================================%
+\begin{verbatim}
 
 
 # Quadratic and Cubic Relationships
@@ -75,10 +79,16 @@ y=b0+b1 x
 y=b0+b1 x + b2 x2
 y=b0+b1 x + b2 x2+ b3 x3
 
+\end{verbatim}
+%========================================%
+\begin{verbatim}
 
 FitA = lm(Abso~Conc)
 FitB = lm(Abso~Conc + Conc.squared)
 FitC = lm(Abso~Conc + Conc.squared + Conc.cubed)
+\end{verbatim}
+%========================================%
+\begin{verbatim}
 
 
 
@@ -95,10 +105,16 @@ x underlying independent variable
 bi regression coefficients 
 y=b1 x + b2 x2
 y=b1 x + b2 x2+ b3 x3
+%========================================%
+\begin{verbatim}
 
 FitB.1 = lm(Abso~Conc + Conc.squared-1)
 FitC.1 = lm(Abso~Conc + Conc.squared + Conc.cubed-1)
+\end{verbatim}
+%========================================%
 
+
+\end{document}
 
 
 
