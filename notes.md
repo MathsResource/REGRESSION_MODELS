@@ -10,7 +10,7 @@ and the exponential law for integer powers
 {\displaystyle \left(e^{ix}\right)^{n}=e^{inx}.} \left(e^{{ix}}\right)^{n}=e^{{inx}}.
 Then, by Euler's formula,
 
-{\displaystyle e^{inx}=\cos nx+i\sin nx.} {\displaystyle e^{inx}=\cos nx+i\sin nx.}
+$${\displaystyle e^{inx}=\cos nx+i\sin nx.} {\displaystyle e^{inx}=\cos nx+i\sin nx.}$$
 
 #### Roots of complex numbers[edit]
 A modest extension of the version of de Moivre's formula given in this article can be used to find the nth roots of a complex number (equivalently, the power of 
