@@ -2,11 +2,6 @@
 
 
 
-## Exponential functions
-
-
-
-
 ## First Order Differential Equations
 
 
@@ -29,8 +24,4 @@ Integrate throughout.	{\displaystyle \int ^{y}P(\lambda )\,{d\lambda }+\int ^{x}
 
 ## Lagrange Multipliers
 
-## Fourier series
 
- * Period Functions
-
-\[ f(t) = f(t +p) \]
