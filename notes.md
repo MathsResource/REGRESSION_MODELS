@@ -2,6 +2,31 @@
 
 
 
+\sqrt{3} + i in form (a+ib)
+
+\[r = sqrt{a^2+b^2} \therefore r = \sqrt{(3)+(1^2)} = \sqrt{4} = 2 \] 
+
+$$ \theta = tan^{-1}(b/a) $$
+
+
+
+
+\[ \frac{dy}{dx} - \frac{2y}{x} =2x^3 \]
+
+\[ \frac{dy}{dx} - \left(\frac{2}{x}\right)y =2x^3 \]
+
+\[ \frac{dy}{dx} - q(X)y = p(x) \]
+
+
+
+
+$$ z = x^2e^y = xy^3$$
+
+\frac{\partial z}{\partial x} = e^y \frac{\partial (x^2)}{\partial x} + \frac{\partial (x^2)}{\partial x}
+
+
+\frac{\partial z}{\partial y} = x^2 \frac{\partial (x^2)}{\partial y} + \frac{\partial (x^2)}{\partial y}
+
 ## First Order Differential Equations
 
 
