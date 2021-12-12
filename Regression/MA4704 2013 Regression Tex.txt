@@ -1,0 +1,259 @@
+
+
+
+%-------------------------------------------------%
+
+
+%-------------------------------------------------%
+
+\begin{frame}
+\frametitle{Bivariate Data}
+\begin{itemize}
+\item Univariate statistics describes statistics related to one variables.
+\item Bivariate statistics describes statistics related to two variables $X$ and $Y$.
+\item Multivariate statistics describes statistics related to multiple variables (not part of course).
+\end{itemize}
+\end{frame}
+
+%-------------------------------------------------%
+% R Code
+%
+% X = c(10, 15, 20, 25, 30, 35, 40)
+% Y = c(11, 19, 34, 52, 58, 81, 109)
+% plot(X,Y,pch=18,col="red",font.lab=2,main="Scatter Plot of X and Y")
+% cor(X,Y) =0.9830478
+
+
+%-------------------------------------------------%
+\begin{frame}
+\frametitle{Covariance}
+Covariance is a strength of the measure of the linear relationship between two variables.
+\[ cov(x,Y) = \]
+\end{frame}
+%-------------------------------------------------%
+% Regression Analysis
+
+
+\begin{frame}
+\frametitle{Variables in Regression Analysis }
+\begin{itemize}
+\item The X variable is called the independent (or predictor) variable.
+\item The Y variable is called the dependent (or response) variable.
+\item Using the scatter plot we can state the strength and type
+(linear/non-linear) of the relationship.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Correlation and cause-effect}
+\begin{itemize}
+\item Note that a strong relationship between two variables does not
+imply a cause-effect relationship.
+\item For example, there is a strong negative correlation between the
+sales of ice cream and the number of flu infections.
+\item This does not mean that ice cream protects against flu.
+\item This relationship results from a latent variable (a variable that has
+not been observed).
+\item Such a latent variable in this case is the weather. Low
+temperatures and wet weather result in a high number of flu
+infections and low ice cream sales. \item Hot, sunny weather leads to the
+opposite.
+\end{itemize}
+\end{frame}
+
+%-------------------------------------------------%
+\begin{frame}
+\frametitle{Scatter-plots}
+Subsequent Slides
+\begin{itemize}
+\item Relatively strong positive relationship (as height increases
+weight on average increases), reasonably linear.
+\item No relationship/weak negative relationship
+\item Negative, very strong, non-linear relationship.
+\item Non-linear relationship.
+\end{itemize}
+\end{frame}
+
+%-------------------------------------------------%
+\begin{frame}
+\frametitle{Regression Estimate}
+\begin{itemize}
+\item Intercept Estimate
+\item Slope Estimate
+\end{itemize}
+\end{frame}
+%-------------------------------------------------%
+\begin{frame}
+\frametitle{Summation Calculations}
+\begin{itemize}
+\item $\sum X$ - sum of the $X$ data set.
+\item $\sum Y$ - sum of the $Y$ data set.
+\item $\sum X^2$ - sum of the $X$ data set.
+\item $\sum Y^2$ - sum of the $Y$ data set.
+\item $\sum XY$ - sum of the case-wise products  of $X$ and $Y$ values.
+\end{itemize}
+\end{frame}
+%-------------------------------------------------%
+\begin{frame}
+\frametitle{Pearson's Correlation Coefficient.}
+
+The Pearson correlation coefficient is a way of measuring the
+strength of the relationship between two quantitative variables.
+
+\begin{itemize}
+\item The population correlation coefficient between two variables X and
+Y is denoted by $\rho_{X,Y}$ .
+\item Used as an estimate for true correlation $\rho$.
+\item Pearson's Coefficient is denoted $r$.
+\item The Pearson Coefficient is defined to be between -1 and 1.
+\item The Pearson correlation coefficient is only appropriate for
+describing the relationship between two quantitative variables
+which have a linear or near linear relationship
+\end{itemize}
+\end{frame}
+%-------------------------------------------------%
+\begin{frame}
+\frametitle{Pearson's Correlation Coefficient}
+The Pearson Coefficient is computed using the following formula.
+\[ r = \frac{S_{xy}}{(S_x)(S_y)} \]
+\end{frame}
+
+%-------------------------------------------------%
+\begin{frame}
+\frametitle{Other Correlation Coefficients}
+Pearson's Correlation Coefficient is one approach to estimating the strength of relation between two variables.
+Other approaches are as follows:
+\begin{itemize}
+\item Spearman's Rank Correlation
+\item Kendall Tau Correlation
+\end{itemize}
+These are not part of the course.
+
+\end{frame}
+
+
+%-------------------------------------------------%
+\section{Regression}
+%-------------------------------------------------%
+
+\begin{frame}
+\frametitle{Computing the Estimates}
+\begin{itemize}
+\item Slope Estimate
+\[b_1 = \frac{S_{XY}}{S_{XX}} \]
+\item Intercept Estimate
+\[b_0 = \bar{Y} - b_1\bar{X} \]
+\end{itemize}
+\end{frame}
+%-------------------------------------------------%
+\section{Examples}
+%-------------------------------------------------%
+\begin{frame}
+\frametitle{Example 1}
+The height of a boy was observed at 7 different ages.
+Comment on the relationship between height and age over this
+period of time and calculate the Pearson correlation coefficient for
+this data.
+
+%Age  & 6 & 7  & 8 & 9 & 10 & 11 & 12 \\ 
+%Height (cm)& 108 115& 120 &126& 132& 139 & 145\\
+
+In order to investigate the nature of the relationship, we draw a
+scatter plot.
+X (the independent variable) is defined to be age and Y is defined
+to be height (the dependent variable).
+
+\end{frame}
+
+%-------------------------------------------------%
+%MA4104 Q4A Ana Magadalina 2010
+\begin{frame}
+\frametitle{Example 2}
+
+
+\end{frame}
+% X = c(40,28,34,27,21,38,19,45,31,35)
+% Y = c(1,6,6,9,12,4,13,2,5,3)
+
+
+\begin{frame}
+\frametitle{Identities}
+\begin{itemize}
+\item $S_{XY} = -283.8$
+\item $S_{XX} = 613.6$
+\item $S_{YY} = 148.9$
+\item $\sum(X_i)  = 318 $
+\item $\sum(Y_i)  = 61$
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Example 2 Part 1}
+
+\begin{itemize}
+\item Calculate the correlation coefficient and interpret its value.
+\item The correlation coefficient is computed using the following formula:
+\[ r_{X,Y} = \frac{\S_{XY}}{\sqrt{\S_{XX}\S_{YY}}} \]
+\item From the values given
+\[ r_{X,Y} = \frac{-283.8}{\sqrt{(613.6)(148.9)}} = -0.9389 \]
+\item Very strong negative linear relationship
+\end{itemize}
+\end{frame}
+
+%-------------------------------------------------%
+\begin{frame}
+\frametitle{Example 2 Part 2}
+\begin{itemize}
+\item Calculate the slope estimate for the regression equation.
+\item The slope estimate is computed using the following formula:
+\[ b_1 = \frac{\S_{XY}}{S_{XX}} \]
+\item From the values given
+\[ b_1 = \frac{-283.8}{613.6} =-0.4625 \]
+\item 
+\end{itemize}
+\end{frame}
+
+
+%-------------------------------------------------%
+\section{Hypothesis Testing of Regression Estimates}
+%-------------------------------------------------%
+\begin{frame}
+\frametitle{Hypothesis Testing of Regression Estimates}
+\begin{itemize}
+\item We often require to test whether a slope estimate is zero.
+\item If the slope is zero, then there is no linear relationship between $X$ and $Y$.
+\end{itemize}
+\end{frame}
+%-------------------------------------------------%
+\begin{frame}
+\frametitle{Standard Error of Slope Estimate}
+\[S.E(b_1) = \sqrt{\frac{s^2}{S_{XX}}} \]
+
+\[s^2 = \frac{SSE}{n-2} \]
+\[SSE = S_{YY}- b_1S_{XY}\]
+
+\end{frame}
+%-------------------------------------------------%
+\begin{frame}
+\frametitle{Hypothesis Testing of Regression Estimate}
+$H_0: \beta_1 = 0$\\
+$H_1: \beta_1 \neq 0$\\
+\end{frame}
+
+%-------------------------------------------------%
+\section{Residuals}
+%-------------------------------------------------%
+\begin{frame}
+\frametitle{Residuals}
+\begin{itemize}
+\item The $epsilon_i$ values 
+are called \textbf{emph{residuals}} (they are the errors made using the
+regression model).
+\item A residual is positive when the observed value $y_i$ is greater than
+$\hat{y}_i$, the value predicted using the model.
+\item A residual is negative when the observed value $y_i$ is less than
+$\hat{y}_i$.
+\end{itemize}
+\end{frame}
+
+%-------------------------------------------------%

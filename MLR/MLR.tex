@@ -1,0 +1,94 @@
+
+
+
+\section{Multiple Linear Regression}
+\subsection{What is Multiple Linear Regression}
+
+Multiple regression is a statistical technique that allows us to predict a numeric value on the response variable on the basis of the observed values on several other independent variables.
+
+Suppose we were interested in predicting how much an individual enjoys their job. Variables such as salary, extent of academic qualifications, age, sex, number of years in full-time employment and socioeconomic status might all contribute towards job satisfaction. If we collected data on all of these variables, perhaps by surveying a few hundred members of the public, we would be able to see how many and which of these variables gave rise to the most accurate prediction of job satisfaction. We might find that job satisfaction is most accurately predicted by type of occupation, salary and years in full-time employment, with the other variables not helping us to predict job satisfaction.
+
+\[\hat{y} = b_0 + b_1x_1 + b_2x_2 + \ldots \]
+
+\begin{itemize}
+\item $\hat{y}$ is the \textbf{\textit{fitted value}} for the dependent variable \textbf{$Y$}, given a linear combination of values for the independent valriables.
+
+\item $x_1$ is the value for independent variable \textbf{$X_1$}.
+\item $b_o$ is the constant regression estimate ( commonly known as the \textbf{Intercept Estimate} in the case of simple linear regression).
+\end{itemize}
+\newpage
+\section{Terminology}
+\subsection{Beta (standardised regression coefficients)}
+The beta value is a measure of how strongly each predictor variable influences the
+response variable. The beta is measured in units of standard deviation. For example,
+a beta value of 2.5 indicates that a change of one standard deviation in the predictor
+variable will result in a change of 2.5 standard deviations in the response variable.
+Thus, the higher the beta value the greater the impact of the predictor variable on
+the response variable.
+
+
+The Standardized Beta
+Coefficients give a measure of the
+contribution of each variable to
+the model. A large value indicates
+that a unit change in this
+predictor variable has a large
+effect on the criterion variable.
+The t and Sig (p) values give a
+rough indication of the impact of
+each predictor variable – a big
+absolute t value and small p value
+suggests that a predictor variable
+is having a large impact on the
+criterion variable.
+
+%\subsection{R, R Square, Adjusted R Square}
+%
+%R is a measure of the correlation between the observed value and the predicted value of the criterion variable. In our example this would be the correlation between the levels of job satisfaction reported by our participants and the levels predicted for
+%them by our predictor variables.
+%
+%R Square (R2) is the square of this measure of
+%correlation and indicates the proportion of the variance in the criterion variable which is accounted for by our model – in our example the proportion of the
+%variance in the job satisfaction scores accounted for by our set of predictor variables
+%(salary, etc.).
+%
+%In essence, this is a measure of how good a prediction of the criterion variable we can make by knowing the predictor variables.
+% However, R square tends to somewhat over-estimate the success of the model when applied to the real world, so an Adjusted R Square value is calculated which takes into account the number of variables in the model and the number of observations (participants) our model is based on. This Adjusted R Square value gives the most useful measure of the success of our model. If, for example we have an Adjusted R Square value of 0.75 we can say that our model has accounted for 75\% of the variance in the criterion
+%variable.
+%
+%Adjusted $R^2$ is used to compensate for the addition of variables to the model.  As more independent variables are added to the regression model, unadjusted R2 will generally increase but there will never be a decrease.  This will occur even when the additional variables do little to help explain the dependent variable.  To compensate for this, adjusted R2 is corrected for the number of independent variables in the model.  The result is an adjusted R2 than can go up or down depending on whether the addition of another variable adds or does not add to the explanatory power of the model.  Adjusted R2 will always be lower than unadjusted.
+%
+%It has become standard practice to report the adjusted R2, especially when there are multiple models presented with varying numbers of independent variables.
+
+
+
+%
+%\subsection{Checking prediction success: using training and validation sets}
+%Another approach is to randomly assign your cases to two datasets. The first, called
+%the training set, is used to calculate the regression.
+%
+%The second is called the validation set. The predicted score is calculated for all the cases in the validation set, but as we
+%already have their actual scores, we can find the residuals and their standard
+%deviation.
+
+%%--------------------------------------------------------------------------- %
+%\newpage
+%
+%
+%
+%%------------------------------------------------------------%
+%\subsection{Adjusted R square}
+%
+%In a multiple linear regression model, adjusted R square measures the proportion of the variation in the dependent variable
+%accounted for by the independent variables.
+
+
+%------------------------------------------------------------%
+
+%\subsection{Model Selection}
+%
+%Model selection is the task of selecting a statistical model from a set of potential models, given data.
+
+
+%------------------------------------------------------------%
+

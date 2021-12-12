@@ -1,0 +1,64 @@
+
+\subsection{Regression example}
+
+A survey was conducted in 9 areas of the USA to investigate the relationship between
+divorce rate (y) and residential mobility (x). Divorce rates in the annual number per 1000 in the population
+and the residential mobility is measured by the percentage of the population that moved house in the last
+five years.
+
+
+
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
+  \hline
+Area & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9  \\
+x & 40 & 38 & 46 & 49 & 47 & 43 & 51 & 57 & 55\\
+y & 3.9 & 3.4 & 5.2 & 4.8 & 5.6 & 5.8 & 6.6 & 7.6 & 5.8\\
+  \hline
+\end{tabular}
+
+\begin{itemize}
+\item Check that the following statements are correct.
+
+\begin{itemize}
+\item sum of x data = 426
+\item sum of squares of x data = 20494
+\item sum of y data = 48.7
+\item sum of squares of y data = 276.81
+\item sum of products of x and y data = 2361
+\end{itemize}
+
+\item Derive the estimates for the slope and intercept of the regression line.
+\item Estimate the divorce rate for areas that has a residential mobility of 39 and 60 respectively.
+\item Which of these estimates is likely to be more accurate? Why?
+
+\end{itemize}
+\newpage
+
+\subsection{Regression example}
+
+In a medical experiment concerning 12 patients with a certain type of ear condition,
+the following measurements were made for blood flow (y) and auricular pressure (x):
+
+\begin{verbatim}
+x<-c(8.5, 9.8, 10.8, 11.5, 11.2, 9.6, 10.1, 13.5, 14.2, 11.8, 8.7, 6.8)
+y<-c(3 ,12, 10, 14, 8 ,7 ,9 ,13, 17, 10, 5 ,5)
+\end{verbatim}
+
+
+(Sx =126.5 Sxx =1,381.85 Sy =113 Syy =1251 Sxy =1272.2)
+
+
+\begin{itemize}
+\item Calculate the equation of the least-squares fitted regression line of blood flow
+on auricular pressure.
+\item Confirm the following values: Sx =126.5, Sxx =1381.85, Sy =113, Syy =1251, Sxy =1272.2.
+\item Calculate the correlation coefficient.
+
+\begin{verbatim}
+> cor(x,y)
+[1] 0.8521414
+\end{verbatim}
+\end{itemize}
+
+
+\end{document}

@@ -1,0 +1,47 @@
+
+\documentclass[a4paper,12pt]{article}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{eurosym}
+\usepackage{vmargin}
+\usepackage{amsmath}
+\usepackage{graphics}
+\usepackage{framed}
+\usepackage{epsfig}
+\usepackage{subfigure}
+\usepackage{fancyhdr}
+
+\setcounter{MaxMatrixCols}{10}
+%TCIDATA{OutputFilter=LATEX.DLL}
+%TCIDATA{Version=5.00.0.2570}
+%TCIDATA{<META NAME="SaveForMode"CONTENT="1">}
+%TCIDATA{LastRevised=Wednesday, February 23, 201113:24:34}
+%TCIDATA{<META NAME="GraphicsSave" CONTENT="32">}
+%TCIDATA{Language=American English}
+
+\pagestyle{fancy}
+\setmarginsrb{20mm}{0mm}{20mm}{25mm}{12mm}{11mm}{0mm}{11mm}
+\lhead{MA4128} \rhead{Kevin O'Brien} \chead{Assumptions for Linear Models} %\input{tcilatex}
+
+\begin{document}
+\section{Information Criterions}
+We define two types of information criterion: the Akaike Information Criterion (AIC) and the
+Schwarz?s Bayesian Information Criterion (BIC). The Akaike information criterion is a measure
+of the relative goodness of fit of a statistical model.
+\[AIC = 2p - 2 ln(L)\]
+
+
+%=================================================%
+\begin{itemize}
+	\item p is the number of predictor variables in the model.
+	\item L is the value of the Likelihood function for the model in question.
+	\item For AIC to be optimal, n must be large compared to p.
+\end{itemize}
+
+An alternative to the AIC is the Schwarz BIC, which additionally takes into account the
+sample size n.
+\[BIC = p ln n - 2 ln(L)\]
+When using the AIC (or BIC) for selecting the optimal model, we choose the model for which
+the AIC (or BIC) value is lowest.
+
+
+\end{document}

@@ -1,0 +1,38 @@
+\section{Implementation of Robust Regression}
+%======================================%
+% NOTES
+
+
+%
+%We are going to first use the Huber 
+%weights in this example. We will then look at the final weights created by the IRLS process. This can 
+%be very useful. 
+%Also we will look at an alternative weighting approach to Huber’s weighting – called Bisquare 
+%weighting.
+
+In Huber weighting, observations with small residuals get a weight of 1 and the larger the residual, 
+the smaller the weight. This is defined by the weight function 
+
+\section{MA4605 Notes}
+Robust regression is an alternative to ordinary least squares regression (OLS , the type of regression 
+we have studied thus far) when data is contaminated with outliers or influential observations and it 
+can also be used for the purpose of detecting influential observations. 
+
+
+
+\section{Implementing Robust Regression with R}
+
+When fitting a least squares regression, we might find some outliers or high leverage data points. 
+We have decided that these data points are not data entry errors, neither they are from a different 
+population than most of our data. So we have no proper reason to exclude them from the analysis. 
+
+Robust regression might be a good strategy since it is a compromise between excluding these points 
+entirely from the analysis and including all the data points and treating all them equally in OLS 
+regression. The idea of robust regression is to weigh the observations differently based on how well 
+behaved these observations are. 
+
+
+
+\end{document} 
+
+

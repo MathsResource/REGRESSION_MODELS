@@ -1,0 +1,96 @@
+\documentclass[12pt, a4paper]{report}
+\usepackage{epsfig}
+\usepackage{subfigure}
+%\usepackage{amscd}
+\usepackage{amssymb}
+\usepackage{graphicx}
+%\usepackage{amscd}
+
+\usepackage{subfiles}
+\usepackage{framed}
+\usepackage{subfiles}
+\usepackage{amsthm, amsmath}
+\usepackage{amsbsy}
+\usepackage{framed}
+\usepackage[usenames]{color}
+\usepackage{listings}
+\lstset{% general command to set parameter(s)
+	basicstyle=\small, % print whole listing small
+	keywordstyle=\color{red}\itshape,
+	% underlined bold black keywords
+	commentstyle=\color{blue}, % white comments
+	stringstyle=\ttfamily, % typewriter type for strings
+	showstringspaces=false,
+	numbers=left, numberstyle=\tiny, stepnumber=1, numbersep=5pt, %
+	frame=shadowbox,
+	rulesepcolor=\color{black},
+	columns=fullflexible
+} %
+%\usepackage[dvips]{graphicx}
+\usepackage{natbib}
+\bibliographystyle{chicago}
+\usepackage{vmargin}
+% left top textwidth textheight headheight
+% headsep footheight footskip
+\setmargins{3.0cm}{2.5cm}{15.5 cm}{22cm}{0.5cm}{0cm}{1cm}{1cm}
+\renewcommand{\baselinestretch}{1.5}
+\pagenumbering{arabic}
+%\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{ill}[theorem]{Example}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{axiom}{Axiom}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{notation}{Notation}
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}[section]
+\newtheorem{example}{Example}[section]
+\renewcommand{\thenotation}{}
+%\renewcommand{\thetable}{\thesection.\arabic{table}}
+%\renewcommand{\thefigure}{\thesection.\arabic{figure}}
+
+\author{ } \date{ }
+
+\begin{document}
+	
+There are three key elements to this exercie
+
+\begin{enumerate}
+\item Computation of Sums of Squares Identities
+\item Computation of the Slope Estimate
+\item Computation of the Intercept Estimate
+\end{enumerate}
+
+You will be given the Sums of Squares identities in the end of semester exam. You will not be required to compute Sums of Squares after this exercise.
+
+
+\[  b_o = \frac{S_{xy}}{S_{xx}}\]
+
+\newpage
+\subsection{Regression analysis: Example}
+In a study of a wholesaler’s distribution costs, undertaken with a view to controlling cost, the volume of goods handled and the overall costs were recorded for one month in each of ten depots in a distribution network. The results are presented in the following table. Perform a regression analysis of the cost (Y ) on the volume (X).
+
+\begin{center}
+	
+	\begin{tabular}{|c|c|c|}\hline
+		&  Volume (X)   &  Costs (Y) \\ \hline
+		1     &     48     &   20 \\
+		2     &    57      &   22 \\
+		3     &    49      &   19 \\
+		4     &    45      &   18 \\
+		5     &    50      &   20 \\
+		6     &    62      &   24 \\
+		7     &    58      &   21 \\
+		8     &    55      &   21 \\
+		9     &    38      &   15 \\
+		10    &    51      &  20 \\ \hline
+	\end{tabular}
+\end{center}
+%X=c(48,57,49,45,50,62,58,55,38,51)
+%Y=c(20,22,19,18,20,24,21,21,15,20)
+
+\end{document}

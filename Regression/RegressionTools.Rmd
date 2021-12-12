@@ -1,0 +1,31 @@
+---
+title: "RegressionTools"
+author: "Kevin O'Brien"
+date: "Wednesday, February 10, 2016"
+output: html_document
+---
+
+```{r}
+library(MASS)
+library(MethComp)
+```
+
+
+```{r, echo=FALSE}
+Model1 <- lm(stack.loss ~ ., stackloss)
+
+Model2 <- rlm(stack.loss ~ ., stackloss)
+
+plot(Model1,which=c(3))
+```
+```{r}
+summary(Model1)
+```
+```{r}
+plot(Model1)
+```
+```{r}
+rlm(stack.loss ~ ., stackloss, psi = psi.hampel, init = "lts")
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.

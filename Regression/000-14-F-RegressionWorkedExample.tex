@@ -1,0 +1,564 @@
+
+\documentclass[]{report}
+
+\voffset=-1.5cm
+\oddsidemargin=0.0cm
+\textwidth = 480pt
+
+\usepackage{framed}
+\usepackage{subfiles}
+\usepackage{graphics}
+\usepackage{newlfont}
+\usepackage{eurosym}
+\usepackage{amsmath,amsthm,amsfonts}
+\usepackage{amsmath}
+\usepackage{color}
+\usepackage{amssymb}
+\usepackage{multicol}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{graphicx}
+\begin{document}
+	\tableofcontents{3}
+
+	
+\section*{May 2013 Question 6b Correlation and Regression }
+Calculate the correlation coefficient and interpret the value.
+\begin{tabular}{|c|c|c|}
+	\hline Residence	& X	  & Y \\ 
+	\hline  &  &  \\ 
+	\hline  &  &  \\ 
+	\hline 
+\end{tabular} 
+
+
+
+\section*{May 2013 Question 5 Regression and Correlation}
+\begin{center}
+	\begin{tabular}{|c|c|c|}
+		\hline  & Experience & No. of Rejects \\ 
+		\hline A & 4 & 22 \\ 
+		\hline B & 5 & 20 \\ 
+		\hline C & 7 & 18 \\ 
+		\hline D & 9 & 15 \\ 
+		\hline E & 9 & 16 \\ 
+		\hline F & 10 & 11 \\ 
+		\hline G & 14 & 10 \\ 
+		\hline 
+	\end{tabular} 
+\end{center}
+
+% X = c(4, 5, 7, 9, 9, 10, 14)
+% Y = c(22, 20, 18, 15, 16, 11, 10)
+% plot(X,Y,pch=16,col="red",cex=2,xlim=c(0,16),ylim=c(0,25),font.lab=2) 
+% abline(coef(lm(Y~X)),col="blue",lty=2)
+\begin{itemize}
+	\item $\sum x$ = 58
+	\item $\sum y$ = 118
+	\item $\sum x^2$ = 548
+	\item $\sum y^2$ = 1910
+	\item $\sum xy$ = 843
+\end{itemize}
+
+\begin{itemize}
+	\item $s_{xx}$ = 67.428
+	\item $s_{yy}$ = 118
+	\item $s_{xy}$ = -85
+\end{itemize}
+\subsection*{The correlation coefficient}
+The correlation coefficient is $r = -0.9529$.
+
+\[ r = \frac{s_{xy}}{\sqrt{(s_xx \times s_yy)}}= \frac{-85}{\sqrt{(67.428 \times 118)}}\]
+
+\[r= \frac{-85}{sqrt{(7956.504)}} =  {-85 \over 89.199}  \]
+
+\[r = -0.9529\]
+
+\subsection*{The coefficient of determination}
+The coefficient of determination $r^2$ is computed as the square of the correlation coefficient.
+\[r^2 = (-0.9529)^2 = 0.90801\]
+%-------------------------------------------------%
+
+
+
+%-------------------------------------------------%
+
+\subsection{Other Correlation Coefficients}
+Pearson's Correlation Coefficient is one approach to estimating the strength of relation between two variables.
+Other approaches are as follows:
+\begin{itemize}
+	\item Spearman's Rank Correlation
+	\item Kendall Tau Correlation
+\end{itemize}
+These are not part of the course.
+
+%-------------------------------------------------%
+
+\subsection{Example 1}
+The height of a boy was observed at 7 different ages.
+Comment on the relationship between height and age over this
+period of time and calculate the Pearson correlation coefficient for
+this data.
+
+\begin{center}
+	\begin{tabular}{|c|c|c|c|c|c|c|c|}
+		Age  & 6 & 7  & 8 & 9 & 10 & 11 & 12 \\ 
+		Height (cm)& 108 115& 120 &126& 132& 139 & 145\\
+	\end{tabular} 
+	
+\end{center}
+
+\begin{itemize}
+	\item In order to investigate the nature of the relationship, we draw a
+	scatter plot.
+	\item X (the independent variable) is defined to be age and Y is defined
+	to be height (the dependent variable).
+\end{itemize}
+
+
+
+\subsection{Identities}
+\begin{itemize}
+	\item $S_{XY} = -283.8$
+	\item $S_{XX} = 613.6$
+	\item $S_{YY} = 148.9$
+	\item $\sum(X_i)  = 318 $
+	\item $\sum(Y_i)  = 61$
+\end{itemize}
+
+
+
+\subsection{Example 2 Part 1}
+
+\begin{itemize}
+	\item Calculate the correlation coefficient and interpret its value.
+	\item The correlation coefficient is computed using the following formula:
+	\[ r_{X,Y} = \frac{\S_{XY}}{\sqrt{\S_{XX}\S_{YY}}} \]
+	\item From the values given
+	\[ r_{X,Y} = \frac{-283.8}{\sqrt{(613.6)(148.9)}} = -0.9389 \]
+	\item Very strong negative linear relationship
+\end{itemize}
+
+
+
+
+\newpage
+\begin{itemize}
+	\item Correlation is a measure of the relation between two or more variables. 
+	%\item The measurement scales used should be at least interval scales, but other correlation coefficients are available to handle other types of data.
+	\item Correlation coefficients can range from -1.00 to +1.00. The value of -1.00 represents a perfect negative correlation while a value of +1.00 represents a perfect positive correlation. A value of 0.00 represents a lack of correlation.
+	
+	
+	\item 
+	The most widely-used type of correlation coefficient is Pearson r, also called linear or product- moment correlation.
+	The pearson correlation coefficient is a metric.
+	
+	\item  Two variables that have no linear relationship have a correlation close to zero. 
+	
+	\item Scatter plots are a useful way of determing the likely relationship between two variables. 
+	
+	\item The Pearson correlation coefficient is most commonly used estimate for correlation. 
+	
+	\item Other types of correlation are tbe \textit{\textbf{Spearman Rho}} and the \textit{\textbf{Kendal Tau}} correlation coefficients. 
+	
+	%\item  These are not not part of this course,but it is important to know that they exist. 
+\end{itemize}
+%--------------------------------------------- %
+
+
+
+\begin{itemize}
+	\item Correlation is a measure of strength of \textbf{Linear Relationship} between two variables.
+	\item The Pearson correlation coefficient (denoted $r$) is the most comonly used statistical estimate for correlation. 
+	\item Correlation estimates are defined to be between -1 and 1. It is not possible to have a correlation value outside this range of values
+	\[ -1 \leq r \leq 1\]
+	\item 
+	Additionally correlation estimates are not denominated in any units. (Contrast this to standard deviation, which is denominated in the same units as the mean).
+\end{itemize}
+
+%--------------------------------------------- %
+
+
+
+\begin{itemize}
+	\item A strong positive linear relationship describes a relationship between two variables whereby an increase in one variable will closely coincide with an increase in the other variable. 
+	\item Conversely a strong negative linear relationship describes a relationship whereby an increase in one variable closely coincides with a decrease in the other. 
+\end{itemize}
+\begin{itemize}
+	\item The Pearson correlation estimate, which us based on sample data, is denoted r (although related metrics use capital R).
+	\item This measure is used as an estimate for the Population correlation, denoted by the greek letter $\rho$ ( pronounced ``Rho"). 
+	The estimate is computed using summation identities.
+	% (See the formulae ).
+	
+	%\item 
+	%Equivalently it can be computed using the  Sums of Squares Identities that are used to compute covariance and standard deviation <INSERT FORMULA> .
+	%Example
+	%determine the correlation estimate for the Spend V Impressions data.  
+\end{itemize}
+%-------------------------------------------------------- %
+
+
+\subsection{Outliers}
+\begin{itemize}
+	\item Outliers can greatly influence the computed value of an estimate.
+	\item  Correlation is closely related to Simple linear regression models, in that both are concerned with the linear relationship between variables. However Linear Regression has a different emphasis.
+	\item  Simple Linear Regression describes one independent variable (IV) and the response of the dependent variable (DV). 
+\end{itemize}
+
+
+
+
+
+\subsection{Correlation and Causality }
+Implicit is simple linear regression is the notion of causality. The dependent variable changes as the independent variable changes. The converse is not true.
+<some examples : hot temperature / ice cream example> .
+Correlation is not concerned with causality at all, hence the often used expression "causation does not imply causality ".
+
+%-----------------------------------------------------%
+\section*{May 2013 Question 5 Regression and Correlation}
+\begin{center}
+	\begin{tabular}{|c|c|c|}
+		\hline  & Experience & No. of Rejects \\ 
+		\hline A & 4 & 22 \\ 
+		\hline B & 5 & 20 \\ 
+		\hline C & 7 & 18 \\ 
+		\hline D & 9 & 15 \\ 
+		\hline E & 9 & 16 \\ 
+		\hline F & 10 & 11 \\ 
+		\hline G & 14 & 10 \\ 
+		\hline 
+	\end{tabular} 
+\end{center}
+
+% X = c(4, 5, 7, 9, 9, 10, 14)
+% Y = c(22, 20, 18, 15, 16, 11, 10)
+% plot(X,Y,pch=16,col="red",cex=2,xlim=c(0,16),ylim=c(0,25),font.lab=2) 
+% abline(coef(lm(Y~X)),col="blue",lty=2)
+\begin{itemize}
+	\item $\sum x$ = 58
+	\item $\sum y$ = 118
+	\item $\sum x^2$ = 548
+	\item $\sum y^2$ = 1910
+	\item $\sum xy$ = 843
+\end{itemize}
+
+\begin{itemize}
+	\item $s_{xx}$ = 67.428
+	\item $s_{yy}$ = 118
+	\item $s_{xy}$ = -85
+\end{itemize}
+\subsection*{The correlation coefficient}
+The correlation coefficient is $r = -0.9529$.
+
+\[ r = \frac{s_{xy}}{\sqrt{(s_xx \times s_yy)}}= \frac{-85}{\sqrt{(67.428 \times 118)}}\]
+
+\[r= \frac{-85}{sqrt{(7956.504)}} =  {-85 \over 89.199}  \]
+
+\[r = -0.9529\]
+
+\subsection*{The coefficient of determination}
+The coefficient of determination $r^2$ is computed as the square of the correlation coefficient.
+\[r^2 = (-0.9529)^2 = 0.90801\]
+%-------------------------------------------------%
+
+
+%-------------------------------------------------%
+\newpage
+\section*{May 2012 Question 2 Correlation and Regression}
+\begin{itemize}
+	\item The sample size $n$ = 10.
+	\item The \textbf{\textit{independent}} variable, usually denoted $x$, is the "cause variable" or "predictor variable".
+	\item The \textbf{\textit{dependent}} variable, usually denoted $y$, is the "effect variable".
+	\item Here the Maths achievement test score is the independent variable and the final grade in statistics is the dependent variable.
+	\item A big hint is given in the notation of the question.
+\end{itemize}
+
+% X = c(39,43,21,64,57,47,28,75,34,52)
+% Y = c(65,78,52,82,92,89,73,98,56,75)
+
+%---------------------------------------------------------- %
+\subsection*{Sums of Squares Identities}
+Before we do anything, We need to compute the following sums of squares identities
+\begin{itemize}
+	\item $s_{xx}$
+	\item $s_{yy}$
+	\item $s_{xy}$
+\end{itemize}
+\subsection*{Calculation 1}
+\[ s_{xx}  = \sum(x^2) - \frac{\sum(x)^2}{n} \]
+\[ s_{xx}  = 23.634 - \frac{\sum(x)^2}{10} \]
+
+\subsection*{Calculation 2}
+\[ s_{yy}  = \sum(y^2) - \frac{\sum(y)^2}{n} \]
+%\[ s_{xx}  = 23.634 - \frac{\sum(x)^2}{10} \]
+
+
+\subsection*{Calculation 3}
+\[ s_{xy}  = \sum(xy) - \frac{\sum(x)\times \sum{y}}{n} \]
+%\[ s_{xx}  = 23.634 - \frac{\sum(x)^2}{10} \]
+
+%------------------------------------------------------------%
+
+\subsection*{Part iv - Prediction}
+\begin{itemize}
+	\item Suppose the regression equation is as follows
+	\[ \hat{y} = 40.78424 + 0.76556 x \]
+	\item If a student scored 5 marks on the achievement test (i.e. $x=5$), predict the students statistics grade.
+	
+	\[ \hat{y}_{(x=5)} = 40.78424 + (0.76556 \times 5) \]
+	
+	\item Solving using a calculator we get
+	\[ \hat{y}_{(x=5)} = 44.61204 \]
+	
+	\item The score should be approximately 44.61.
+\end{itemize}
+
+\begin{itemize}
+	\item 
+	The first part of the question will require the drawing of a scatter plot. 
+	When doing do, remember to label the axes, and to put in the relevant units. (I.e. Metres, Degrees, Hours etc)
+	\item 
+	The Explanatory variable is on the X-axis and the Response variable is on the Y Axis.
+	\item 
+	A Trend line will be useful in demonstrating what type of relationship exists between the response variable and the explanatory variable.
+	\item There are five possible plot types
+	
+	
+	
+	\begin{enumerate}
+		
+		\item Strong positive linear relationship 
+		\item Weak positive linear relationship
+		\item Strong negative linear relationship
+		\item Weak negative linear relationship
+		\item No Relationship
+	\end{enumerate}
+	\item  In the strong case – the points of the graph correspond to the trend line quite closely, whereas in the weak case they don’t.
+	\item In the positive case the response values Y increase as the explanatory values X increases. In the negative case the response values Y decrease as the explanatory values X increases. 
+\end{itemize}
+
+%----------------------------------------------------------- %
+
+
+
+\begin{itemize}
+	\item The coefficient of determination can take any value between 0 and 1.
+	\item The closer the value is to 1, the better the explanatory power of the independent variable.
+\end{itemize}
+
+\begin{tabular}{|c|c|c|}
+	\hline Variables & $(X_1,Y_1)$ & $(X_2,Y_2)$ \\ 
+	\hline Correlation ($r$) & 0.9 & 0.7 \\ 
+	\hline r-square ($r^2$) &  &  \\ 
+	\hline 
+\end{tabular} 
+
+%-------------------------------------------------%
+\newpage
+
+\section*{May 2012 Question 2 Correlation and Regression}
+\begin{itemize}
+	\item The sample size $n$ = 10.
+	\item The \textbf{\textit{independent}} variable, usually denoted $x$, is the "cause variable" or "predictor variable".
+	\item The \textbf{\textit{dependent}} variable, usually denoted $y$, is the "effect variable".
+	\item Here the Maths achievement test score is the independent variable and the final grade in statistics is the dependent variable.
+	\item A big hint is given in the notation of the question.
+\end{itemize}
+
+% X = c(39,43,21,64,57,47,28,75,34,52)
+% Y = c(65,78,52,82,92,89,73,98,56,75)
+
+%---------------------------------------------------------- %
+\subsection*{Sums of Squares Identities}
+Before we do anything, We need to compute the following sums of squares identities
+\begin{itemize}
+	\item $s_{xx}$
+	\item $s_{yy}$
+	\item $s_{xy}$
+\end{itemize}
+\subsection*{Calculation 1}
+\[ s_{xx}  = \sum(x^2) - \frac{\sum(x)^2}{n} \]
+\[ s_{xx}  = 23.634 - \frac{\sum(x)^2}{10} \]
+
+\subsection*{Calculation 2}
+\[ s_{yy}  = \sum(y^2) - \frac{\sum(y)^2}{n} \]
+%\[ s_{xx}  = 23.634 - \frac{\sum(x)^2}{10} \]
+
+
+\subsection*{Calculation 3}
+\[ s_{xy}  = \sum(xy) - \frac{\sum(x)\times \sum{y}}{n} \]
+%\[ s_{xx}  = 23.634 - \frac{\sum(x)^2}{10} \]
+
+%------------------------------------------------------------%
+
+\subsection*{Part iv - Prediction}
+\begin{itemize}
+	\item Suppose the regression equation is as follows
+	\[ \hat{y} = 40.78424 + 0.76556 x \]
+	\item If a student scored 5 marks on the achievement test (i.e. $x=5$), predict the students statistics grade.
+	
+	\[ \hat{y}_{(x=5)} = 40.78424 + (0.76556 \times 5) \]
+	
+	\item Solving using a calculator we get
+	\[ \hat{y}_{(x=5)} = 44.61204 \]
+	
+	\item The score should be approximately 44.61.
+\end{itemize}
+
+%-------------------------------------------------%
+
+\section{May 2012 Question 2 Correlation and Regression}
+\begin{itemize}
+	\item The sample size $n$ = 10.
+	\item The \textbf{\textit{independent}} variable, usually denoted $x$, is the "cause variable" or "predictor variable".
+	\item The \textbf{\textit{dependent}} variable, usually denoted $y$, is the "effect variable".
+	\item Here the Maths achievement test score is the independent variable and the final grade in statistics is the dependent variable.
+	\item A big hint is given in the notation of the question.
+\end{itemize}
+
+% X = c(39,43,21,64,57,47,28,75,34,52)
+% Y = c(65,78,52,82,92,89,73,98,56,75)
+
+%---------------------------------------------------------- %
+\subsection*{Sums of Squares Identities}
+Before we do anything, We need to compute the following sums of squares identities
+\begin{itemize}
+	\item $s_{xx}$
+	\item $s_{yy}$
+	\item $s_{xy}$
+\end{itemize}
+\subsection*{Calculation 1}
+\[ s_{xx}  = \sum(x^2) - \frac{\sum(x)^2}{n} \]
+\[ s_{xx}  = 23.634 - \frac{\sum(x)^2}{10} \]
+
+\subsection*{Calculation 2}
+\[ s_{yy}  = \sum(y^2) - \frac{\sum(y)^2}{n} \]
+%\[ s_{xx}  = 23.634 - \frac{\sum(x)^2}{10} \]
+
+
+\subsection*{Calculation 3}
+\[ s_{xy}  = \sum(xy) - \frac{\sum(x)\times \sum{y}}{n} \]
+%\[ s_{xx}  = 23.634 - \frac{\sum(x)^2}{10} \]
+
+%------------------------------------------------------------%
+
+\subsection*{Part iv - Prediction}
+\begin{itemize}
+	\item Suppose the regression equation is as follows
+	\[ \hat{y} = 40.78424 + 0.76556 x \]
+	\item If a student scored 5 marks on the achievement test (i.e. $x=5$), predict the students statistics grade.
+	
+	\[ \hat{y}_{(x=5)} = 40.78424 + (0.76556 \times 5) \]
+	
+	\item Solving using a calculator we get
+	\[ \hat{y}_{(x=5)} = 44.61204 \]
+	
+	\item The score should be approximately 44.61.
+\end{itemize}
+
+\begin{itemize}
+	\item 
+	The first part of the question will require the drawing of a scatter plot. 
+	When doing do, remember to label the axes, and to put in the relevant units. (I.e. Metres, Degrees, Hours etc)
+	\item 
+	The Explanatory variable is on the X-axis and the Response variable is on the Y Axis.
+	\item 
+	A Trend line will be useful in demonstrating what type of relationship exists between the response variable and the explanatory variable.
+	\item There are five possible plot types
+	
+	
+	
+	\begin{enumerate}
+		
+		\item Strong positive linear relationship 
+		\item Weak positive linear relationship
+		\item Strong negative linear relationship
+		\item Weak negative linear relationship
+		\item No Relationship
+	\end{enumerate}
+	\item  In the strong case – the points of the graph correspond to the trend line quite closely, whereas in the weak case they don’t.
+	\item In the positive case the response values Y increase as the explanatory values X increases. In the negative case the response values Y decrease as the explanatory values X increases. 
+\end{itemize}
+
+%----------------------------------------------------------- %
+
+
+
+\begin{itemize}
+	\item The coefficient of determination can take any value between 0 and 1.
+	\item The closer the value is to 1, the better the explanatory power of the independent variable.
+\end{itemize}
+
+\begin{tabular}{|c|c|c|}
+	\hline Variables & $(X_1,Y_1)$ & $(X_2,Y_2)$ \\ 
+	\hline Correlation ($r$) & 0.9 & 0.7 \\ 
+	\hline r-square ($r^2$) &  &  \\ 
+	\hline 
+\end{tabular} 
+
+%-------------------------------------------------%
+\newpage
+
+\section*{May 2012 Question 2 Correlation and Regression}
+\begin{itemize}
+	\item The sample size $n$ = 10.
+	\item The \textbf{\textit{independent}} variable, usually denoted $x$, is the "cause variable" or "predictor variable".
+	\item The \textbf{\textit{dependent}} variable, usually denoted $y$, is the "effect variable".
+	\item Here the Maths achievement test score is the independent variable and the final grade in statistics is the dependent variable.
+	\item A big hint is given in the notation of the question.
+\end{itemize}
+
+% X = c(39,43,21,64,57,47,28,75,34,52)
+% Y = c(65,78,52,82,92,89,73,98,56,75)
+
+%---------------------------------------------------------- %
+\subsection*{Sums of Squares Identities}
+Before we do anything, We need to compute the following sums of squares identities
+\begin{itemize}
+	\item $s_{xx}$
+	\item $s_{yy}$
+	\item $s_{xy}$
+\end{itemize}
+\subsection*{Calculation 1}
+\[ s_{xx}  = \sum(x^2) - \frac{\sum(x)^2}{n} \]
+\[ s_{xx}  = 23.634 - \frac{\sum(x)^2}{10} \]
+
+\subsection*{Calculation 2}
+\[ s_{yy}  = \sum(y^2) - \frac{\sum(y)^2}{n} \]
+%\[ s_{xx}  = 23.634 - \frac{\sum(x)^2}{10} \]
+
+
+\subsection*{Calculation 3}
+\[ s_{xy}  = \sum(xy) - \frac{\sum(x)\times \sum{y}}{n} \]
+%\[ s_{xx}  = 23.634 - \frac{\sum(x)^2}{10} \]
+
+%------------------------------------------------------------%
+
+\subsection*{Part iv - Prediction}
+\begin{itemize}
+	\item Suppose the regression equation is as follows
+	\[ \hat{y} = 40.78424 + 0.76556 x \]
+	\item If a student scored 5 marks on the achievement test (i.e. $x=5$), predict the students statistics grade.
+	
+	\[ \hat{y}_{(x=5)} = 40.78424 + (0.76556 \times 5) \]
+	
+	\item Solving using a calculator we get
+	\[ \hat{y}_{(x=5)} = 44.61204 \]
+	
+	\item The score should be approximately 44.61.
+\end{itemize}
+
+
+
+
+%------------------------------------------------------------------------------------------------%
+
+\section*{May 2013 Question 6b Correlation and Regression }
+Calculate the correlation coefficient and interpret the value.
+\begin{tabular}{|c|c|c|}
+	\hline Residence	& X	  & Y \\ 
+	\hline  &  &  \\ 
+	\hline  &  &  \\ 
+	\hline 
+\end{tabular} 
+
+\end{document}

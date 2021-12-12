@@ -1,0 +1,32 @@
+I wanted to point out a common misunderstanding about confidence intervals: CI’s say nothing about the probability that the true value of the population parameter lies within them – it either does or it doesn’t. A 95% CI just tells you that, if you were to repeat your experiment (sampling) an infinite number of times and run the statistics on each sample, the true parameter will lie within 95% of those confidence intervals. What you described as a CI in the first section of your post is actually Bayesian credible interval, which is a bit more complicated to calculate, but it does tell you the probability that your population parameter lies within the interval.
+
+%-------------------------------------------------------------------------------%
+
+The 100(1-\alpha_) \% Prediction Interval
+\[  \sqrt{1 + \frac{1}{n} + \frac{n(x-\bar{X}^2}{n \sum X^2_i - (\sum X_i)^2}  \]
+%===============================================================================%
+%% -- http://www.real-statistics.com/regression/confidence-and-prediction-intervals/
+
+
+Confidence and prediction intervals for forecasted values
+
+The 95% confidence interval for the forecasted values y of x is
+
+Confidence interval regression
+
+where
+\[  \]
+This means that there is a 95% probability that the true linear regression line of the population will lie within the confidence interval of the regression line calculated from the sample data.
+
+There is also a concept called prediction interval. Here we look at any specific value of x, $x_0$, and find an interval around the predicted value y0 for $x_0$ such that there is a 95% probability that the real value of y (in the population) corresponding to $x_0$ is within this interval (see the graph on the right side of Figure 1).
+
+The 95% prediction interval of the forecasted value y0 for $x_0$ is
+
+%-------------------------------------------------------------------------------%
+Prediction interval regression
+
+where the standard error of the prediction is
+
+Standard error prediction
+
+For any specific value $x_0$ the prediction interval is more meaningful than the confidence interval.

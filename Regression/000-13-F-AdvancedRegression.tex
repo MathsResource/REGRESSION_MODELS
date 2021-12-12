@@ -1,0 +1,138 @@
+%-----------------------------------------------------------------------------------------%
+G   Regression analysis
+ 
+In a study of a wholesaler’s distribution costs, undertaken with a view to controlling cost, the volume of goods handled and the overall costs were recorded for one month in each of ten depots in a distribution network. The results are presented in the following table
+
+
+       Volume      Costs
+1         48         20
+2         57         22
+3         49         19
+4         45         18
+5         50         20
+6         62         24
+7         58         21
+8         55         21
+9         38         15
+10        51        20
+ 
+Perform a regression analysis of the cost (Y ) on the volume (X).
+
+
+%-----------------------------------------------------------------------------------------
+\newpage
+\chapter{Regression and Correlation}
+\section{Revision of Simple Linear Regression}
+
+The intecept estimate is denoted $a$, while the slope estimate is denoted $b$.
+
+
+\section{Scatterplots and Anscombe's quartet}
+Anscombes quartet is a fine example of this. The quartet is four sets of data that have the same sample statistics (mean, variance, correlation coefficient and regression equation), but when graphed, they are clearly very different.
+
+\newpage
+
+%-----------------------------------------------------------------------------------------%
+\newpage
+\section{ANOVA}
+\subsection{The F Distribution}
+F distribution: A continuous probability distribution of the ratio of two independent random variables, each having a Chi-squared distribution, divided by their respective degrees of freedom. The commonest use is to assign P values to mean square ratios (variance ratios) in ANOVA. In regression analysis, the F-test can be used to test the joint significance of all variables of a model.
+
+
+For regression analyses, the degrees of freedom are as follows.
+\begin{itemize}
+\item $n-k$
+\item $k+1$
+\end{itemize}
+
+%-----------------------------------------------------------------------------------------%
+\newpage
+\section{Variance Selection Procedures}
+\begin{itemize}
+\item Forward Selection
+\item Backward Elimination
+\item Stepwise Regression
+\end{itemize}
+
+A method in multiple regression studies aimed to find the best model. This method seeks a model that balances a relatively small number of variables with a good fit to the data by seeking a model with high R2a (the most parsimonious model with the highest percentage accounted for).
+
+The stepwise regression can be started from a null or a full model and can go forward or backward, respectively. At any step in the procedure, the statistically most important variable will be the one that produces the greatest change in the log-likelihood relative to a model lacking the variable. This would be the variable, which would result in the largest likelihood ratio statistics, G (a high percentage accounted for gives an indication that the model fits well).
+
+
+%-----------------------------------------------------------------------------------------%
+\section{Leverage and Influence}
+\begin{itemize}
+\item Outliers
+\item Leverage
+\item Influence
+\end{itemize}
+
+In our last chapter, we learned how to do ordinary linear regression with SPSS, concluding with methods for examining the distribution of variables to check for non-normally distributed variables as a first look at checking assumptions in regression.  Without verifying that your data have met the regression assumptions, your results may be misleading.  This chapter will explore how you can use SPSS to test whether your data meet the assumptions of linear regression.  In particular, we will consider the following assumptions.
+
+\begin{itemize}
+
+\item[(a)] Linearity - the relationships between the predictors and the outcome variable should be linear
+\item[(b)]Normality - the errors should be normally distributed - technically normality is necessary only for the t-tests to be valid, estimation of the coefficients only requires that the errors be identically and independently distributed
+\item[(c)]Homogeneity of variance (homoscedasticity) - the error variance should be constant
+\item[(d)]Independence - the errors associated with one observation are not correlated with the errors of any other observation
+\item[(e)]Model specification - the model should be properly specified (including all relevant variables, and excluding irrelevant variables)
+\end{itemize}
+
+Additionally, there are issues that can arise during the analysis that, while strictly speaking are not assumptions of regression, are none the less, of great concern to regression analysts.
+\begin{itemize}
+\item[(f)]Influence - individual observations that exert undue influence on the coefficients
+\item[(g)]Collinearity - predictors that are highly collinear, i.e. linearly related, can cause problems in estimating the regression coefficients.
+\end{itemize}
+Many graphical methods and numerical tests have been developed over the years for regression diagnostics and SPSS makes many of these methods easy to access and use. In this chapter, we will explore these methods and show how to verify regression assumptions and detect potential problems using SPSS.
+
+
+
+
+
+
+\textbf{Regression diagnostics} Tests to identify the main problem areas in regression analysis: normality, common variance and independence of the error terms; outliers, influential data points, collinearity, independent variables being subject to error, and inadequate specification of the functional form of the model. The purpose of the diagnostic techniques is to identify weaknesses in the regression model or the data. Remedial measures, correction of errors in the data, elimination of \textbf{true} outliers, collection of better data, or improvement of the model, will allow greater confidence in the final product.
+
+\textbf{Outlier} An extreme observations that is well separated from the remainder of the data. In regression analysis, not all outlying values will have an influence on the fitted function. Those outlying with regard to their X values (high leverage), and those with Y values that are not consistent with the regression relation for the other values (high residual) are expected to be influential. The test the influence of such values, the Cook statistics is used.
+
+Outlier or Unusual observation??
+
+\textbf{Influential points:} Observations that actually dominate a regression analysis (due to high leverage, high residuals or their combination). The method of ordinary least squares gives equal weight to every observation. However, every observation does not have equal impact on the least squares results. The slope, for example, is influenced most by the observations having values of the independent variable farthest from the mean. An observation is influential if deleting it from the dataset would lead to a substantial change in the fit of the generalized linear model.
+
+High-leverage points have the potential to dominate a regression analysis but not necessarily exert an influence (i.e., a point may have high leverage but low influence as measured by Cook statistics).
+
+Cook statistics is used to determine the influence of a data point on the model.
+
+\textbf{Leverage points} In regression analysis, these are the observations that have an extreme value on one or more explanatory variable. The leverage values indicate whether or not X values for a given observation are outlying (far from the main body of the data). A high leverage value indicates that the particular observation is distant from the centre of the X observations.
+
+High-leverage points have the potential to dominate a regression analysis but not necessarily influential. If the residual of the same data point and Cook's distance are also high, then it is an influential point.
+
+
+
+
+Cook statistics: A diagnostic influence statistics in regression analysis designed to show the influential observations.
+\textbf{Cook's distance} considers the influence of the $i$th value on all $n$ fitted values and not on the fitted value of the $i$th observation. It yields the shift in the estimated parameter from fitting a regression model when a particular observation is omitted. All distances should be roughly equal; if not, then there is reason to believe that the respective case(s) biased the estimation of the regression coefficients.
+
+Relatively large Cook statistics (or Cook's distance) indicates influential observations. This may be due to a high leverage, a large residual or their combination. An index plot of residuals may reveal the reason for it. The leverages depend only on the values of the explanatory variables (and the model parameters). Cook statistics depends on the residuals as well. Cook statistics may not be very satisfactory in binary regression models. Its formula uses the standardized residuals but the modified Cook statistics uses the deletion residuals.
+
+%--Maybe take this out--%
+\textbf{Half-normal plot} A diagnostic test for model inadequacy or revealing the presence of outliers. It compares the ordered residuals from the data to the expected values of ordered observations from a normal distribution. While the full-normal plots use the signed residuals, half-normal plots use the absolute values of the residuals. Outliers appear at the top right of the plot as distinct points, and departures from a straight line mean that the model is not satisfactory. It is appropriate to use a half-normal plot only when the distribution is symmetrical about zero because any information on symmetry will be lost.
+
+Normal probability plot of the residuals: A diagnostic test for the assumption of normal distribution of residuals in linear regression models. Each residual is plotted against its expected value under normality. A plot that is nearly linear suggests normal distribution of the residuals. A plot that obviously departs from linearity suggests that the error distribution is not normal.
+
+\subsection{Heteroskedasticity}
+
+Another assumption of ordinary least squares regression is that the variance of the residuals is homogeneous across levels of the predicted values, also known as homoskedasticity. If the model is well-fitted, there should be no pattern to the residuals plotted against the fitted values. If the variance of the residuals is non-constant then the residual variance is said to be "heteroskedastic." Below we illustrate graphical methods for detecting heteroskedasticity. A commonly used graphical method is to use the residual versus fitted plot to show the residuals versus fitted (predicted) values.
+
+Below we use the /scatterplot subcommand to plot *zresid (standardized residuals) by *pred (the predicted values).  We see that the pattern of the data points is getting a little narrower towards the right end, an indication of mild heteroscedasticity.
+
+\begin{verbatim}
+regression
+  /dependent api00
+  /method=enter meals ell emer
+  /scatterplot(*zresid *pred).
+\end{verbatim}
+
+
+%-----------------------------------------------------------------------------------------%
+%-----------------------------------------------------------------------------------------%
+%-----------------------------------------------------------------------------------------%

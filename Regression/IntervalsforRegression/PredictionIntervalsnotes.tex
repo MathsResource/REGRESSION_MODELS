@@ -1,0 +1,72 @@
+\documentclass[a4paper,12pt]{article}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{eurosym}
+\usepackage{vmargin}
+\usepackage{amsmath}
+\usepackage{graphics}
+\usepackage{epsfig}
+\usepackage{subfigure}
+\usepackage{fancyhdr}
+%\usepackage{listings}
+\usepackage{framed}
+\usepackage{graphicx}
+
+\setcounter{MaxMatrixCols}{10}
+%TCIDATA{OutputFilter=LATEX.DLL}
+%TCIDATA{Version=5.00.0.2570}
+%TCIDATA{<META NAME="SaveForMode" CONTENT="1">}
+%TCIDATA{LastRevised=Wednesday, February 23, 2011 13:24:34}
+%TCIDATA{<META NAME="GraphicsSave" CONTENT="32">}
+%TCIDATA{Language=American English}
+
+\pagestyle{fancy}
+\setmarginsrb{20mm}{0mm}{20mm}{25mm}{12mm}{11mm}{0mm}{11mm}
+\lhead{Statistics with \texttt{R}} \rhead{Dublin \texttt{R}}
+\chead{Regression Models}
+\begin{document}
+	
+	\Large
+	\section{Prediction Interval for Linear Regression}
+	
+	
+	
+	Assume that the error term $\epsilon$ in the simple linear regression model is independent of x, and is normally distributed, with zero mean and constant variance. For a given value of x, the interval estimate of the dependent variable y is called the prediction interval.
+	
+	\subsection{Problem}
+	In the data set \textbf{\textit{mtcars}}, develop a 95\% prediction interval of the miles per gallon (\texttt{mpg})  for the weight (\texttt{wt}) of 4.4, 4.8 and 4.8 tonnes.\\
+	\bigskip
+	
+	\noindent \textbf{Solution}\\
+	We apply the \texttt{lm} function to a formula that describes the variable mpg by the variable wt, and save the linear regression model in a new variable \texttt{myModel}.
+	
+	\begin{framed}
+		\begin{verbatim}
+		myModel <- lm(mpgs ~ wt, data = mtcars)
+		\end{verbatim}
+	\end{framed}
+	\noindent Then we create a new data frame called \texttt{myNewData}. This dataframe must have the same variable names of the explanatory variables used in the model fitting process. It is not necesary to have the response variable.
+	\begin{framed}
+		\begin{verbatim}
+		myNewData <- data.frame(wt=c(4.4,4.6,4.8))
+		\end{verbatim}
+	\end{framed}
+	\noindent We now apply the \texttt{predict} function and set the predictor variable in the \texttt{newdata} argument. We also set the interval type as "\texttt{predict}", and use the default 0.95 confidence level.
+	
+	\begin{framed}
+		\begin{verbatim}
+		> predict(myModel, newdata =myNewData, 
+		    interval="predict") 
+		  fit      lwr      upr
+		1 13.76945 7.309732 20.22917
+		2 12.70056 6.189263 19.21185
+		3 11.63166 5.061258 18.20207
+		> 
+		
+		\end{verbatim}
+	\end{framed}
+	\noindent \textbf{Answer}: The 95\% prediction interval of the mpg (miles per gallon) for the wt time of 4.4 tonnes is between 7.31 and 20.22 tonnes.\\ 
+	\bigskip
+	
+	\noindent Further detail of the \texttt{predict} function for linear regression model can be found in the \texttt{R} documentation (i.e. \texttt{help(predict.lm)} )
+\end{document}
+

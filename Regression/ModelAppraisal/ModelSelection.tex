@@ -1,0 +1,125 @@
+ \documentclass[a4paper,12pt]{article}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{eurosym}
+\usepackage{vmargin}
+\usepackage{amsmath}
+\usepackage{enumerate}
+\usepackage{multicol}
+\usepackage{graphics}
+\usepackage{epsfig}
+\usepackage{framed}
+\usepackage{subfigure}
+\usepackage{fancyhdr}
+
+\setcounter{MaxMatrixCols}{10}
+%TCIDATA{OutputFilter=LATEX.DLL}
+%TCIDATA{Version=5.00.0.2570}
+%TCIDATA{<META NAME="SaveForMode" CONTENT="1">}
+%TCIDATA{LastRevised=Wednesday, February 23, 2011 13:24:34}
+%TCIDATA{<META NAME="GraphicsSave" CONTENT="32">}
+%TCIDATA{Language=American English}
+
+%\pagestyle{fancy}
+\setmarginsrb{20mm}{0mm}{20mm}{25mm}{12mm}{11mm}{0mm}{11mm}
+%\lhead{MA4413 2013} \rhead{Mr. Kevin O'Brien}
+%\chead{Midterm Assessment 1 }
+%\input{tcilatex}
+
+\begin{document}
+
+\subsection{Model Selection}
+There are many important methodologies for determining which combination of predictor variables bests describes a response variable. You will meet this in future modules.
+We will use two simple ones for this module only.
+\begin{itemize}
+\item Adjusted R–squared value
+\item The Akaike Information Criterion (AIC)
+\end{itemize}
+
+
+\noindent The adjusted R-square value is found on the summary output for a fitted model. It is called \textbf{\emph{adjusted}} because it takes into account the number of predictor variables being used. The law of parsimony states the simplest model that adequately explains the outcomes is the best. The candidate model with the higher adjusted R squared is considered preferable.
+
+
+\noindent The AIC is a model selection metric often used in statistics.It is computed using the R command
+\texttt{\textbf{AIC()}}.The candidate model with the smallest AIC value is considered preferable.
+
+\begin{framed}
+\begin{verbatim}
+fitA = lm(Sepal.Length ~ Sepal.Width + Petal.Width)
+fitB = lm(Sepal.Length ~ Sepal.Width + Petal.Length)
+
+summary(fitA)$adj.r.squared
+summary(fitB)$adj.r.squared
+
+AIC(fitA)
+AIC(fitB)
+\end{verbatim}
+\end{framed}
+
+%===========================================================================================%
+ 
+
+
+\subsection{The Coefficient of Determination}
+The coefficient of determination $R^2$ is the proportion of variability in a data set that is accounted for by the linear model.
+
+Equivalently $R^2$ provides a measure of how well future outcomes are likely to be predicted by the model.
+
+(For simple linear regression, it canbe computed by squaring the correlation coefficient.)
+
+\begin{framed}
+\begin{verbatim}
+summary(fit1)$r.squared
+\end{verbatim}
+\end{framed}
+\newpage
+
+\subsection{R square}
+$R^2$ is a measure of variation explained by regression.
+
+The following coefficient has a natural interpretation as amount of variability in the data that is explained by the regression
+fit: $R^2 = SSLR/SST = 1 - SSR/SST$.
+
+A similar interpretation is given to the adjusted coefficient $R^2_{adj}$ which is given by $R^2_{adj} = 1 - MSR/MST $; where
+MSR is the mean squared error due to residuals, and MST is the total mean squared error.
+
+The adjusted coefficient is accounting for the degrees of freedom used for each source of variation and is often a more reliable indicator of variability than $R^2$. $R^2_{adj}$ is always smaller
+than $R^2$.
+\subsection{The Coefficient of Determination}
+The coefficient of determination $R^2$ is the proportion of variability in a data set that is accounted for by the linear model.
+Equivalently $R^2$ provides a measure of how well future outcomes are likely to be predicted by the model.
+(For simple linear regression, it canbe computed by squaring the correlation coefficient.)
+\begin{framed}
+\begin{verbatim}
+summary(fit1)$r.squared
+\end{verbatim}
+\end{framed}
+\newpage
+
+%------------------------------------------------------------------------------------------------%
+\subsection{R square}
+The model with the highest R2 and adjusted R2  is the preferable of all candidate models
+The quadratic model is the preferable model in that case.
+
+%%------------------------------------------------------------%
+\subsection{Adjusted R square}
+
+In a multiple linear regression model, adjusted R square measures the proportion of the variation in the dependent variable accounted for by the independent variables.
+
+%=========================================================%
+
+\subsection{R, R Square, Adjusted R Square}
+
+R is a measure of the correlation between the observed value and the predicted value of the criterion variable. In our example this would be the correlation between the levels of job satisfaction reported by our participants and the levels predicted for
+them by our predictor variables.
+
+R Square ($R^2$) is the square of this measure of correlation and indicates the proportion of the variance in the criterion variable which is accounted for by our model – in our example the proportion of the variance in the job satisfaction scores accounted for by our set of predictor variables (salary, etc.).
+
+In essence, this is a measure of how good a prediction of the criterion variable we can make by knowing the predictor variables.
+However, R square tends to somewhat over-estimate the success of the model when applied to the real world, so an Adjusted R Square value is calculated which takes into account the number of variables in the model and the number of observations (participants) our model is based on. This Adjusted R Square value gives the most useful measure of the success of our model. If, for example we have an Adjusted R Square value of 0.75 we can say that our model has accounted for 75\of the variance in the criterion
+variable.
+%
+Adjusted $R^2$ is used to compensate for the addition of variables to the model.  As more independent variables are added to the regression model, unadjusted R2 will generally increase but there will never be a decrease.  This will occur even when the additional variables do little to help explain the dependent variable.  To compensate for this, adjusted R2 is corrected for the number of independent variables in the model.  The result is an adjusted R2 than can go up or down depending on whether the addition of another variable adds or does not add to the explanatory power of the model.  Adjusted R2 will always be lower than unadjusted.
+
+It has become standard practice to report the adjusted R2, especially when there are multiple models presented with varying numbers of independent variables.
+
+\end{document}

@@ -1,0 +1,72 @@
+Confidence Intervals and Prediction Intervals for Fitted Values
+Previously we have seen the confidence intervals for regression coefficients in linear models. These confidence intervals are computed using the standard error values , which are available on the output of the summary() command, when using R.
+Recall that confidence intervals are generally constructed using point estimates, quantiles and standard errors.
+In this class we will look at two more type of intervals.
+Confidence Intervals for Fitted Values Prediction Intervals for Fitted Values
+Recall: a fitted value Y* is a estimate for the response variable, as determined by a linear model. The difference between the observed value and the corresponding fitted value is known as the residual.
+The residual standard error is the conditional standard deviation of the dependent variable Y given a value of the independent variable X. The calculation of this standard error follows from the 
+definition of the residuals.
+
+
+%===========================================================================================%
+
+%- http://www.psychstat.missouristate.edu/introbook/sbk16.htm
+
+\subsection*{Computational Formula}
+
+
+The calculation of the standard error of estimate is simplified by the following formula, called the computational formula for the standard error of estimate. 
+The computation is easier because the statistical calculator computed the correlation coefficient when finding a regression line. 
+The computational formula for the standard error of estimate will always give the same result, within rounding error, as the definitional formula. 
+The computational formula may look more complicated, but it does not require the computation of the entire table of differences between observed and predicted Y scores. The computational formula is as follows:
+
+
+
+
+%===========================================================================================%
+%-  http://people.stat.sc.edu/hendrixl/stat205/Lecture%20Notes/Regression%20and%20Correlation.pdf
+
+\subsection{Conditional Mean and Standard Deviation}
+
+
+Definition:  A conditional mean is the expected value of a variable conditional on another
+variable.
+Notation: μY|X
+Defiinition:  A conditional standard deviation is the standard deviation of a variable
+conditional on another variable.
+Notation: σY|X
+
+
+%===========================================================================================%
+
+
+Recall : the regression equation is
+Fluo* = 1.518 + 1.930 Conc
+(The asterisk denotes a fitted value, as opposed to an observed value. We use this due to typographical limitations in producing PDFs)
+The R command we will use is predict(). We are going to predict the fluorescence values for new values of concentration (written in the code as Conc+1, essentially adding 1 to each value of the independent variable). We specify the following: The name of the fitted model (essentially stating what regression equation to use) The new data set ( which must be constructed as an object known as “data.frame” – we will cover data frames in class soon).
+o If we are using the original data set, we can leave the argument blank.
+o If we are using new data, we must specify the name of the new data as that of the original independent variable. We must specify what type of interval we require (
+i.e. confidence interval or prediction interval)
+
+Let’s try this out with the original data first. 
+> predict(FitFC, interval="confidence") 
+
+Now let’s try this with new data. 
+> Conc [1] 0 2 4 6 8 10 12 
+
+
+Lets create some new data. To keep it simple we just use even value numbers.
+\begin{framed}
+\begin{verbatim}
+
+> Conc+1 #The New Data [1] 1 3 5 7 9 11 13 
+> 
+> #Save it as a dataframe 
+> #Use the same column names as the original Ind. Variables. 
+> new <- data.frame(Conc=c(Conc+1)) 
+\end{verbatim}
+\end{framed}
+
+
+> 
+> predict(lm(Fluo ~ Conc), new, interval="confidence") 

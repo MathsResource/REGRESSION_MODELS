@@ -1,0 +1,20 @@
+%--------------------------------------------------------------------%
+
+Testing using Student's t-distribution
+
+For pairs from an uncorrelated bivariate normal distribution, the sampling distribution of Pearson's correlation coefficient follows Student's t-distribution with degrees of freedom n - 2. 
+
+Specifically, if the underlying variables have a bivariate normal distribution, the variable
+\[ t_{TS} = r\sqrt{\frac{n-2}{1 - r^2}} \]
+
+Test statistic follows follows Student's t-distribution with degrees of freedom n - 2. Compare test statistics to quantile with $n-2$ degrees of freedom for specified confidence level
+
+%--------------------------------------------------------------------%
+
+
+while(cor(X)[1,2] < 0.8)
+ {
+ X = mvrnorm(10,c(10,10),sigma) 
+ }
+
+plot(A,B,pch=16,col="red",cex=1.3,xlim=c(6,14),ylim=c(6,14))

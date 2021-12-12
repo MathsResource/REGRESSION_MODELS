@@ -1,0 +1,534 @@
+ \documentclass[a4paper,12pt]{article}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{eurosym}
+\usepackage{vmargin}
+\usepackage{amsmath}
+\usepackage{enumerate}
+\usepackage{multicol}
+\usepackage{graphics}
+\usepackage{epsfig}
+\usepackage{framed}
+\usepackage{subfigure}
+\usepackage{fancyhdr}
+
+\setcounter{MaxMatrixCols}{10}
+%TCIDATA{OutputFilter=LATEX.DLL}
+%TCIDATA{Version=5.00.0.2570}
+%TCIDATA{<META NAME="SaveForMode" CONTENT="1">}
+%TCIDATA{LastRevised=Wednesday, February 23, 2011 13:24:34}
+%TCIDATA{<META NAME="GraphicsSave" CONTENT="32">}
+%TCIDATA{Language=American English}
+
+%\pagestyle{fancy}
+\setmarginsrb{20mm}{0mm}{20mm}{25mm}{12mm}{11mm}{0mm}{11mm}
+%\lhead{MA4413 2013} \rhead{Mr. Kevin O'Brien}
+%\chead{Midterm Assessment 1 }
+%\input{tcilatex}
+
+\begin{document}
+%---------------------------------------------------------------------------------------%
+Variable selection procedures includes regression models in which the choice of predictive variables is carried out by an automatic procedure
+%==========================================================%
+The main approaches are:
+Forward selection, which involves starting with no variables in the model, trying out the variables one by one and including them if they are 'statistically significant'.
+
+%==========================================================%
+Backward elimination, which involves starting with all candidate variables and testing them one by one for statistical significance, deleting any that are not significant.
+Methods that are a combination of the above, testing at each stage for variables to be included or excluded.
+
+%==========================================================%
+\section{Step-wise Regression}
+Step-wise regression is one of several computer-based iterative variable-selection procedures. At each step we first determine whether any of the variables (already included in the model) can be removed. If none of the variables can be removed, we determine whether a non-yet-included variable can be added. A variable can be added to the model at a step, removed at a following step, etc.
+
+
+\subsection{Variable Selection Procedures}
+
+There are three types of variable selection procedure.
+\begin{itemize}
+\item Forward Selection
+\item Backward Elimination
+\item Stepwise selection
+\end{itemize}
+
+
+The \texttt{R} command we use to perform variable selection procedures is \texttt{step()}
+
+direction  - the mode of stepwise search, can be one of ``both", ``backward", or ``forward", with a default of ``both". If the scope argument is missing the default for direction is "backward".
+\newpage
+%==========================================================%
+\section{Backward Elimination}
+Backward elimination is one of several computer-based iterative variable-selection procedures. It begins with a model containing all the independent variables of interest. Then, at each step the variable with smallest F-statistic is deleted (if the F is not higher than the chosen cutoff level).
+%==========================================================%
+\section{Forward selection}
+
+It resembles step-wise regression except that a variable added to the model is not permitted to be removed in the subsequent steps.
+
+%==========================================================%
+\section{Criticism of Stepwise regression}
+
+Stepwise regression procedures are used in data mining, but are controversial. Several points of criticism have been made.
+Critics regard the procedure as a paradigmatic example of data dredging, intense computation often being an inadequate substitute for subject area expertise.
+Stepwise regression is a systematic method for adding and removing terms from a multilinear model based on their statistical significance in a regression. The method begins with an initial model and then compares the explanatory power of incrementally larger and smaller models. At each step, the p value of an F-statistic is computed to test models with and without a potential term. 
+
+If a term is not currently in the model, the null hypothesis is that the term would have a zero coefficient if added to the model. If there is sufficient evidence to reject the null hypothesis, the term is added to the model. Conversely, if a term is currently in the model, the null hypothesis is that the term has a zero coefficient. If there is insufficient evidence to reject the null hypothesis, the term is removed from the model. The method proceeds as follows:
+%==========================================================%
+
+Fit the initial model.
+
+If any terms not in the model have p-values less than an entrance tolerance (that is, if it is unlikely that they would have zero coefficient if added to the model), add the one with the smallest p value and repeat this step; otherwise, go to step 3.
+
+If any terms in the model have p-values greater than an exit tolerance (that is, if it is unlikely that the hypothesis of a zero coefficient can be rejected), remove the one with the largest p value and go to step 2; otherwise, end.
+
+Depending on the terms included in the initial model and the order in which terms are moved in and out, the method may build different models from the same set of potential terms. The method terminates when no single step improves the model. There is no guarantee, however, that a different initial model or a different sequence of steps will not lead to a better fit. In this sense, stepwise models are locally optimal, but may not be globally optimal.
+
+
+\newpage
+\section{Variable Selection Procedures}
+
+
+There are three types of variable selection procedure.
+\begin{itemize}
+\item Forward Selection
+\item Backward Elimination
+\item Stepwise selection
+\end{itemize}
+
+The \texttt{R} command we use to perform variable selection procedures is \texttt{step()}
+
+direction  - the mode of stepwise search, can be one of ``both", ``backward", or ``forward", with a default of ``both". If the scope argument is missing the default for direction is "backward".
+
+\section{Backward Elimination}
+Our initial model includes all the predictor variables.
+\footnotesize\begin{verbatim}
+> step(fit.all)
+Start:  AIC=70.9
+mpg ~ cyl + disp + hp + drat + wt + qsec + vs + am + gear + carb
+
+       Df Sum of Sq    RSS    AIC
+- cyl   1    0.0799 147.57 68.915
+- vs    1    0.1601 147.66 68.932
+- carb  1    0.4067 147.90 68.986
+- gear  1    1.3531 148.85 69.190
+- drat  1    1.6270 149.12 69.249
+- disp  1    3.9167 151.41 69.736
+- hp    1    6.8399 154.33 70.348
+- qsec  1    8.8641 156.36 70.765
+<none>              147.49 70.898
+- am    1   10.5467 158.04 71.108
+- wt    1   27.0144 174.51 74.280
+\end{verbatim}\normalsize
+
+This tables tells us the effect or removing each predictor variable individually, in terms of the AIC.
+Consider the first row. This tells us the AIC value of a model fitted without the ``cyl" variable would be $68.915$.
+Included in the table is effect of not removing any variables. If the ``wt" variable was to be removed, the AIC value would increase to $74.280$.
+\footnotesize
+\begin{verbatim}
+..
+- cyl   1    0.0799 147.57 68.915
+..
+<none>              147.49 70.898
+..
+- wt    1   27.0144 174.51 74.280
+\end{verbatim}
+\normalsize
+
+The procedure removes variables as appropriate, until it found that removing anymore variables would increase the AIC.
+\footnotesize \begin{verbatim}
+Step:  AIC=61.31
+mpg ~ wt + qsec + am
+
+       Df Sum of Sq    RSS    AIC
+<none>              169.29 61.307
+- am    1    26.178 195.46 63.908
+- qsec  1   109.034 278.32 75.217
+- wt    1   183.347 352.63 82.790
+\end{verbatim}\normalsize
+
+The outcome of this procedure is that ``mpg" is best explained as a linear combination of the ``am", ``qsec" and ``wt" variables.
+
+\begin{verbatim}
+Coefficients:
+(Intercept)           wt         qsec           am
+      9.618       -3.917        1.226        2.936
+\end{verbatim}\normalsize
+
+\[
+\hat{mpg} = 9.618 - 3.917wt + 1.226qsec + 2.936am
+\]
+
+\newpage
+\section{Forward Selection}
+
+When performing forward selection we have to specify the minimal model ( in our case, an intercept only model)
+and a model with all the candidate predictors.
+%----------------------------------%
+\footnotesize
+\begin{verbatim}
+step(fit.none,
+scope=list(
+	lower=~1,
+	upper=~cyl+disp+hp+drat+wt+qsec+vs+am+gear+carb
+	),
+direction="forward")
+\end{verbatim}
+\normalsize
+%----------------------------------%
+\subsubsection{Phase 1}
+\footnotesize
+\begin{verbatim}
+Start:  AIC=115.94
+mpg ~ 1
+       Df Sum of Sq     RSS     AIC
++ wt    1    847.73  278.32  73.217
++ cyl   1    817.71  308.33  76.494
++ disp  1    808.89  317.16  77.397
++ hp    1    678.37  447.67  88.427
++ drat  1    522.48  603.57  97.988
++ vs    1    496.53  629.52  99.335
++ am    1    405.15  720.90 103.672
++ carb  1    341.78  784.27 106.369
++ gear  1    259.75  866.30 109.552
++ qsec  1    197.39  928.66 111.776
+<none>              1126.05 115.943
+\end{verbatim}
+\normalsize
+%----------------------------------%
+\subsubsection{Phase 2}
+\footnotesize
+\begin{verbatim}
+Step:  AIC=73.22
+mpg ~ wt
+
+       Df Sum of Sq    RSS    AIC
++ cyl   1    87.150 191.17 63.198
++ hp    1    83.274 195.05 63.840
++ qsec  1    82.858 195.46 63.908
++ vs    1    54.228 224.09 68.283
++ carb  1    44.602 233.72 69.628
++ disp  1    31.639 246.68 71.356
+<none>              278.32 73.217
++ drat  1     9.081 269.24 74.156
++ gear  1     1.137 277.19 75.086
++ am    1     0.002 278.32 75.217
+\end{verbatim}
+\normalsize
+%----------------------------------%
+\subsubsection{Phase 3}
+\footnotesize
+\begin{verbatim}
+Step:  AIC=63.2
+mpg ~ wt + cyl
+
+       Df Sum of Sq    RSS    AIC
++ hp    1   14.5514 176.62 62.665
++ carb  1   13.7724 177.40 62.805
+<none>              191.17 63.198
++ qsec  1   10.5674 180.60 63.378
++ gear  1    3.0281 188.14 64.687
++ disp  1    2.6796 188.49 64.746
++ vs    1    0.7059 190.47 65.080
++ am    1    0.1249 191.05 65.177
++ drat  1    0.0010 191.17 65.198
+\end{verbatim}
+\normalsize
+%----------------------------------%
+\subsubsection{Phase 4}
+\footnotesize
+\begin{verbatim}
+Step:  AIC=62.66
+mpg ~ wt + cyl + hp
+
+       Df Sum of Sq    RSS    AIC
+<none>              176.62 62.665
++ am    1    6.6228 170.00 63.442
++ disp  1    6.1762 170.44 63.526
++ carb  1    2.5187 174.10 64.205
++ drat  1    2.2453 174.38 64.255
++ qsec  1    1.4010 175.22 64.410
++ gear  1    0.8558 175.76 64.509
++ vs    1    0.0599 176.56 64.654
+\end{verbatim}
+\normalsize
+%----------------------------------%
+\newpage
+\section{Stepwise Regression}
+
+%----------------------------------%
+\subsubsection{Phase 1}
+The first phase commences with all the predictor variables being used in the model. The AIC is computed for each exclusion, as well as no exclusion. The candidates models are ranked accordingly. The tables shows that the greatest improvement would be the exclusion of the `cyl' variable.
+\footnotesize
+\begin{verbatim}
+Start:  AIC=70.9
+mpg ~ cyl + disp + hp + drat + wt + qsec + vs + am + gear + carb
+
+       Df Sum of Sq    RSS    AIC
+- cyl   1    0.0799 147.57 68.915
+- vs    1    0.1601 147.66 68.932
+- carb  1    0.4067 147.90 68.986
+- gear  1    1.3531 148.85 69.190
+- drat  1    1.6270 149.12 69.249
+- disp  1    3.9167 151.41 69.736
+- hp    1    6.8399 154.33 70.348
+- qsec  1    8.8641 156.36 70.765
+<none>              147.49 70.898
+- am    1   10.5467 158.04 71.108
+- wt    1   27.0144 174.51 74.280
+\end{verbatim}
+\normalsize
+%----------------------------------%
+\subsubsection{Phase 2}
+The second phase commences with all the predictor variables being used in the model. The AIC is computed for each exclusion, as well as no exclusion. Also candidate models using previously excluded variables are ranked. The candidates models are ranked accordingly.
+The results of this step show that the model would be best improved by removing the variable "vs" from the model.
+\footnotesize
+\begin{verbatim}
+Step:  AIC=68.92
+mpg ~ disp + hp + drat + wt + qsec + vs + am + gear + carb
+
+       Df Sum of Sq    RSS    AIC
+- vs    1    0.2685 147.84 66.973
+- carb  1    0.5201 148.09 67.028
+- gear  1    1.8211 149.40 67.308
+- drat  1    1.9826 149.56 67.342
+- disp  1    3.9009 151.47 67.750
+- hp    1    7.3632 154.94 68.473
+<none>              147.57 68.915
+- qsec  1   10.0933 157.67 69.032
+- am    1   11.8359 159.41 69.384
++ cyl   1    0.0799 147.49 70.898
+- wt    1   27.0280 174.60 72.297
+\end{verbatim}
+\normalsize
+%----------------------------------%
+\newpage
+\subsubsection{Phase 3}
+The results of the third step show that the model would be best improved by removing the variable "carb" from the model.
+\footnotesize
+\begin{verbatim}
+Step:  AIC=66.97
+mpg ~ disp + hp + drat + wt + qsec + am + gear + carb
+
+       Df Sum of Sq    RSS    AIC
+- carb  1    0.6855 148.53 65.121
+- gear  1    2.1437 149.99 65.434
+- drat  1    2.2139 150.06 65.449
+- disp  1    3.6467 151.49 65.753
+- hp    1    7.1060 154.95 66.475
+<none>              147.84 66.973
+- am    1   11.5694 159.41 67.384
+- qsec  1   15.6830 163.53 68.200
++ vs    1    0.2685 147.57 68.915
++ cyl   1    0.1883 147.66 68.932
+- wt    1   27.3799 175.22 70.410
+\end{verbatim}
+\normalsize
+%----------------------------------%
+\subsubsection{Phase 4}
+The results of the fourth step show that the model would be best improved by removing the variable "gear" from the model.
+\footnotesize
+\begin{verbatim}
+Step:  AIC=65.12
+mpg ~ disp + hp + drat + wt + qsec + am + gear
+
+       Df Sum of Sq    RSS    AIC
+- gear  1     1.565 150.09 63.457
+- drat  1     1.932 150.46 63.535
+<none>              148.53 65.121
+- disp  1    10.110 158.64 65.229
+- am    1    12.323 160.85 65.672
+- hp    1    14.826 163.35 66.166
++ carb  1     0.685 147.84 66.973
++ vs    1     0.434 148.09 67.028
++ cyl   1     0.414 148.11 67.032
+- qsec  1    26.408 174.94 68.358
+- wt    1    69.127 217.66 75.350
+\end{verbatim}
+\normalsize
+%----------------------------------%
+\newpage
+\subsubsection{Phase 5}
+The results of the fifth step show that the model would be best improved by removing the variable "drat" from the model.
+\footnotesize
+\begin{verbatim}
+Step:  AIC=63.46
+mpg ~ disp + hp + drat + wt + qsec + am
+
+       Df Sum of Sq    RSS    AIC
+- drat  1     3.345 153.44 62.162
+- disp  1     8.545 158.64 63.229
+<none>              150.09 63.457
+- hp    1    13.285 163.38 64.171
++ gear  1     1.565 148.53 65.121
++ cyl   1     1.003 149.09 65.242
++ vs    1     0.645 149.45 65.319
++ carb  1     0.107 149.99 65.434
+- am    1    20.036 170.13 65.466
+- qsec  1    25.574 175.67 66.491
+- wt    1    67.572 217.66 73.351
+\end{verbatim}
+\normalsize
+%----------------------------------%
+\subsubsection{Phase 6}
+The results of the sixth step show that the model would be best improved by removing the variable "disp" from the model.
+\footnotesize
+\begin{verbatim}
+Step:  AIC=62.16
+mpg ~ disp + hp + wt + qsec + am
+
+       Df Sum of Sq    RSS    AIC
+- disp  1     6.629 160.07 61.515
+<none>              153.44 62.162
+- hp    1    12.572 166.01 62.682
++ drat  1     3.345 150.09 63.457
++ gear  1     2.977 150.46 63.535
++ cyl   1     2.447 150.99 63.648
++ vs    1     1.121 152.32 63.927
++ carb  1     0.011 153.43 64.160
+- qsec  1    26.470 179.91 65.255
+- am    1    32.198 185.63 66.258
+- wt    1    69.043 222.48 72.051
+\end{verbatim}
+\normalsize
+%----------------------------------%
+\newpage
+\subsubsection{Phase 7}
+The results of the third step show that the model would be best improved by removing the variable "hp" from the model.
+\footnotesize
+\begin{verbatim}
+Step:  AIC=61.52
+mpg ~ hp + wt + qsec + am
+
+       Df Sum of Sq    RSS    AIC
+- hp    1     9.219 169.29 61.307
+<none>              160.07 61.515
++ disp  1     6.629 153.44 62.162
++ carb  1     3.227 156.84 62.864
++ drat  1     1.428 158.64 63.229
+- qsec  1    20.225 180.29 63.323
++ cyl   1     0.249 159.82 63.465
++ vs    1     0.249 159.82 63.466
++ gear  1     0.171 159.90 63.481
+- am    1    25.993 186.06 64.331
+- wt    1    78.494 238.56 72.284
+\end{verbatim}
+\normalsize
+%----------------------------------%
+\subsubsection{Phase 8}
+The results of the third step show that the model would not be improved by removing or re-adding any variable to the model.
+\footnotesize
+\begin{verbatim}
+Step:  AIC=61.31
+mpg ~ wt + qsec + am
+
+       Df Sum of Sq    RSS    AIC
+<none>              169.29 61.307
++ hp    1     9.219 160.07 61.515
++ carb  1     8.036 161.25 61.751
++ disp  1     3.276 166.01 62.682
++ cyl   1     1.501 167.78 63.022
++ drat  1     1.400 167.89 63.042
++ gear  1     0.123 169.16 63.284
++ vs    1     0.000 169.29 63.307
+- am    1    26.178 195.46 63.908
+- qsec  1   109.034 278.32 75.217
+- wt    1   183.347 352.63 82.790
+\end{verbatim}
+\normalsize
+\footnotesize
+\begin{verbatim}
+Call:
+lm(formula = mpg ~ wt + qsec + am, data = mtcars)
+
+Coefficients:
+(Intercept)           wt         qsec           am
+      9.618       -3.917        1.226        2.936
+\end{verbatim}
+\normalsize
+Note that this model is the same as the outcome of the backward elimination procedure.
+
+\newpage
+
+
+\subsection{Coefficient of Determination}
+
+
+\begin{verbatim}
+Analysis of Variance Table
+
+Response: mpg
+          Df Sum Sq Mean Sq  F value    Pr(>F)
+cyl        1 817.71  817.71 116.4245 5.034e-10 ***
+disp       1  37.59   37.59   5.3526  0.030911 *
+hp         1   9.37    9.37   1.3342  0.261031
+drat       1  16.47   16.47   2.3446  0.140644
+wt         1  77.48   77.48  11.0309  0.003244 **
+qsec       1   3.95    3.95   0.5623  0.461656
+vs         1   0.13    0.13   0.0185  0.893173
+am         1  14.47   14.47   2.0608  0.165858
+gear       1   0.97    0.97   0.1384  0.713653
+carb       1   0.41    0.41   0.0579  0.812179
+Residuals 21 147.49    7.02
+---
+Signif. codes:  0 �***� 0.001 �**� 0.01 �*� 0.05 �.� 0.1 � � 1
+\end{verbatim}
+
+
+\newpage
+\subsection{Backward Elimination}
+Our initial model includes all the predictor variables.
+\begin{verbatim}
+> step(fit.all)
+Start:  AIC=70.9
+mpg ~ cyl + disp + hp + drat + wt + qsec + vs + am + gear + carb
+
+       Df Sum of Sq    RSS    AIC
+- cyl   1    0.0799 147.57 68.915
+- vs    1    0.1601 147.66 68.932
+- carb  1    0.4067 147.90 68.986
+- gear  1    1.3531 148.85 69.190
+- drat  1    1.6270 149.12 69.249
+- disp  1    3.9167 151.41 69.736
+- hp    1    6.8399 154.33 70.348
+- qsec  1    8.8641 156.36 70.765
+<none>              147.49 70.898
+- am    1   10.5467 158.04 71.108
+- wt    1   27.0144 174.51 74.280
+\end{verbatim}
+
+This tables tells us the effect or removing each predictor variable individually, in terms of the AIC.
+Consider the first row. This tells us the AIC value of a model fitted without the ``cyl" variable would be $68.915$.
+Included in the table is effect of not removing any variables. If the ``wt" variable was to be removed, the AIC value would increase to $74.280$.
+\begin{verbatim}
+..
+- cyl   1    0.0799 147.57 68.915
+..
+<none>              147.49 70.898
+..
+- wt    1   27.0144 174.51 74.280
+\end{verbatim}
+
+The procedure removes variables as appropriate, until it found that removing anymore variables would increase the AIC.
+\begin{verbatim}
+Step:  AIC=61.31
+mpg ~ wt + qsec + am
+
+       Df Sum of Sq    RSS    AIC
+<none>              169.29 61.307
+- am    1    26.178 195.46 63.908
+- qsec  1   109.034 278.32 75.217
+- wt    1   183.347 352.63 82.790
+\end{verbatim}
+
+The outcome of this procedure is that ``mpg" is best explained as a linear combination of the ``am", ``qsec" and ``wt" variables.
+
+\begin{verbatim}
+Coefficients:
+(Intercept)           wt         qsec           am
+      9.618       -3.917        1.226        2.936  
+\end{verbatim}
+
+%\[
+%\hat{mpg} = 9.618 - 3.917wt + 1.226qsec + 2.936am
+%\]
+
+
+\end{document}

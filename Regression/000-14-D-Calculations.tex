@@ -1,0 +1,99 @@
+\documentclass[]{report}
+
+\voffset=-1.5cm
+\oddsidemargin=0.0cm
+\textwidth = 480pt
+
+\usepackage{framed}
+\usepackage{subfiles}
+\usepackage{graphics}
+\usepackage{newlfont}
+\usepackage{eurosym}
+\usepackage{amsmath,amsthm,amsfonts}
+\usepackage{amsmath}
+\usepackage{color}
+\usepackage{amssymb}
+\usepackage{multicol}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{graphicx}
+\begin{document}
+%-------------------------------------------------%
+
+
+\section{Regression Equation}
+\begin{itemize}
+\item A regression model is a statistical analysis assessing the association between two variables. It is used to find the relationship between two variables.
+	
+\item Linear Regression is a statistical technique that correlates the change in a variable (a series of data that recurs at fixed intervals) to other variable/s. 
+
+\item The representation of the relationship is called the linear regression model. It is called linear because the relationship is linearly additive. 
+
+\item Below is an example of a linear regression model:
+	
+	\[Y= a + bx + \epsilon\]
+\end{itemize}
+
+
+
+
+\section{Intercept Slope calculations}
+
+We are asked to calculate the following
+\begin{itemize} 
+	\item an estimate for the intercept value
+	\item an estimate for the slope value
+\end{itemize}
+(The chevron sign denotes that the value in question is an estimate.)
+
+
+\section{Intercept Slope calculations}
+
+We calculate the estimate for slope first.
+
+To calculate the estimate for the intercept, we first must determine the values for the means of X and Y (i.e  and ). We are given the values of the summations of X and Y (i.e. and ), which we divide by the number of XY pairs (‘n’). 
+
+We then construct the regression model equation , which estimate a value for Y for a  given X value. It takes the form:	
+
+The second part of the question will give us a particular X value and ask us to calculate a corresponding estimate for Y.
+
+
+
+
+
+
+
+
+
+
+\section{Part I Interpreting scatterplot}
+
+
+This scatterplot suggests a weak positive linear relationship between the daily high temperatures and the year.
+
+%Σ xi = 465;         Σ yi = 387.23
+%SX,Y = 60.065;       SX,X = 2247.5;           SY,Y = 8.0033.
+
+Part II 	Correlation
+
+
+This Correlation value indicates weak positive linear relationship between temperatures and year.
+%---------------------------------------------------------------------%
+\section{Regression:Computing the Estimates}
+\begin{itemize}
+	\item Slope Estimate
+	\[b_1 = \frac{S_{XY}}{S_{XX}} \]
+	\item Intercept Estimate
+	\[b_0 = \bar{Y} - b_1\bar{X} \]
+\end{itemize}
+
+\section{Regression: Computing the Estimates}
+\begin{itemize}
+	\item Slope Estimate
+	\[b_1 = \frac{S_{XY}}{S_{XX}} \]
+	\item Intercept Estimate
+	\[b_0 = \bar{Y} - b_1\bar{X} \]
+\end{itemize}
+
+%-------------------------------------------------%
+
+\end{document}

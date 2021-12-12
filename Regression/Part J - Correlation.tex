@@ -1,0 +1,199 @@
+\documentclass[a4]{beamer}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{newlfont}
+\usepackage{amsmath,amsthm,amsfonts}
+\usepackage{beamerthemesplit}
+\usepackage{pgf,pgfarrows,pgfnodes,pgfautomata,pgfheaps,pgfshade}
+\usepackage{mathptmx}  % Font Family
+\usepackage{helvet}   % Font Family
+\usepackage{color}
+
+\mode<presentation> {
+ \usetheme{Default} % was
+ \useinnertheme{rounded}
+ \useoutertheme{infolines}
+ \usefonttheme{serif}
+ %\usecolortheme{wolverine}
+% \usecolortheme{rose}
+\usefonttheme{structurebold}
+}
+
+\setbeamercovered{dynamic}
+
+\title[Stats-Lab.com]{\LARGE Introduction to Statistics and Probability \\ {\Large Probability : Contingency Tables}}
+\author[Kevin O'Brien]{Kevin O'Brien}
+\date{Spring 2014}
+
+
+\renewcommand{\arraystretch}{1.5}
+
+\begin{document}
+
+
+\begin{frame}
+\titlepage
+\end{frame}
+%--------------------------------------------- %
+% What is Correlation 
+% Example of Positive / Neg
+% Pearson Correlation
+% Non-parametric procedures
+%
+%--------------------------------------------- %
+\begin{frame}
+\frametitle{Correlation}
+\Large
+\begin{itemize}
+\item Correlation is a measure of the relation between two or more variables. 
+%\item The measurement scales used should be at least interval scales, but other correlation coefficients are available to handle other types of data.
+\item Correlation coefficients can range from -1.00 to +1.00. The value of -1.00 represents a perfect negative correlation while a value of +1.00 represents a perfect positive correlation. A value of 0.00 represents a lack of correlation.
+\end{itemize}
+ 
+
+
+\end{frame}
+%--------------------------------------------- %
+\begin{frame}
+\frametitle{Correlation}
+\Large
+\begin{itemize}
+
+\item 
+The most widely-used type of correlation coefficient is Pearson r, also called linear or product- moment correlation.
+The pearson correlation coefficient is a metric.
+\end{itemize}
+ 
+
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Correlation}
+\Large
+\begin{itemize}
+\item  Two variables that have no linear relationship have a correlation close to zero. 
+
+\item Scatter plots are a useful way of determing the likely relationship between two variables. 
+
+\item The Pearson correlation coefficient is most commonly used estimate for correlation. 
+
+\item Other types of correlation are tbe \textit{\textbf{Spearman Rho}} and the \textit{\textbf{Kendal Tau}} correlation coefficients. 
+
+%\item  These are not not part of this course,but it is important to know that they exist. 
+\end{itemize}
+\end{frame}
+
+%-----------------------------------------------------%
+%--------------------------------------------- %
+\begin{frame}
+\frametitle{Correlation}
+\Large
+\begin{itemize}
+\item Correlation is a measure of strength of \textbf{Linear Relationship} between two variables.
+\item The Pearson correlation coefficient (denoted $r$) is the most comonly used statistical estimate for correlation. 
+\item Correlation estimates are defined to be between -1 and 1. It is not possible to have a correlation value outside this range of values
+\[ -1 \leq r \leq 1\]
+\item 
+Additionally correlation estimates are not denominated in any units. (Contrast this to standard deviation, which is denominated in the same units as the mean).
+\end{itemize}
+\end{frame}
+
+%--------------------------------------------- %
+\begin{frame}
+\frametitle{Correlation}
+\Large
+\begin{itemize}
+\item A strong positive linear relationship describes a relationship between two variables whereby an increase in one variable will closely coincide with an increase in the other variable. 
+\item Conversely a strong negative linear relationship describes a relationship whereby an increase in one variable closely coincides with a decrease in the other. 
+\end{itemize}
+\end{frame}
+%-----------------------------------------------------%
+
+
+
+\begin{frame}
+\frametitle{Correlation}
+\Large
+\begin{itemize}
+\item The Pearson correlation estimate, which us based on sample data, is denoted r (although related metrics use capital R).
+\item This measure is used as an estimate for the Population correlation, denoted by the greek letter $\rho$ ( pronounced ``Rho"). 
+The estimate is computed using summation identities.
+% (See the formulae ).
+ 
+%\item 
+%Equivalently it can be computed using the  Sums of Squares Identities that are used to compute covariance and standard deviation <INSERT FORMULA> .
+%Example
+%determine the correlation estimate for the Spend V Impressions data.  
+\end{itemize}
+\end{frame}
+%-------------------------------------------------------- %
+
+\begin{frame}
+\frametitle{Outliers}
+Outliers can greatly influence the computed value of an estimate.
+Correlation is closely related to Simple linear regression models, in that both are concerned with the linear relationship between variables. However Linear Regression has a different emphasis.
+Simple Linear Regression describes one independent variable (IV) and the response of the dependent variable (DV). 
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Correlation and Causality }
+Implicit is simple linear regression is the notion of causality. The dependent variable changes as the independent variable changes. The converse is not true.
+ <some examples : hot temperature / ice cream example> .
+Correlation is not concerned with causality at all, hence the often used expression "causation does not imply causality ".
+
+\end{frame}
+\end{document}
+
+
+\begin{frame}
+\frametitle{Regression analysis: Example}
+In a study of a wholesaler’s distribution costs, undertaken with a view to controlling cost, the volume of goods handled and the overall costs were recorded for one month in each of ten depots in a distribution network. The results are presented in the following table. Perform a regression analysis of the cost (Y ) on the volume (X).
+
+\end{frame}
+%-------------------------------------------------------%
+\begin{frame}
+\frametitle{Regression analysis: Example}
+\begin{center}
+
+\begin{tabular}{|c|c|c|}\hline
+      &  Volume (X)   &  Costs (Y) \\ \hline
+1     &     48     &   20 \\
+2     &    57      &   22 \\
+3     &    49      &   19 \\
+4     &    45      &   18 \\
+5     &    50      &   20 \\
+6     &    62      &   24 \\
+7     &    58      &   21 \\
+8     &    55      &   21 \\
+9     &    38      &   15 \\
+10    &    51      &  20 \\ \hline
+\end{tabular}
+\end{center}
+%X=c(48,57,49,45,50,62,58,55,38,51)
+%Y=c(20,22,19,18,20,24,21,21,15,20)
+
+\end{frame} 
+
+
+
+
+ 
+
+
+
+
+
+%-----------------------------------------------------------------------%
+
+% # cor(X,Y) = 0.92
+% X = c(19.5, 23.84, 15.34, 23.37, 13.82, 16.48, 16.15, 16.76, 17.49, 17.4, 25.42, 29.29)
+% Y = c(24.41, 26.91, 24.33, 25.5, 22.84, 24.35, 23.59, 23.98, 24.65, 22.56, 26.78, 28.68)
+%
+% X=c(20.88, 11.72, 21.39, 15.97, 19.58, 17.2, 16.47, 20.04, 16.7, 22.23, 24.87, 23.94)
+% Y=c(24.18, 27.28, 23.79, 24.84, 24.36, 24.75, 25.93, 24.76, 25.26, 22.97, 23.71, 22.75)
+
+%-----------------------------------------------------------------------%
+\end{document}

@@ -1,0 +1,491 @@
+MA4605 Chemometrics – Lecture 3B Linear Models 
+Error in Both Variables
+library(MethComp)
+Deming(X, Y)
+
+Using Linear Regression for Method Comparison is inappropriate because
+trig and gerber
+
+
+Dunn remarks that this failure
+Further to Dunn. a suitable approaxh would be structural equation modelling
+
+Using regression for comparing analytical methods
+Two methods
+
+Two methods of the
+determination of an analyte:
+an old reliable one and a new
+one that is examined for
+accuracy.
+For several samples each is
+analysed by the two methods
+and x-values are assigned to
+the old method and y-values
+to the new one.
+
+Regression analysis is
+performed of y’s on x’s in
+order to detect any significant
+deviation from the y = x
+relation.
+
+The level of phytic acid in 20
+urine samples is measured
+by a new catalytic fluorimetic
+(CF) method and compared
+with those obtained using an
+established extraction
+photometric (EP) technique.
+Chemometrics - Linear Models 
+
+
+
+
+Weighted Linear Regression
+In many cases we will find that the application of Simple Linear Regression is not suitable for the data.
+
+
+Polynomial Regression
+
+An assumption that underlines simple linear regression. but not always emphasised , is that the independent variable is not associated with any measurement error  and that any perceived measurement error us associated with the dependent variable  y.
+
+When we are comparing two methods of clinical meadurement, it eould seem intuitive to use a SLR approach. However one must assume that there is measurement error to some degree asdiciated with both sets of measurement  
+
+When using Simple Linear Regression one must decide which to class as the IV
+
+How do we know know good a precise a method of measurement ? 
+Coefficient of Repeatability.
+[Bland and Altman (1999)]
+
+
+Comparing Analytical Methods.
+Deming Regression.
+Orthonormal Regression
+Method Comparison Studies.
+Variance Ratio
+
+With respect to the past papers sone questions required the computation of the confidence intervals for the slope and interce from first principles. We will not be including this on the course content this year . We will demonstrate the method for computing the confidence limuts using R.
+confint(FIT)
+
+Confidence Intervals of Slope and Intercept
+Limits of Detection
+
+Multiple Linear Regression
+
+Previously we have seem SLR the case of one dependent varianle Y explained by one independent variable X.
+
+Multiple Linear regression describes the case of one dependent variable explained by two or more independent variables. 
+Error in Both Variables
+library(MethComp)
+Deming(X, Y)
+
+R provides comprehensive support for multiple linear regression. The topics below are provided in order of increasing complexity.
+http://www.statmethods.net/stats/regression.html
+Fitting the Model
+# Multiple Linear Regression Example 
+fit <- lm(y ~ x1 + x2 + x3, data=mydata)
+summary(fit) # show results
+
+\begin{fra
+# Other useful functions 
+coefficients(fit) 
+# model coefficients
+confint(fit, level=0.95) 
+# CIs for model parameters 
+fitted(fit) # predicted values
+residuals(fit) # residuals
+anova(fit) # anova table 
+vcov(fit) 
+# covariance matrix for model 
+# parameters 
+influence(fit) 
+# regression diagnostics
+
+
+
+%===============================================================================================%
+We will break the conventional sequencing for this subject matter to look at multiple linear regression and some variable selection procedures in anticipation of next week’s laboratory class. 
+
+Please be advised that past papers in the SULIS workspace. Next Monday we will look at 2009 sample paper.
+
+Also be advised that some in-class exam papers similar to what should be expected for your in-class exam.
+%===============================================================================================%
+Confidence Intervals for Regression Coefficients
+
+In the last class we looked how R can be used to determine the estimates and standard errors for the slope and intercept.
+The following formulae can be used to compute the confidence intervals for both, for a specified significance level.
+ 
+These calculations provided the basis for end of semester examination questions in previous years, but that will not be the case for this year. To compute the confidence intervals for both estimates, we use the confint() command, specifying the name of the fitted model.
+Recall the example used in the previous classes:
+> Conc=c(0,2,4,6,8,10,12)
+> Fluo=c(2.1,5.0,9.0,12.6,17.3,21.0,24.7)
+> 
+> coef(Fit)
+(Intercept)        Conc 
+   1.517857    1.930357
+
+>
+> Fit = lm(Fluo ~ Conc)
+> confint(Fit)
+              2.5 %   97.5 %
+(Intercept) 0.75970 2.276014
+Conc        1.82522 2.035495
+
+%===============================================================================================%
+Multiple Linear Regression
+
+Previously we have seem SLR the case of one dependent variable Y explained by one independent variable X.
+
+Multiple regression analysis is an extension of simple regression analysis, as described previously, to applications involving the use of two or more independent variables (predictors) to estimate the value of the dependent variable (response variable). 
+In the case of two independent variables, denoted by X1 and X2, the linear algebraic model is
+ 
+The definitions of the above terms are equivalent to the definitions in previous classes for simple regression analysis, except that more than one independent variable is involved in the present case. 
+
+Based on sample data, the linear regression equation for the case of two independent variables is
+
+ 
+%===============================================================================================%
+The multiple regression equation identifies the best-fitting line based on the method of least squares. In the case of multiple regression analysis, the best-fitting line is a line through
+n-dimensional space (3-dimensional in the case of two independent variables). 
+
+The calculations required for determining the values of the parameter estimates in a multiple regression equation and the associated standard error values are quite complex and generally involve matrix algebra. However, computer software, such as R, is widely available for carrying out such calculations.
+
+The assumptions of multiple linear regression analysis are similar to those of the simple case involving only one independent variable. For point estimation, the principal assumptions are that
+  
+ 
+(1) the dependent variable is a random variable,
+(2) the relationship between the several independent variables and the one dependent variable is linear.
+
+Additional assumptions for statistical inference (estimation or hypothesis testing) are that 
+(3) the variances of the conditional distributions of the dependent variable, given various combinations of values of the independent variables, are all equal, 
+(4) the conditional distributions of the dependent variable
+are normally distributed, and 
+(5) the observed values of the dependent variable are independent of each other. Violation of this assumption is called autocorrelation,
+%===============================================================================================%
+Partial regression coefficient (or net regression coefficient). Each of the bi regression coefficients is in fact a partial regression coefficient. A partial regression coefficient is the conditional coefficient given that one or more other independent variables (and their coefficients) are also included in the regression equation. 
+
+Conceptually, a partial regression coefficient represents the slope of the regression line between the independent variable of interest and the dependent variable given that the other independent variables are included in the model and are thereby statistically “held constant.”
+
+(Remark : We will refer to these values as the regression coefficients from now on, rather than as “slopes” . In the case of the “intercept estimate”, we will just use the term “coefficient”.)
+%===============================================================================================%
+Implementing a MLR model using R.
+
+Implementing a MLR model in R is quite similar to fitting an SLR model.
+All one has to do is to specify the additional independent variables, using the following structure:
+lm(y ~ x1 + x2 + …)
+
+
+%===============================================================================================%
+
+Example: Cheese Tasting
+As an example, we shall use data on the taste of cheese, suggested in Introduction to the Practice of Statistics by D.S. Moore and G.P. McCabe, ( Freeman, 1998). 
+
+
+
+The data give scores for the taste of a cheese (Taste) from 30 different formulations which caused variation in the concentration in the cheese of acetic acid (Acetic), hydrogen sulphide (H2S) and lactic acid (Lactic). 
+
+One would wish to model the dependence of the taste score on the concentrations of those three constituents, using the thirty observations
+
+ 
+
+
+
+> FitAll
+
+Call:
+lm(formula = Taste ~ Acetic + H2S + Lactic, data = Cheese)
+
+Coefficients:
+(Intercept)       Acetic          H2S       Lactic  
+   -28.8768       0.3277       3.9118      19.6705  
+
+
+The fitted model is therefore
+
+Taste* = −28.9 + 0.33Acetic + 3.91H2S + 19.67Lactic
+
+
+> FitAll = lm(Taste ~ Acetic + H2S + Lactic, data = Cheese)
+> summary(FitAll)
+
+Call:
+lm(formula = Taste ~ Acetic + H2S + Lactic, data = Cheese)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-17.390  -6.612  -1.009   4.908  25.449 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)   
+(Intercept) -28.8768    19.7354  -1.463  0.15540   
+Acetic        0.3277     4.4598   0.073  0.94198   
+H2S           3.9118     1.2484   3.133  0.00425 **
+Lactic       19.6705     8.6291   2.280  0.03108 * 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+
+Residual standard error: 10.13 on 26 degrees of freedom
+Multiple R-squared: 0.6518,     Adjusted R-squared: 0.6116 
+F-statistic: 16.22 on 3 and 26 DF,  p-value: 3.81e-06
+%===============================================================================================%
+\subsection{The Coefficient of Determination }
+
+The coefficient of determination, R², is a measure of the proportion of variability explained by, or due to the regression (linear relationship) in a sample of bivariate (i.e. X v Y) data. It is a number between zero and one and a value close to zero suggests a poor model.
+
+A very high value of R² can arise even though the relationship between the two variables is non-linear. The fit of a model should never simply be judged from the R² value.
+
+In the case of simple linear regression (i.e. bivariate data) the coefficient of determination is equivalent to the square of the correlation coefficient of X and Y.
+
+In the case of MLR, the coefficient of determination is derived from Sums of Squares Identities (material we will cover soon).
+
+The R2 value is presented as part of the output of the summary command for a fitted model.
+
+
+
+
+
+For the Cheese example : (Multiple) R2 is found in the summary output
+\begin{framed}
+	\begin{verbatim}
+> FitAll = lm(Taste ~ Acetic + H2S + Lactic, data = Cheese)
+> summary(FitAll)
+…
+…
+…
+Residual standard error: 10.13 on 26 degrees of freedom
+Multiple R-squared: 0.6518,     Adjusted R-squared: 0.6116 
+F-statistic: 16.22 on 3 and 26 DF,  p-value: 3.81e-06
+\end{verbatim}
+\end{framed}
+%===============================================================================================%
+\subsection{Overfitting}
+Overfitting  describes the error which occurs when a fitted model is too closely fit to a limited set of observations. Overfitting the model generally takes the form of making an overly complex model (i.e. using an excessive amount of independent variables) to explain the behaviour in the data under study. 
+
+In reality, the data being studied often has some degree of error or random noise within it. Thus attempting to make the model conform too closely to sample data can undermine the model and reduce its predictive power.
+
+(Remark: This will be the basis for a lab exercise)
+
+Multicollinearity 
+Multicollinearity occurs when two or more independent in the model are
+highly correlated and, as a consequence, provide redundant information about the response when placed together in a model.
+
+(Everyday examples of multicollinear independent variables are height and weight of a person, years of education and income, and assessed value and square footage of a home.)
+
+From the Cheese example:
+%===============================================================================================%
+\begin{framed}
+\begin{verbatim}
+	> cor(Cheese)
+
+           Taste    Acetic       H2S    Lactic
+Taste  1.0000000 0.5495393 0.7557523 0.7042362
+Acetic 0.5495393 1.0000000 0.6179559 0.6037826
+H2S    0.7557523 0.6179559 1.0000000 0.6448123
+Lactic 0.7042362 0.6037826 0.6448123 1.0000000
+\end{verbatim}
+\end{framed}
+Which independent variables have high correlation coefficients? 
+Consequences of high multicollinearity:
+1. Increased standard error of estimates of the regression coefficients (i.e. decreased reliability of fitted model).
+2. Often confusing and misleading results.
+%===============================================================================================%
+\subsection{Adjusted R2}
+ 
+Adjusted R2 is used to compensate for the addition of independent variables to the model.  As more independent variables are added to the regression model, unadjusted R2 will generally increase but there will never be a decrease.  This will occur even when the additional variables do little to help explain the dependent variable.  
+
+To compensate for this, adjusted R2 is corrected for the number of independent variables in the model.  The result is an adjusted R2 than can go up or down depending on whether the addition of another variable adds or does not add to the explanatory power of the model.  Adjusted R2 will always be lower than unadjusted.
+
+The adjusted R2  is also presented in the output of the summary of a fitted model. It has become standard practice to report the adjusted R2, especially when there are multiple models presented with varying numbers of independent variables.
+
+For the Cheese example : Adjusted R2 is found in the summary output
+\begin{framed}
+\begin{verbatim}
+> FitAll = lm(Taste ~ Acetic + H2S + Lactic, data = Cheese)
+> summary(FitAll)
+…
+…
+…
+Residual standard error: 10.13 on 26 degrees of freedom
+Multiple R-squared: 0.6518,     Adjusted R-squared: 0.6116 
+F-statistic: 16.22 on 3 and 26 DF,  p-value: 3.81e-06
+\end{verbatim}
+\end{framed}
+%===============================================================================================%
+\subsection{Variable Selection Procedures}
+Variable selection is intended to select the “best" subset of independent variables. Reasons for performing variable selections are:
+\begin{itemize}
+\item	We want to explain the data in the simplest way. Redundant independent variables should be removed.
+\item	[Rule of Thumb: Among several plausible regression models, the smallest model always  fits the data best. The so-called “Law of Parsimony”]
+\item	Unnecessary independent variables will reduce the precision in the (precise) estimation of other quantities that interested us. 
+\item	Multicollinearity is caused by having too many independent variables trying to do the same job. Removing excess predictors will aid interpretation.
+\end{itemize}
+
+%===============================================================================================%
+Akaike's information criterion 
+The Akaike's information criterion (AIC), is a model selection metric.  For a series of candidate fitted models, the model with a lowest AIC value is treated the best.
+To compute the AIC for a candidate model in R, simply specify the name of the model as an argument to the AIC() function.
+
+> AIC(FitAll)
+[1] 229.7775
+
+In next week’s lab classes, we will use AIC and adjusted R2 to determine the best set of independent variables for fitting a (multiple) linear model.
+%===============================================================================================%
+Dummy Variables in Multiple Linear Regression
+In regression analysis we sometimes need to modify the form of non-numeric variables, for example sex, or marital status, to allow their effects to be included in the regression model. 
+This can be done through the creation of dummy variables whose role it is to identify each level of the original variables separately. 
+
+Interval estimates for fitted values
+
+The fitted value
+
+ˆ Y for a value x of the explanatory variable is the best estimate of
+
+the mean of the response variable
+
+Y for that value x. It is given by
+
+ˆ
+
+Y = A + Bx.
+
+
+
+http://www.weibull.com/DOEWeb/confidence_intervals_in_multiple_linear_regression.htm
+
+
+
+Simple Linear Regression as used in Chemistry
+
+Limits of Detection
+
+detection of analyte
+
+Blank Signal
+
+
+Method Comparison Studies
+•
+Simple Linear Regression
+
+•
+Deming Regression
+
+•
+Orthogonal Regression
+
+•
+Bland Altman Plot
+
+
+
+
+Alternatives to SLR
+•
+Polynomial Regression
+
+•
+Weighted Linear Regression
+
+•
+Comparing Candidate Models using AIC 
+
+•
+Likelihood ratio testing
+
+
+
+Root Mean Square Error
+
+The root mean square error (RMSE)) is a measure of the differences between values predicted by a model or an estimator and the values actually observed from the thing being modeled or estimated.
+
+
+Since the RMSE is a good measure of accuracy, it is ideal if it is small.
+
+
+
+
+
+
+
+
+
+
+
+
+
+http://www-stat.wharton.upenn.edu/~stine/stat621/lecture3.621.pdf
+
+
+“Statistical extrapolation penalty”
+
+CI for regression line grows wider as get farther away from the
+
+mean of the predictor.
+
+ 
+
+Regression ANOVA
+
+Sums of Squares Identities
+
+F test
+
+( Remark : we rearranged the sequence of material so that we would have covered important material in lectures before applying this material in Labs)
+
+
+Variable Selection Procedures
+
+Stepwise Regression
+
+Forward Selection
+
+Backward Elimination
+
+stepAIC( )
+
+model selection
+
+
+http://www.chem.utoronto.ca/coursenotes/analsci/StatsTutorial/ErrRegr.html
+
+http://www.medcalc.org/manual/deming_regression.php
+
+
+
+http://www.r-tutor.com/elementary-statistics/simple-linear-regression/prediction-interval-linear-regression
+
+
+A few remarks relating to upcoming classes  :
+
+
+I advise a brief revision of the Normal Distribution as it is going to a fundamental part of  Statistical Process Control. A part of the course thar we are going to be studying soon.
+
+
+In this part of the course I will also be covering Tolerance Intervals. We will be revisiting Confidence Intervals and Prediction Intervals also. and highlighting the differences between all three.
+
+
+The classes will not be going ahead next Friday as it is one of ULs open days.
+
+So as not to go out of sync, the lab schefuled for next monday will concentrate on a few special topics related to using R.
+
+
+One key topic in mind for that class is using R Packages. Previously we have discussed  the nortest package, required to implement the Anderson Darling test for normality. There are in fact several thousand more, covering a wide variety of topics. A directory of theseis maintained at the Comprehensive R Archive Network (CRAN) website.
+
+
+Some packages I intend on using before the end of the course are qcc spc and MethComp.
+
+
+Another major area of the course is Experimental Design.
+
+
+The mid term exam will take place on Week 8 in the computer laboratory.  Precise dates will be confirmed shortly. Please attend the session as instructed by you timetable.
+
+
+Past papers for the midterm exam are available on SULIS. Please note that your own exam will deal specifically with Inference Procedures ( i.e. hypothesis tests and confidence intervals  ) and linear models. Also you exam is worth 20% of the overall grade, rather than 15% for that module.
+
+
+
+
+
+

@@ -1,0 +1,229 @@
+
+\documentclass[a4paper,12pt]{article}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{eurosym}
+\usepackage{vmargin}
+\usepackage{amsmath}
+\usepackage{graphics}
+\usepackage{epsfig}
+\usepackage{subfigure}
+\usepackage{fancyhdr}
+%\usepackage{listings}
+\usepackage{framed}
+\usepackage{graphicx}
+
+\setcounter{MaxMatrixCols}{10}
+%TCIDATA{OutputFilter=LATEX.DLL}
+%TCIDATA{Version=5.00.0.2570}
+%TCIDATA{<META NAME="SaveForMode" CONTENT="1">}
+%TCIDATA{LastRevised=Wednesday, February 23, 2011 13:24:34}
+%TCIDATA{<META NAME="GraphicsSave" CONTENT="32">}
+%TCIDATA{Language=American English}
+
+\pagestyle{fancy}
+\setmarginsrb{20mm}{0mm}{20mm}{25mm}{12mm}{11mm}{0mm}{11mm}
+\lhead{\texttt{R} Programming} \rhead{Statistics with \texttt{R}}
+\chead{Regression Models}
+%\input{tcilatex}
+
+\begin{document}
+\Large
+
+
+\newpage
+\section{Multiple Linear Regression}
+In your future studies, you will come across multiple linear regression (MLR). This is a linear model uses multiple independent variables to explain a single dependent variable.
+
+The implementation is very similar to simple linear regression (SLR). All that is required is to specify the additional independent variables.
+
+\begin{framed}
+\begin{verbatim}
+Fit.slr =lm(y~x)  	# SLR: y explained by predictor x
+Fit.mlr=lm(y~x+z)  # MLR: y explained by predictors x and z
+\end{verbatim}
+\end{framed}
+
+For this case, a  linear relationship can be defined by the regression model  \[y =\beta_0 + \beta+1x + \beta_2z + \epsilon\].
+
+Again, we determine the regression coefficients, i.e. estimates for slopes and intercept. (N.B. There are variations on this notation).
+
+\begin{itemize}
+\item	$b_0$ : the intercept estimate.
+\item	$b_1$  : the slope estimate for X
+\item	$b_2$  : the slope estimate for z
+\end{itemize}
+
+In many project datasets it is possible to implement a MLR model. For the moment, we will just look at slope and intercept estimates, their p-values and the coefficient of determination.
+
+Let try this out using the \textbf{\textit{iris}} data set. (This is not be a valid statistical analysis in practice. However we are focussing on the mechanics, so we shall proceed nonetheless).
+\begin{framed}
+\begin{verbatim}
+lm(Sepal.Length ~ Sepal.Width + Petal.Width)
+\end{verbatim}
+\end{framed}
+
+\newpage
+
+
+\section{Introduction to Multiple Linear Regression}
+\begin{itemize}
+\item In your future studies, you will come across multiple linear regression (MLR). This is a linear model uses multiple independent variables to explain a single dependent variable.
+
+\item The implementation is very similar to simple linear regression (SLR). All that is required is to specify the additional independent variables.
+
+\end{itemize}
+
+\begin{framed}
+	\begin{verbatim}
+	# SLR: y explained by predictor x
+	Fit.slr <- lm(y~x)    
+	
+	# MLR: y explained by predictors x and z
+	Fit.mlr <- lm(y~x+z)  
+	\end{verbatim}
+\end{framed}
+
+\begin{itemize}
+\item For this case of two predictor variables, a  linear relationship can be defined by the regression model  \[y =\beta_0 + \beta_1x + \beta_2z + \epsilon\].
+
+\item Again, we determine the regression coefficients, i.e. estimates for slopes and intercept. (N.B. There are variations on this notation).
+\begin{itemize}
+	\item[$\ast$]	$b_0$ : the intercept estimate.
+	\item[$\ast$]	$b_1$  : the slope estimate for x
+	\item[$\ast$]	$b_2$  : the slope estimate for z
+\end{itemize}
+
+
+
+
+
+
+\item In many project datasets it is possible to implement a MLR model. For the moment, we will just look at slope and intercept estimates, their p-values and the coefficient of determination.
+\end{itemize}
+\newpage
+\subsection*{Simple Example}
+\begin{itemize}
+\item Let try this out using the \textbf{\textit{iris}} data set. 
+\item We will construct a regression model using Sepal lenght as a response variable with Sepal Width and Petal Width as the predictor variables.
+\item \textit{(This is not be a useful statistical analysis in practice. However we are focussing on the mechanics, so we shall proceed nonetheless)}.
+\end{itemize}
+
+\begin{framed}
+	\begin{verbatim}
+	lm(Sepal.Length ~ Sepal.Width + Petal.Width,
+	   data=iris)
+	\end{verbatim}
+\end{framed}
+\newpage
+%====================================================== %
+\newpage
+\subsection*{Hypothesis Test for Regression Coefficents}
+\begin{itemize}
+\item 
+This lesson describes how to conduct a hypothesis test to determine whether there is a significant linear relationship between an independent variable X and a dependent variable Y. 
+
+\item The test focuses on the slope of the regression line
+
+\[ \hat{Y} = b_0 + b_1X_2 + b_2x_2\]
+
+where $b_0$ is a constant, $b_1$ is the slope (also called the regression coefficient), X is the value of the independent variable, and Y is the value of the dependent variable.
+
+\item If we find that the slope of the regression line is significantly different from zero, we will conclude that there is a significant relationship between the independent and dependent variables.
+\end{itemize}
+Test Requirements
+\begin{itemize}
+\item The approach described in this lesson is valid whenever the standard requirements for simple linear regression are met.
+
+\item The dependent variable Y has a linear relationship to the independent variable X.
+For each value of X, the probability distribution of Y has the same standard deviation σ.
+For any given value of X,
+
+\item The Y values are independent.
+The Y values are roughly normally distributed (i.e., symmetric and unimodal). A little skewness is ok if the sample size is large.
+\item Previously, we described how to verify that regression requirements are met.
+
+\end{itemize}
+
+The test procedure consists of four steps: (1) state the hypotheses, (2) formulate an analysis plan, (3) analyze sample data, and (4) interpret results.
+
+State the Hypotheses
+If there is a significant linear relationship between the independent variable X and the dependent variable Y, the slope will not equal zero.
+
+H0: Β1 = 0 
+Ha: Β1 ≠ 0
+The null hypothesis states that the slope is equal to zero, and the alternative hypothesis states that the slope is not equal to zero.
+
+Formulate an Analysis Plan
+The analysis plan describes how to use sample data to accept or reject the null hypothesis. The plan should specify the following elements.
+
+Significance level. Often, researchers choose significance levels equal to 0.01, 0.05, or 0.10; but any value between 0 and 1 can be used.
+
+Test method. Use a linear regression t-test (described in the next section) to determine whether the slope of the regression line differs significantly from zero.
+Analyze Sample Data
+Using sample data, find the standard error of the slope, the slope of the regression line, the degrees of freedom, the test statistic, and the P-value associated with the test statistic. The approach described in this section is illustrated in the sample problem at the end of this lesson.
+
+Standard error. Many statistical software packages and some graphing calculators provide the standard error of the slope as a regression analysis output. The table below shows hypothetical output for the following regression equation: y = 76 + 35x .
+
+Predictor	Coef	SE Coef	T	P
+Constant	76	30	2.53	0.01
+X	35	20	1.75	0.04
+
+In the output above, the standard error of the slope (shaded in gray) is equal to 20. In this example, the standard error is referred to as "SE Coeff". However, other software packages might use a different label for the standard error. It might be "StDev", "SE", "Std Dev", or something else. 
+
+If you need to calculate the standard error of the slope (SE) by hand, use the following formula:
+SE = sb1 = sqrt [ Σ(yi - ŷi)2 / (n - 2) ] / sqrt [ Σ(xi - x)2 ]
+
+where yi is the value of the dependent variable for observation i, ŷi is estimated value of the dependent variable for observation i, xi is the observed value of the independent variable for observation i, x is the mean of the independent variable, and n is the number of observations.
+
+Slope. Like the standard error, the slope of the regression line will be provided by most statistics software packages. In the hypothetical output above, the slope is equal to 35.
+
+Degrees of freedom. For simple linear regression (one independent and one dependent variable), the degrees of freedom (DF) is equal to:
+DF = n - 2
+
+where n is the number of observations in the sample.
+
+Test statistic. The test statistic is a t-score (t) defined by the following equation.
+t = b1 / SE
+
+where b1 is the slope of the sample regression line, and SE is the standard error of the slope.
+
+P-value. The P-value is the probability of observing a sample statistic as extreme as the test statistic. Since the test statistic is a t-score, use the t Distribution Calculator to assess the probability associated with the test statistic. Use the degrees of freedom computed above.
+Interpret Results
+If the sample findings are unlikely, given the null hypothesis, the researcher rejects the null hypothesis. Typically, this involves comparing the P-value to the significance level, and rejecting the null hypothesis when the P-value is less than the significance level.
+
+\end{document}
+\newpage
+\subsection{Model Selection}
+There are many important methodologies for determining which combination of predictor variables bests describes a response variable. You will meet this in future modules.
+We will use two simple ones for this module only.
+\begin{itemize}
+	\item Adjusted R–squared value
+	\item The Akaike Information Criterion (AIC)
+\end{itemize}
+
+
+\subsubsection*{The Adjusted R-square value}
+\noindent The adjusted R-square value is found on the summary output for a fitted model. It is called \textbf{\emph{adjusted}} because it takes into account the number of predictor variables being used. The law of parsimony states the simplest model that adequately explains the outcomes is the best. The candidate model with the higher adjusted R squared is considered preferable.
+
+\subsubsection*{The Akaike Information Criterion}
+\noindent The AIC is a model selection metric often used in statistics. It is computed using the R command
+\texttt{\textbf{AIC()}}. The candidate model with the smallest AIC value is considered preferable.
+
+\begin{framed}
+	\begin{verbatim}
+	fitA = lm(Sepal.Length ~ Sepal.Width + Petal.Width)
+	fitB = lm(Sepal.Length ~ Sepal.Width + Petal.Length)
+	
+	summary(fitA)$adj.r.squared
+	summary(fitB)$adj.r.squared
+	
+	AIC(fitA)
+	AIC(fitB)
+	\end{verbatim}
+\end{framed}
+
+
+
+
+%----------------------------------------------------%
+\end{document}

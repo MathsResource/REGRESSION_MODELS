@@ -1,0 +1,61 @@
+\documentclass[10pt,a4paper]{article}
+
+\title{MA4413 Statistics for Computing}
+\author{Kevin O'Brien}
+
+\begin{document}
+
+\section{Multiple Linear Regression}
+Data from a ten year period was collected.
+
+\begin{verbatim}
+> yr <- c(1,2,3,4,5,6,7,8,9,10)
+> profit <-c(200,160,140,140,180,150,220,310,380,400)
+> QC <- c(170,45,130,150,140,180,140,170,180,180)
+> Mrkt <- c(73,80,84,82,79,76,85,92,89,90)
+> growth <-c(0.01,0.03,0.04,0.05,0.04,0.03,0.02,0.04,0.02,0.04)
+> unemp <-c(0.071,0.065,0.064,0.059,0.054,0.053,0.052,0.049,0.052,0.054)
+>
+> fit1 = lm(profit ~ QC + Mrkt + growth)
+> fit2 = lm(profit ~ QC + Mrkt + growth + unemp + yr)
+>
+> summary(fit1)
+
+Call:
+lm(formula = profit ~ QC + Mrkt + growth)
+
+Coefficients:
+              Estimate Std. Error t value Pr(>|t|)
+(Intercept)  -840.9576   259.3768  -3.242  0.01764 *
+QC              0.7100     0.4833   1.469  0.19215
+Mrkt           12.7814     3.3776   3.784  0.00914 **
+growth      -3041.9239  1672.0312  -1.819  0.11874
+---
+Signif. codes:  0 *** 0.001 ** 0.01 * 0.05 . 0.1   1
+
+Residual standard error: 57.3 on 6 degrees of freedom
+Multiple R-squared: 0.778,      Adjusted R-squared: 0.667
+F-statistic:  7.01 on 3 and 6 DF,  p-value: 0.02184
+
+> summary(fit2)
+
+Call:
+lm(formula = profit ~ QC + Mrkt + growth + unemp + yr)
+
+Coefficients:
+              Estimate Std. Error t value Pr(>|t|)
+(Intercept)  -939.9290   413.6848  -2.272   0.0855 .
+QC              0.1062     0.5104   0.208   0.8454
+Mrkt            5.0889     4.8262   1.054   0.3512
+growth      -1774.8418  1448.9019  -1.225   0.2878
+unemp        9944.3060  4950.8398   2.009   0.1150
+yr             39.4120    17.0630   2.310   0.0821 .
+---
+Signif. codes:  0 *** 0.001 ** 0.01 * 0.05 . 0.1   1
+
+Residual standard error: 45.72 on 4 degrees of freedom
+Multiple R-squared: 0.9058,     Adjusted R-squared: 0.788
+F-statistic: 7.692 on 5 and 4 DF,  p-value: 0.03524
+
+
+\end{document}

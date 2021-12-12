@@ -1,0 +1,239 @@
+\documentclass[a4paper,12pt]{article}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{eurosym}
+\usepackage{vmargin}
+\usepackage{amsmath}
+\usepackage{graphics}
+\usepackage{epsfig}
+\usepackage{subfigure}
+\usepackage{fancyhdr}
+%\usepackage{listings}
+\usepackage{framed}
+\usepackage{graphicx}
+
+\setcounter{MaxMatrixCols}{10}
+%TCIDATA{OutputFilter=LATEX.DLL}
+%TCIDATA{Version=5.00.0.2570}
+%TCIDATA{<META NAME="SaveForMode" CONTENT="1">}
+%TCIDATA{LastRevised=Wednesday, February 23, 2011 13:24:34}
+%TCIDATA{<META NAME="GraphicsSave" CONTENT="32">}
+%TCIDATA{Language=American English}
+
+\pagestyle{fancy}
+\setmarginsrb{20mm}{0mm}{20mm}{25mm}{12mm}{11mm}{0mm}{11mm}
+\lhead{MS4024} \rhead{Mr. Kevin O'Brien}
+\chead{Numerical Computation}
+%\input{tcilatex}
+
+\begin{document}
+
+\section{Simple Linear Regression}
+Simple linear regression is used to describe the mathematical relationship between two variables ‘x’ and ‘y’ in terms of a simple mathematical formula, of the form  (sometimes as $y = mx+c$, but usually)\[ y= a+bx.\]
+
+For example, you may want to describe the relationship between age and blood pressure or the relationship between scores in a midterm exam and scores in the final exam, etc.
+
+\begin{itemize}
+\item	$x$ is the \textbf{independent} (i.e. predictor) variable.
+\item	$y$ is the \textbf{dependent} (i.e. response) variable.
+\end{itemize}
+That is to say $x$ is said to cause or influence $y$.
+
+\begin{itemize}
+\item Necessarily both x and y should be of equal length. One of the first steps in a regression analysis is to determine if any kind of relationship exists between $x$ and $y$.
+
+\item A scatterplot can created and can initially be used to get an idea about the nature of the relationship between the variables, e.g. if the relationship is linear, curvilinear, or no relationship exists.
+
+\item To make a simple scatter-plot, we simply use the \texttt{\textbf{plot()}} command. The independent variable (the variable to go along the x-axis) is always specified first.
+\end{itemize}
+
+
+\begin{framed}
+\begin{verbatim}
+X=c(5.98, 8.80, 6.89, 8.49, 8.48, 7.47, 7.97,5.94, 7.32, 6.64, 6.94, 3.51)
+
+Y=c(5.56, 7.80, 6.13, 8.15, 7.95, 7.87, 8.03, 5.67, 7.11, 6.65, 7.02, 3.88)
+
+plot(X,Y)
+cor(X,Y)
+\end{verbatim}
+\end{framed}
+In this case here, we can see from the scatter-plot that there is a linear relationship between x and y.
+Simple linear regression is only useful when there is evidence of a linear relationship. In other cases, such as quadratic relationships, other types of regression may be more appropriate (not part of syllabus).
+
+\subsection{Linear Regression Model}
+
+In Statistics, a linear relationship can be formally defined by the simple linear regression model
+\[y = \beta_0 + \beta_1x + \epsilon\]
+\begin{itemize}
+\item The intercept $\beta_0$ describes the point at which the line intersects the y axis.
+\item The slope $\beta_1$ describes the change in ‘y’ for every unit increase in the predictor variable $x$.
+\end{itemize}
+From the data set, we determine the regression coefficients, i.e. estimates for slope and intercept, determined from the data provided. (N.B. There are variations on this notation in textbooks).
+
+\begin{itemize}	
+\item $b_0$ : the intercept estimate.
+\item	$b_1$ : the slope estimate.
+\end{itemize}
+
+Therefore the fitted model can be expressed as
+
+\[ \hat{y} = b_0 + b_1x \]
+Recall $\hat{y}$  denotes the predicted value for y, given some value x.
+
+\subsection{Fitting a Model with \texttt{R}}
+
+The  \texttt{R} command   \texttt{\textbf{lm()}} is used to fit linear models. Firstly the response variable $y$  is specified, then the predictor variable $x$.
+
+The tilde sign is used to denote the dependent relationship (i.e. Y depends on X). The regression coefficients are then determined.
+
+\begin{framed}
+\begin{verbatim}
+lm(Y~X) # y depends on X
+\end{verbatim}
+\end{framed}
+
+The output will include the formula, and two coefficient terms
+\begin{itemize}
+\item The intercept estimate is recorded under $(Intercept)$
+\item The slope estimate is recorded under the actual name of the predictor variable (here : $X$ ).
+\end{itemize}	
+	
+\begin{verbatim}
+Call:
+lm(formula = Y ~ X)
+
+Coefficients:
+(Intercept)            X
+     0.7812       0.8581
+\end{verbatim}
+\subsection{The Regression Model Summary}
+A more detailed data output (i.e. more than just the coefficients) is generated in the form of a data object, using the \textbf{\texttt{summary()}} command.
+
+We can give a name to the model (e.g. $FIT1$), and view all of the results of the calculation, including the regression coefficients, hypothesis test results and information on the residuals (i.e. the differences between the estimated ‘y’ values and the observed ‘y’ values).
+
+In common with all data structures we can use the \textbf{\texttt{names()}} function and ‘$\$$’ to access components.
+
+\begin{framed}
+\begin{verbatim}
+FIT1 = lm(Y~X)
+summary(FIT1)
+names(FIT1)
+names(summary(FIT1))
+FIT1$coefficients
+class(FIT1)
+\end{verbatim}
+\end{framed}
+\newpage
+\subsection{Confidence Interval for Regression Estimate}
+To compute the confidence intervals for both estimates, we use the \texttt\textbf{{confint()}} command, specifying the name of the fitted model.
+\begin{framed}
+\begin{verbatim}
+C=c(0,2,4,6,8,10,12)
+F=c(2.1,5.0,9.0,12.6,17.3,21.0,24.7)
+Fit1=lm(F~C)
+coef(Fit1)
+# (Intercept)        Conc
+     1.517857    1.930357
+
+confint(Fit1)
+#               2.5 %   97.5 %
+# (Intercept) 0.75970 2.276014
+# Conc        1.82522 2.035495
+\end{verbatim}
+\end{framed}
+
+\subsection{Influence Analysis}
+
+
+\subsubsection{Outlier} In linear regression, an outlier is an observation with large residual.  In other words, it is an observation whose dependent-variable value is unusual given its values on the predictor variables.  An outlier may indicate a sample peculiarity or may indicate a data entry error or other problem.
+\subsubsection{Leverage}  An observation with an extreme value on a predictor variable is a point with high leverage.  Leverage is a measure of how far an independent variable deviates from its mean.  These leverage points can have an effect on the estimate of regression coefficients.
+
+\subsubsection{Influence} An observation is said to be influential if removing the observation substantially changes the estimate of coefficients.  Influence can be thought of as the product of leverage and outlierness.
+\subsection{Example}
+A new hotel is built 15 miles from the location of a prominent annual sporting event. A study of the number of enquiries received by a random sample of 9 established hotels in the area showed that the number of enquiries and the distance in miles between the hotel and event. Here the independent variable is distance (x) and the dependent variable is number of enquiries.
+
+Lets looks at the residuals, and assess whether they are normally distributed.
+
+\begin{framed}
+\begin{verbatim}
+#enquiries
+y=c(35,61,74,92,113,159,188,217,328)
+ 	
+#distance from hotel
+x=c(28,20,17,12,16,8,2,3,1)	
+#
+
+#fit the linear model	
+fit2=lm(y~x)					
+resid(fit2)
+res.fit=resid(fit2)
+
+# test the residuals for normality.
+# Normal if p.value is high.
+shapiro.test(res.fit)	
+	
+qqnorm(res.fit)	#QQ plot
+qqline(res.fit)	#Add Trendline
+
+
+#Do all your analyses agree?
+
+\end{verbatim}
+\end{framed}
+Let’s look at the scatterplot of x and y (\textbf{\texttt{plot(x,y)}}).  Does the first covariate seem to be an outlier, given that a linear model is assumed?
+Lets omit the first element of both data sets and run the analysis again.
+
+\begin{framed}
+\begin{verbatim}
+fit2=lm(y[-1]~x[-1])
+resid(fit2)
+res.fit2=resid(fit2)
+
+shapiro.test(res.fit2)			
+
+#test the residuals for normality. Normal if p.value is high.
+qqnorm(res.fit2);  qqline(res.fit2)			
+
+# compare the coefficients of both models.
+coef(fit1)
+coef(fit2)
+
+\end{verbatim}
+\end{framed}
+Does the covariate in question have high leverage or high influence?
+
+
+Remark: Arguably it is a case that this problem is not best described by a simple linear regression model, and that a non-linear model would be more suitable.
+
+\newpage
+
+\subsection{Diagnostic Plots}
+\textbf{\emph{Homoscedascity }}(constant variance) is one of the assumptions required in a regression analysis in order to make valid statistical inferences about population relationships.
+
+Oneof the key assumptions of lienar models is homoscedasticity. Homoscedasticity (Contant variance of resiudals) requires that the variance of the residuals are constant for all fitted values, indicated by a uniform scatter or dispersion of data points about the trend line (i.e. ``The Zero Line").
+
+From the above plot, we can conclude that the constant variance assumption is valid. We can see that the mean value of the residuals is zero.
+\begin{framed}
+\begin{verbatim}
+
+#Four Diagnostic Plots are printed to screen sequentially.
+plot(fit1)
+
+plot(fit1, which=c(1))
+plot(fit1, which=c(2))
+plot(fit1, which=c(3))
+plot(fit1, which=c(4))
+plot(fit1, which=c(5))
+plot(fit1, which=c(6))
+\end{verbatim}
+\end{framed}
+\begin{itemize}
+\item One of the plots is the qqplot for the residuals.
+\item Another plot gives the "cook's distance" for each observation. Cook's distance is a measure of how "influential" an observation is. By "influential", we mean the regression coefficient estimates would change dramatically if an influential plot was removed.
+\item Another plot is the "Funnel" plot.
+\item All of the plot would indicate an observation that would require special attention.
+\end{itemize}
+
+
+%----------------------------------------------------%
+\end{document}

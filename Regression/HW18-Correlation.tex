@@ -1,0 +1,571 @@
+
+\documentclass[]{report}
+
+\voffset=-1.5cm
+\oddsidemargin=0.0cm
+\textwidth = 480pt
+
+\usepackage{framed}
+\usepackage{subfiles}
+\usepackage{graphics}
+\usepackage{newlfont}
+\usepackage{eurosym}
+\usepackage{amsmath,amsthm,amsfonts}
+\usepackage{amsmath}
+\usepackage{color}
+\usepackage{amssymb}
+\usepackage{multicol}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{graphicx}
+\begin{document}
+	\tableofcontents{3}
+
+	\chapter{18. Correlation}
+	
+	
+	
+	%-------------------------------------------------%
+	\noindent \textbf{Pearson's Correlation Coefficient.}
+	
+	The Pearson correlation coefficient is a way of measuring the
+	strength of the relationship between two quantitative variables.
+	
+	\begin{itemize}
+		\item The population correlation coefficient between two variables X and
+		Y is denoted by $\rho_{X,Y}$ .
+		\item Used as an estimate for true correlation $\rho$.
+		\item Pearson's Coefficient is denoted $r$.
+		\item The Pearson Coefficient is defined to be between -1 and 1.
+		\item The Pearson correlation coefficient is only appropriate for
+		describing the relationship between two quantitative variables
+		which have a linear or near linear relationship
+	\end{itemize}
+	
+	%-------------------------------------------------%
+	\noindent \textbf{Pearson's Correlation Coefficient}
+	The Pearson Coefficient is computed using the following formula.
+	\[ r = \frac{S_{xy}}{(S_x)(S_y)} \]
+	
+	
+
+	
+	
+
+		\subsection{Computing the Correlation Coefficient}
+		
+		\[ \mbox{Cor(X,Y)} = \frac{\mbox{Cov}(X,Y)}{\sqrt{\mbox{Var}(X) \times \mbox{Var}(Y)}} \]
+		
+		% http://easycalculation.com/statistics/learn-correlation.php
+		
+
+		\begin{itemize}
+			\item This is a measure of Strength of Linear Relationship. 
+			The correlation estimate is defined to be between -1 and 1. 
+			\item It is not possible to have a correlation value outside this range of values
+			Additionally coorelation estimates are not denominated in any units. (Contrast this to standard deviation, which is denominated in the same units as the mean ) .
+			\item A strong positive linear relationship describes a relationship between two variables whereby an increase in one variable will closely coincide with an increase in the other variable. 
+			\item Conversely a strong negative linear relationship describes a relationship whereby an increase in one variable closely coincides with a decrease in the other. 
+		\end{itemize}
+\begin{itemize}
+			\item  Two variables that have no linear relationship have a correlation close to zero. 
+			
+			\item Scatterplots are a useful way of determing the likely relationship between two variables. 
+			
+			\item The pearson correlation coefficient is most commonly used estimate for correlation. Other types of correlation are tbe Spearman Rho correlation and the Kendal Tau. 
+			
+			\item  These are not not part of this course,but it is important to know that they exist. 
+		\end{itemize}
+		
+		
+		%-----------------------------------------------------%
+		
+		
+		The Pearson correlation estimate, which us based on sample data, is denoted r (although related metrics use capital R) .This measure is used as an estimate for the Population correlation, denoted by the greek letter Rho. 
+		The estimate is computed using summation identities (See the formulae ). 
+		Equivalently it can be computed using the  Sums of Squares Identities that are used to compute covariance and standard deviation <INSERT FORMULA> .
+		Example
+		determine the correlation estimate for the Spend V Impressions data.  
+		
+		
+
+
+		
+		%\frametitle{Correlation}
+		
+		\begin{itemize}
+			\item Correlation is a measure of the relation between two or more variables. The measurement scales used should be at least interval scales, but other correlation coefficients are available to handle other types of data.
+			\item Correlation coefficients can range from -1.00 to +1.00. The value of -1.00 represents a perfect negative correlation while a value of +1.00 represents a perfect positive correlation. A value of 0.00 represents a lack of correlation.
+			\item 
+			The most widely-used type of correlation coefficient is Pearson r, also called linear or product- moment correlation.
+			The pearson correlation coefficient is a metric.
+		\end{itemize}
+
+		% # cor(X,Y) = 0.92
+		% X = c(19.5, 23.84, 15.34, 23.37, 13.82, 16.48, 16.15, 16.76, 17.49, 17.4, 25.42, 29.29)
+		% Y = c(24.41, 26.91, 24.33, 25.5, 22.84, 24.35, 23.59, 23.98, 24.65, 22.56, 26.78, 28.68)
+		%
+		% X=c(20.88, 11.72, 21.39, 15.97, 19.58, 17.2, 16.47, 20.04, 16.7, 22.23, 24.87, 23.94)
+		% Y=c(24.18, 27.28, 23.79, 24.84, 24.36, 24.75, 25.93, 24.76, 25.26, 22.97, 23.71, 22.75)
+		
+\section*{Correlation}
+\begin{itemize}
+	\item Recall that correlation describes the strength of a relationship between two numeric variables, and that the \textbf{\textit{Pearson product-moment correlation coefficient}} is a measure of the strength of the linear relationship between two variables.
+	
+	\item It is referred to as \textbf{Pearson's correlation} or simply as the correlation coefficient. If the relationship between the variables is not linear, then the correlation coefficient does not adequately represent the strength of the relationship between the variables.
+	
+	\item The symbol for Pearson's correlation is ``$\rho$" when it is measured in the population and \texttt{\textbf{r}} when it is measured for a sample.
+	
+	\item As we will be dealing almost exclusively with samples, we will use \texttt{\textbf{r}} to to represent Pearson's correlation unless otherwise noted.
+	
+	\item Pearson's r can range from -1 to 1. An estimate of -1 indicates a perfect negative linear relationship between variables, an \texttt{\textbf{r}} of 0 indicates no linear relationship between variables, and an \texttt{\textbf{r}} of 1 indicates a perfect positive relationship between variables.
+	
+	\item Importantly it is assumed that the relationship in question is supposed to be linear. Some variables will in fact have a non-linear relationship (more on that later)
+\end{itemize}
+
+\section{Correlation}
+
+This requires a simple calculation based in values given and the relevant formula.
+
+The formula for the Correlation estimate is as follows.
+
+The calculated value should be between -1 and 1.
+
+The following conclusions are drawn , depending on the Correlation estimate value:
+\begin{itemize}
+	\item Greater than 0.9 		Very strong positive linear relationship 
+	\item Between 0.7 and 0.9		Strong positive linear relationship 
+	\item Between 0.2 and 0.7	 	Weak positive linear relationship
+	\item Between -0.2 and 0.2		No relationship
+	\item Between -0.7 and -0.2		Weak negative linear relationship
+	\item Between -0.9 and -0.7		Strong negative linear relationship
+	\item Less than -0.9			Very strong negative linear relationship
+\end{itemize}
+Your answer should concur with your interpretation of the scatterplot.
+
+%--------------------------------------------------------------------------------------------%
+
+
+%\section{Covariance}
+% http://www.jstor.org/pss/2683295
+% (gif on wikipedia)
+
+\section{Correlation and Regression}
+Correlation
+The Pearson's Product Moment Correlation Coefficient tells us how well two sets of continuous data correlate to each other. The value can fall between 0.00 (no correlation) and 1.00 (perfect correlation). A p value tells us if the Pearson's is significant or not. Generally p values under 0.05 are considered significant.
+
+\begin{itemize}
+	\item Prediction Intervals
+	\item Confidence Intervals for fitted Values
+\end{itemize}
+
+%--------------------------------------------------- %
+
+
+\subsection{Bivariate Data}
+\begin{itemize}
+	\item Univariate statistics describes statistics related to one variables.
+	\item Bivariate statistics describes statistics related to two variables $X$ and $Y$.
+	\item Multivariate statistics describes statistics related to multiple variables (not part of course).
+\end{itemize}
+
+
+%-------------------------------------------------%
+% R Code
+%
+% X = c(10, 15, 20, 25, 30, 35, 40)
+% Y = c(11, 19, 34, 52, 58, 81, 109)
+% plot(X,Y,pch=18,col="red",font.lab=2,main="Scatter Plot of X and Y")
+% cor(X,Y) =0.9830478
+
+
+%-------------------------------------------------%
+
+{Covariance}
+Covariance is a strength of the measure of the linear relationship between two variables.
+\[ cov(x,Y) = \]
+
+
+
+
+%-------------------------------------------------%
+% R Code
+%
+% X = c(10, 15, 20, 25, 30, 35, 40)
+% Y = c(11, 19, 34, 52, 58, 81, 109)
+% plot(X,Y,pch=18,col="red",font.lab=2,main="Scatter Plot of X and Y")
+% cor(X,Y) =0.9830478
+
+
+
+
+%-------------------------------------------------%
+% Regression Analysis
+
+
+
+
+\subsection{Correlation and cause-effect}
+\begin{itemize}
+	\item Note that a strong relationship between two variables does not
+	imply a cause-effect relationship.
+	\item For example, there is a strong negative correlation between the
+	sales of ice cream and the number of flu infections.
+	\item This does not mean that ice cream protects against flu.
+	\item This relationship results from a latent variable (a variable that has
+	not been observed).
+	\item Such a latent variable in this case is the weather. Low
+	temperatures and wet weather result in a high number of flu
+	infections and low ice cream sales. \item Hot, sunny weather leads to the
+	opposite.
+\end{itemize}
+
+
+
+%-------------------------------------------------%
+
+
+\subsection{Scatter-plots}
+Subsequent Slides
+\begin{itemize}
+	\item Relatively strong positive relationship (as height increases
+	weight on average increases), reasonably linear.
+	\item No relationship/weak negative relationship
+	\item Negative, very strong, non-linear relationship.
+	\item Non-linear relationship.
+\end{itemize}
+
+
+
+
+
+
+\section{Variance and Covariance}
+Covariance is a measure of how much two variables change together. 
+
+Variance can be considered as a special case of the covariance when the two variables are identical.
+$var(x) = cov(X,X)$
+
+Covariance can be computed as product of the variance of two datasets, multiplied by their correlation.
+
+\[
+cov(X,Y) = std.dev (x) std.dev(y) cor(x,y)
+\]
+
+A covariance matrix is a useful tool for assessing variances in multiple data sets.
+
+
+If X and Y are independent, then their covariance is zero. However it is possible for X and Y to have covariance zero when they are not independent.
+
+
+\begin{itemize}
+	\item Covariance is a measure of how much two variables change together. 
+	
+	\item	Variance can be considered as a special case of the covariance when the two variables are identical. 
+	var(x) = cov(X,X)
+	
+	\item Covariance can be computed as product of the variance of two datasets, multiplied by their correlation.
+	
+	\[cov(X,Y) = std.dev (x) std.dev(y) cor(x,y)\]
+	
+	
+	\item	A covariance matrix is a useful tool for assessing variances in multiple data sets.
+	\item 
+\end{itemize}
+
+
+
+
+If X and Y are independent, then their covariance is zero. However it is possible for X and Y to have covariance zero when they are not independent.
+
+
+
+
+
+
+
+
+Part II 	Correlation
+
+
+This Correlation value indicates weak positive linear relationship between temperatures and year.
+%-------------------------------------------------------------------------------------------%
+\subsection{Pearson's Correlation Coefficient.}
+
+The Pearson correlation coefficient is a way of measuring the
+strength of the relationship between two quantitative variables.
+
+\begin{itemize}
+	\item The population correlation coefficient between two variables X and
+	Y is denoted by $\rho_{X,Y}$ .
+	\item Used as an estimate for true correlation $\rho$.
+	\item Pearson's Coefficient is denoted $r$.
+	\item The Pearson Coefficient is defined to be between -1 and 1.
+	\item The Pearson correlation coefficient is only appropriate for
+	describing the relationship between two quantitative variables
+	which have a linear or near linear relationship
+\end{itemize}
+
+%-------------------------------------------------%
+
+\subsection{Pearson's Correlation Coefficient}
+The Pearson Coefficient is computed using the following formula.
+\[ r = \frac{S_{xy}}{(S_x)(S_y)} \]
+
+
+\section{Correlation}
+
+This requires a simple calculation based in values given and the relevant formula.
+
+The formula for the Correlation estimate is as follows.
+
+The calculated value should be between -1 and 1.
+
+The following conclusions are drawn , depending on the Correlation estimate value:
+\begin{itemize}
+	\item Greater than 0.9 		Very strong positive linear relationship 
+	\item Between 0.7 and 0.9		Strong positive linear relationship 
+	\item Between 0.2 and 0.7	 	Weak positive linear relationship
+	\item Between -0.2 and 0.2		No relationship
+	\item Between -0.7 and -0.2		Weak negative linear relationship
+	\item Between -0.9 and -0.7		Strong negative linear relationship
+	\item Less than -0.9			Very strong negative linear relationship
+\end{itemize}
+Your answer should concur with your interpretation of the scatterplot.
+
+%--------------------------------------------------------------------------------------------%
+
+\section{Pearson's Correlation Coefficient}
+\[ r_{XY} = \frac{Sxy}{\sqrt{SxSy}} \]
+
+
+
+
+
+
+
+%-------------------------------------------------%
+
+\section*{Theory Components}
+\begin{itemize}
+	\item Distinguish between a bimodal distribution and a unimodal distribution
+	\item Compare and contrast interval and ordinal data.
+\end{itemize}
+
+\section{Correlation}
+
+This requires a simple calculation based in values given and the relevant formula.
+
+The formula for the Correlation estimate is as follows.
+
+
+
+
+
+
+
+% http://www.statstutor.ac.uk/resources/uploaded/spearmans.pdf
+\section{Other Correlation Coefficients}
+Pearson's Correlation Coefficient is one approach to estimating the strength of relation between two variables.
+Other approaches are as follows:
+\begin{itemize}
+	\item Spearman's Rank Correlation
+	\item Kendall Tau Correlation
+\end{itemize}
+These are not part of the course.
+
+%-------------------------------------------------%
+
+\subsection{Example 1}
+The height of a boy was observed at 7 different ages.
+Comment on the relationship between height and age over this
+period of time and calculate the Pearson correlation coefficient for
+this data.
+
+\begin{center}
+	\begin{tabular}{|c|c|c|c|c|c|c|c|}
+		Age  & 6 & 7  & 8 & 9 & 10 & 11 & 12 \\ 
+		Height (cm)& 108 115& 120 &126& 132& 139 & 145\\
+	\end{tabular} 
+	
+\end{center}
+
+\begin{itemize}
+	\item In order to investigate the nature of the relationship, we draw a
+	scatter plot.
+	\item X (the independent variable) is defined to be age and Y is defined
+	to be height (the dependent variable).
+\end{itemize}
+
+
+
+\subsection{Identities}
+\begin{itemize}
+	\item $S_{XY} = -283.8$
+	\item $S_{XX} = 613.6$
+	\item $S_{YY} = 148.9$
+	\item $\sum(X_i)  = 318 $
+	\item $\sum(Y_i)  = 61$
+\end{itemize}
+
+
+
+\subsection{Example 2 Part 1}
+
+\begin{itemize}
+	\item Calculate the correlation coefficient and interpret its value.
+	\item The correlation coefficient is computed using the following formula:
+	\[ r_{X,Y} = \frac{\S_{XY}}{\sqrt{\S_{XX}\S_{YY}}} \]
+	\item From the values given
+	\[ r_{X,Y} = \frac{-283.8}{\sqrt{(613.6)(148.9)}} = -0.9389 \]
+	\item Very strong negative linear relationship
+\end{itemize}
+
+\begin{itemize}
+	\item Correlation is a measure of the relation between two or more variables. 
+	%\item The measurement scales used should be at least interval scales, but other correlation coefficients are available to handle other types of data.
+	\item Correlation coefficients can range from -1.00 to +1.00. The value of -1.00 represents a perfect negative correlation while a value of +1.00 represents a perfect positive correlation. A value of 0.00 represents a lack of correlation.
+	
+	
+	\item 
+	The most widely-used type of correlation coefficient is Pearson r, also called linear or product- moment correlation.
+	The pearson correlation coefficient is a metric.
+	
+	\item  Two variables that have no linear relationship have a correlation close to zero. 
+	
+	\item Scatter plots are a useful way of determing the likely relationship between two variables. 
+	
+	\item The Pearson correlation coefficient is most commonly used estimate for correlation. 
+	
+	\item Other types of correlation are tbe \textit{\textbf{Spearman Rho}} and the \textit{\textbf{Kendal Tau}} correlation coefficients. 
+	
+	%\item  These are not not part of this course,but it is important to know that they exist. 
+\end{itemize}
+%--------------------------------------------- %
+
+
+
+\begin{itemize}
+	\item Correlation is a measure of strength of \textbf{Linear Relationship} between two variables.
+	\item The Pearson correlation coefficient (denoted $r$) is the most comonly used statistical estimate for correlation. 
+	\item Correlation estimates are defined to be between -1 and 1. It is not possible to have a correlation value outside this range of values
+	\[ -1 \leq r \leq 1\]
+	\item 
+	Additionally correlation estimates are not denominated in any units. (Contrast this to standard deviation, which is denominated in the same units as the mean).
+\end{itemize}
+
+%--------------------------------------------- %
+
+
+
+\begin{itemize}
+	\item A strong positive linear relationship describes a relationship between two variables whereby an increase in one variable will closely coincide with an increase in the other variable. 
+	\item Conversely a strong negative linear relationship describes a relationship whereby an increase in one variable closely coincides with a decrease in the other. 
+\end{itemize}
+\begin{itemize}
+	\item The Pearson correlation estimate, which us based on sample data, is denoted r (although related metrics use capital R).
+	\item This measure is used as an estimate for the Population correlation, denoted by the greek letter $\rho$ ( pronounced ``Rho"). 
+	The estimate is computed using summation identities.
+	% (See the formulae ).
+	
+	%\item 
+	%Equivalently it can be computed using the  Sums of Squares Identities that are used to compute covariance and standard deviation <INSERT FORMULA> .
+	%Example
+	%determine the correlation estimate for the Spend V Impressions data.  
+\end{itemize}
+%-------------------------------------------------------- %
+
+
+\subsection{Outliers}
+\begin{itemize}
+	\item Outliers can greatly influence the computed value of an estimate.
+	\item  Correlation is closely related to Simple linear regression models, in that both are concerned with the linear relationship between variables. However Linear Regression has a different emphasis.
+	\item  Simple Linear Regression describes one independent variable (IV) and the response of the dependent variable (DV). 
+\end{itemize}
+
+
+
+\subsection{Correlation and Causality }
+Implicit is simple linear regression is the notion of causality. The dependent variable changes as the independent variable changes. The converse is not true.
+<some examples : hot temperature / ice cream example> .
+Correlation is not concerned with causality at all, hence the often used expression "causation does not imply causality ".
+
+%-----------------------------------------------------%
+
+\section{Spearman’s correlation coefficient }
+
+Spearman’s correlation coefficient is a statistical measure of the strength of a 
+monotonic relationship between paired data. In a sample it is denoted by 
+and is by 
+design constrained as follows 
+
+\[ -1 \leq r_s \leq 1 \]
+And its interpretation is similar to that of Pearsons, e.g. the closer 
+is to the stronger the monotonic relationship. Correlation is an effect size and so we can verbally describe the strength of the correlation using the following guide for the 
+\textbf{absolute} value of 
+
+\begin{itemize}
+	\item .00-.19 “very weak” 
+	\item .20-.39 “weak” 
+	\item .40-.59 “moderate” 
+	\item .60-.79 “strong” 
+	\item .80-1.0 “very strong” 
+\end{itemize}
+
+The calculation of Spearman’s correlation coefficient and subsequent significance 
+testing of it requires the following data assumptions to hold: 
+
+\begin{itemize}
+	\item interval or ratio level or ordinal; 
+	\item monotonically related. 
+\end{itemize}
+
+Note, unlike Pearson’s correlation, there is no requirement of normality and hence it 
+is a nonparametric statistic. 
+
+
+
+%========================================================================%
+
+
+	%-------------------------------------------------%
+	\noindent \textbf{Other Correlation Coefficients}
+	Pearson's Correlation Coefficient is one approach to estimating the strength of relation between two variables.
+	Other approaches are as follows:
+	\begin{itemize}
+		\item Spearman's Rank Correlation
+		\item Kendall Tau Correlation
+	\end{itemize}
+	These are not part of the course.
+
+
+
+The Pearson correlation coefficient is computed using the
+following formula
+
+
+\begin{itemize}
+	\item $\sum x$ \item $\sum y$ \item $\sum xy$ \item $\sum x^2$
+	\item $\sum y^2$
+\end{itemize}
+
+\begin{tabular}{|ccc|ccc|ccc|ccc|ccc|}
+	\hline
+	& X & & & Y & & &  $X^2$ & & &  $Y^2$ & & &  XY & \\
+	& 1.0 & & & 10.6 & & &  1.00 & & &  36 & & &  90 & \\ \hline
+	& 1.2 & & & 12.5 & & &  1.44 & & &  36 & & &  90 & \\ \hline
+	& 1.6 & & & 14.7 & & &  2.56 & & &  36 & & &  90 & \\ \hline
+	& 1.7 & & & 16.7 & & &  225 & & &  36 & & &  90 & \\ \hline
+	& 1.8 & & & 18.7 & & &  225 & & &  36 & & &  90 & \\ \hline
+	& 2.1 & & & 22.1 & & &  4.41 & & &  36 & & &  90 & \\ \hline
+	
+	
+\end{tabular}
+
+\[
+r = { \; n \sum xy - \sum x \sum y   \; \over \left[\;\sqrt{n \sum (x^2) - (\sum x)^2} \;\right] \times  \left[ \;\sqrt{n \sum (y^2) - (\sum y)^2}\; \right]}
+\]
+
+
+		
+\end{document}
+	

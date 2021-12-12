@@ -1,0 +1,36 @@
+
+%---------------------------------%
+The residual sum of squares (RSS), also known as the sum of squared residuals (SSR) or the sum of squared errors of prediction (SSE), is the sum of the squares of residuals (deviations predicted from actual empirical values of data). It is a measure of the discrepancy between the data and an estimation model. A small RSS indicates a tight fit of the model to the data. It is used as an optimality criterion in parameter selection and model selection.
+
+In general, total sum of squares = explained sum of squares + residual sum of squares. For a proof of this in the multivariate ordinary least squares (OLS) case, see partitioning in the general OLS model.
+
+Contents  [hide] 
+1	One explanatory variable
+2	Matrix expression for the OLS residual sum of squares
+3	See also
+4	References
+
+%----------------------------------%
+One explanatory variable[edit]
+In a model with a single explanatory variable, RSS is given by:
+
+{\displaystyle RSS=\sum _{i=1}^{n}(y_{i}-f(x_{i}))^{2},} RSS=\sum _{i=1}^{n}(y_{i}-f(x_{i}))^{2},
+where yi is the i th value of the variable to be predicted, xi is the i th value of the explanatory variable, and {\displaystyle f(x_{i})} f(x_{i}) is the predicted value of yi (also termed {\displaystyle {\hat {y_{i}}}} {\hat {y_{i}}}). In a standard linear simple regression model, {\displaystyle y_{i}=a+bx_{i}+\varepsilon _{i}\,} y_{i}=a+bx_{i}+\varepsilon _{i}\,, where a and b are coefficients, y and x are the regressand and the regressor, respectively, and ε is the error term. The sum of squares of residuals is the sum of squares of estimates of εi; that is
+
+{\displaystyle RSS=\sum _{i=1}^{n}(\varepsilon _{i})^{2}=\sum _{i=1}^{n}(y_{i}-(\alpha +\beta x_{i}))^{2},} RSS=\sum _{i=1}^{n}(\varepsilon _{i})^{2}=\sum _{i=1}^{n}(y_{i}-(\alpha +\beta x_{i}))^{2},
+where {\displaystyle \alpha } \alpha  is the estimated value of the constant term {\displaystyle a} a and {\displaystyle \beta } \beta  is the estimated value of the slope coefficient b.
+
+Matrix expression for the OLS residual sum of squares[edit]
+The general regression model with n observations and k explanators, the first of which is a constant unit vector whose coefficient is the regression intercept, is
+
+{\displaystyle y=X\beta +e} y=X\beta +e
+where y is an n × 1 vector of dependent variable observations, each column of the n × k matrix X is a vector of observations on one of the k explanators, {\displaystyle \beta } \beta  is a k × 1 vector of true coefficients, and e is an n× 1 vector of the true underlying errors. The ordinary least squares estimator for {\displaystyle \beta } \beta  is
+
+{\displaystyle {\hat {\beta }}=(X^{T}X)^{-1}X^{T}y.} {\hat {\beta }}=(X^{T}X)^{-1}X^{T}y.
+The residual vector {\displaystyle {\hat {e}}} {\hat {e}} is {\displaystyle y-X{\hat {\beta }}=y-X(X^{T}X)^{-1}X^{T}y} y-X{\hat {\beta }}=y-X(X^{T}X)^{-1}X^{T}y, so the residual sum of squares is:
+
+{\displaystyle RSS={\hat {e}}^{T}{\hat {e}}=\|e\|^{2}} {\displaystyle RSS={\hat {e}}^{T}{\hat {e}}=\|e\|^{2}},
+(equivalent to the square-root of the norm of residuals); in full:
+
+{\displaystyle RSS=y^{T}y-y^{T}X(X^{T}X)^{-1}X^{T}y=y^{T}[I-X(X^{T}X)^{-1}X^{T}]y=y^{T}[I-H]y} RSS=y^{T}y-y^{T}X(X^{T}X)^{-1}X^{T}y=y^{T}[I-X(X^{T}X)^{-1}X^{T}]y=y^{T}[I-H]y,
+where H is the hat matrix, or the prediction matrix in linear regression.

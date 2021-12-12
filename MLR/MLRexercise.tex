@@ -1,0 +1,535 @@
+%- http://idatasciencer.com/2015/04/regression-exercise-for-learners/
+
+LOAD IN THE EVALS DATA SET WITH THE HELP OF THE PROVIDED FUNCTION.
+load(url("http://bit.ly/1D3dd1n"))
+summary(evals)
+##      score                 rank            ethnicity      gender   
+##  Min.   :2.300   teaching    :102   minority    : 64   female:195  
+##  1st Qu.:3.800   tenure track:108   not minority:399   male  :268  
+##  Median :4.300   tenured     :253                                  
+##  Mean   :4.175                                                     
+##  3rd Qu.:4.600                                                     
+##  Max.   :5.000                                                     
+##         language        age        cls_perc_eval     cls_did_eval   
+##  english    :435   Min.   :29.00   Min.   : 10.42   Min.   :  5.00  
+##  non-english: 28   1st Qu.:42.00   1st Qu.: 62.70   1st Qu.: 15.00  
+##                    Median :48.00   Median : 76.92   Median : 23.00  
+##                    Mean   :48.37   Mean   : 74.43   Mean   : 36.62  
+##                    3rd Qu.:57.00   3rd Qu.: 87.25   3rd Qu.: 40.00  
+##                    Max.   :73.00   Max.   :100.00   Max.   :380.00  
+##   cls_students    cls_level      cls_profs         cls_credits 
+##  Min.   :  8.00   lower:157   multiple:306   multi credit:436  
+##  1st Qu.: 19.00   upper:306   single  :157   one credit  : 27  
+##  Median : 29.00                                                
+##  Mean   : 55.18                                                
+##  3rd Qu.: 60.00                                                
+##  Max.   :581.00                                                
+##   bty_f1lower     bty_f1upper     bty_f2upper      bty_m1lower   
+##  Min.   :1.000   Min.   :1.000   Min.   : 1.000   Min.   :1.000  
+##  1st Qu.:2.000   1st Qu.:4.000   1st Qu.: 4.000   1st Qu.:2.000  
+##  Median :4.000   Median :5.000   Median : 5.000   Median :3.000  
+##  Mean   :3.963   Mean   :5.019   Mean   : 5.214   Mean   :3.413  
+##  3rd Qu.:5.000   3rd Qu.:7.000   3rd Qu.: 6.000   3rd Qu.:5.000  
+##  Max.   :8.000   Max.   :9.000   Max.   :10.000   Max.   :7.000  
+##   bty_m1upper     bty_m2upper       bty_avg           pic_outfit 
+##  Min.   :1.000   Min.   :1.000   Min.   :1.667   formal    : 77  
+##  1st Qu.:3.000   1st Qu.:4.000   1st Qu.:3.167   not formal:386  
+##  Median :4.000   Median :5.000   Median :4.333                   
+##  Mean   :4.147   Mean   :4.752   Mean   :4.418                   
+##  3rd Qu.:5.000   3rd Qu.:6.000   3rd Qu.:5.500                   
+##  Max.   :9.000   Max.   :9.000   Max.   :8.167                   
+##        pic_color  
+##  black&white: 78  
+##  color      :385  
+##                   
+##                   
+##                   
+## 
+str(evals)
+## 'data.frame':    463 obs. of  21 variables:
+##  $ score        : num  4.7 4.1 3.9 4.8 4.6 4.3 2.8 4.1 3.4 4.5 ...
+##  $ rank         : Factor w/ 3 levels "teaching","tenure track",..: 2 2 2 2 3 3 3 3 3 3 ...
+##  $ ethnicity    : Factor w/ 2 levels "minority","not minority": 1 1 1 1 2 2 2 2 2 2 ...
+##  $ gender       : Factor w/ 2 levels "female","male": 1 1 1 1 2 2 2 2 2 1 ...
+##  $ language     : Factor w/ 2 levels "english","non-english": 1 1 1 1 1 1 1 1 1 1 ...
+##  $ age          : int  36 36 36 36 59 59 59 51 51 40 ...
+##  $ cls_perc_eval: num  55.8 68.8 60.8 62.6 85 ...
+##  $ cls_did_eval : int  24 86 76 77 17 35 39 55 111 40 ...
+##  $ cls_students : int  43 125 125 123 20 40 44 55 195 46 ...
+##  $ cls_level    : Factor w/ 2 levels "lower","upper": 2 2 2 2 2 2 2 2 2 2 ...
+##  $ cls_profs    : Factor w/ 2 levels "multiple","single": 2 2 2 2 1 1 1 2 2 2 ...
+##  $ cls_credits  : Factor w/ 2 levels "multi credit",..: 1 1 1 1 1 1 1 1 1 1 ...
+##  $ bty_f1lower  : int  5 5 5 5 4 4 4 5 5 2 ...
+##  $ bty_f1upper  : int  7 7 7 7 4 4 4 2 2 5 ...
+##  $ bty_f2upper  : int  6 6 6 6 2 2 2 5 5 4 ...
+##  $ bty_m1lower  : int  2 2 2 2 2 2 2 2 2 3 ...
+##  $ bty_m1upper  : int  4 4 4 4 3 3 3 3 3 3 ...
+##  $ bty_m2upper  : int  6 6 6 6 3 3 3 3 3 2 ...
+##  $ bty_avg      : num  5 5 5 5 3 ...
+##  $ pic_outfit   : Factor w/ 2 levels "formal","not formal": 2 2 2 2 2 2 2 2 2 2 ...
+##  $ pic_color    : Factor w/ 2 levels "black&white",..: 2 2 2 2 2 2 2 2 2 2 ...
+CREATE A SCATTERPLOT FOR ‘AGE’ VS ‘BTY_AVG’
+plot(evals$age, evals$bty_avg)
+
+1
+CREATE A BOXPLOT FOR ‘AGE’ AND ‘GENDER’
+boxplot(evals$age ~ evals$gender)
+
+2
+CREATE A MOSAIC PLOT FOR ‘RANK’ AND ‘GENDER’
+mosaicplot(evals$rank~evals$gender)
+
+3
+SIMPLE LINEAR REGRESSION
+The fundamental phenomenon suggested by the study is that better looking teachers are evaluated more favorably.
+
+Let’s create a scatterplot to see if this appears to be the case.
+
+Instructions
+
+Create a scatterplot for the average beauty rating of a professor bty_avg (x value) and score (y value).
+
+Before drawing conclusions, compare the number of observations in the data frame with the approximate number
+of points on the scatterplot. 
+
+Do you notice anything awry?
+CREATE A SCATTERPLOT FOR ‘SCORE’ AND ‘BTY_AVG’
+plot( evals$bty_avg, evals$score)
+
+4
+The jitter function
+
+Replot the scatterplot, but this time use the jitter() function. 
+
+What was misleading about the initial scatterplot?
+Instructions
+
+Redo the scatterplot of the previous exercise, but use jitter() on the x or y coordinate. 
+
+Review the documentation by executing ?jitter in the console.
+APPLY ‘JITTER’ ON THE ‘BTY_AVG’ OR ‘SCORE’ VARIABLE OF YOUR INITIAL PLOT
+plot(evals$score ~ jitter(evals$bty_avg))
+
+5
+plot(jitter(evals$score) ~ evals$bty_avg)
+
+6
+#jitter() adds a small amount of noise to a numeric vector which solved the overplotting problem.
+More than natural variation?
+
+Let's see if the apparent trend in the plot is something more than natural variation. 
+
+Fit a linear model called m_bty to predict average professor score by average beauty rating
+and add the line to your plot using abline(m_bty).
+Instructions
+
+Construct the linear model m_bty.
+Add the linear model to the plot with the help of abline(m_bty).
+Write out the equation for the linear model yourself, and interpret the slope.
+# Initial plot
+plot(evals$score ~ jitter(evals$bty_avg))
+
+# Construct the linear model
+m_bty <- lm(score ~ bty_avg, data = evals)
+
+# Plot the linear model on the initial plot
+abline(m_bty)
+
+7
+MULTIPLE LINEAR REGRESSION
+The data set contains several variables on the beauty score of the professor: 
+
+individual ratings from each of the six students who were asked to score the physical 
+appearance of the professors and the average of these six scores.
+
+Let's take a look at the relationship between one of these scores and the average 
+beauty score.
+Instructions
+
+Create a scatterplot with the beauty rating of professor from lower level female bty_f1lower
+and the average beauty score bty_avg.
+
+Calculate and print the correlation between these two variables.
+# Initial scatterplot
+plot(evals$bty_f1lower ~ evals$bty_avg)
+
+8
+# The correlation
+cor(evals$bty_f1lower, evals$bty_avg)
+## [1] 0.8439112
+# Indeed. As expected, the relationship is quite strong.
+The relationship between all beauty variables.
+
+As seen in the previous exercise, the relationship is quite strong; 
+after all, the average score is calculated using the individual scores. 
+
+We can actually take a look at the relationships between all beauty variables 
+(columns 13 through 19) using the following command.
+Instructions
+
+Have a look at the relationships between all beauty variables (columns 13 through 19).
+plot(evals[, 13:19])
+
+9
+These variables are collinear (correlated), and adding more than one of these variables
+to the model would not add much value to the model. 
+
+In this application and with these highly-correlated predictors, it is reasonable to use
+the average beauty score as the single representative of these variables.
+Taking into account gender
+
+In order to see if beauty is still a significant predictor of professor score after we've
+accounted for the gender is the professor, we can add the gender term into the model.
+Instructions
+
+Fit a linear model called m_bty_gen to predict average professor score by average beauty
+rating bty_avg and by gender. 
+
+You can use the + sign to add more explanatory variables to the model.
+Study the outcome with the help of summary().
+# The new linear model
+m_bty_gen <- lm(score ~ bty_avg + gender, data = evals)
+
+# Study the outcome
+summary(m_bty_gen)
+## 
+## Call:
+## lm(formula = score ~ bty_avg + gender, data = evals)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -1.8305 -0.3625  0.1055  0.4213  0.9314 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)  3.74734    0.08466  44.266  < 2e-16 ***
+## bty_avg      0.07416    0.01625   4.563 6.48e-06 ***
+## gendermale   0.17239    0.05022   3.433 0.000652 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.5287 on 460 degrees of freedom
+## Multiple R-squared:  0.05912,    Adjusted R-squared:  0.05503 
+## F-statistic: 14.45 on 2 and 460 DF,  p-value: 8.177e-07
+Look closely at the outcome of summary. 
+
+Is bty_avg still a significant predictor of score?
+
+Has the addition of gender to the model changed the parameter estimate for bty_avg?
+P-Values
+
+P-values and parameter estimates should only be trusted if the conditions for the 
+regression are reasonable. 
+
+Using diagnostic plots, can we conclude that the conditions for this model are reasonable?
+
+Yes we can.
+Gendermale
+
+Note that the estimate for gender is called gendermale in your summary output. 
+
+You'll see this name change whenever you introduce a categorical variable. 
+
+The reason is that R recodes gender from having the values of female and male to 
+being an indicator variable called gendermale that takes a value of 0 for females 
+and a value of 1 for males. 
+(Such variables are often referred to as 'dummy' variables.)
+
+As a result, for females, the parameter estimate is multiplied by zero, leaving the
+intercept and slope form familiar from simple regression.
+
+score^ = b0 + b1 × bty_avg + b2 × (0)
+       = b0 + b1 × bty_avg
+Instructions
+
+Plot this line and the line corresponding to males with the following custom function
+multiLines(m_bty_gen)
+
+10
+# The plot
+multiLines(m_bty_gen)
+Try to determine the equation of the line corresponding to males yourself.
+
+(Hint: For males, the parameter estimate is multiplied by 1.)
+
+For your information, the decision to call the indicator variable gendermale instead
+of genderfemale has no deeper meaning. 
+
+R simply codes the category that comes first alphabetically as a 0.
+SWITCHING RANK AND GENDER
+Create a new model called m_bty_rank with gender removed and rank added in.
+Instructions
+
+Fit a linear model called m_bty_rank to predict average professor score by average 
+beauty rating bty_avg and by rank (add the two variables).
+
+Print the outcome with the help of summary().
+
+How does R appear to handle categorical variables that have more than two levels? 
+
+Note that the rank variable has three levels: teaching, tenure track, tenured.
+# The linear model with rank and average beauty
+m_bty_rank <- lm(score ~ bty_avg + rank, data = evals)
+
+# View the regression output
+summary(m_bty_rank)
+## 
+## Call:
+## lm(formula = score ~ bty_avg + rank, data = evals)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -1.8713 -0.3642  0.1489  0.4103  0.9525 
+## 
+## Coefficients:
+##                  Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)       3.98155    0.09078  43.860  < 2e-16 ***
+## bty_avg           0.06783    0.01655   4.098 4.92e-05 ***
+## ranktenure track -0.16070    0.07395  -2.173   0.0303 *  
+## ranktenured      -0.12623    0.06266  -2.014   0.0445 *  
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.5328 on 459 degrees of freedom
+## Multiple R-squared:  0.04652,    Adjusted R-squared:  0.04029 
+## F-statistic: 7.465 on 3 and 459 DF,  p-value: 6.88e-05
+Since rank has three levels (teaching, tenure track, tenured) two indicator variables 
+are created: 
+
+one for tenure track and and one for tenured. 
+
+Teaching is the reference level hence it doesn't show up in the regression output.
+Brainstorming:
+
+Which of the following is the correct order of the three levels of rank if we were to 
+order them from lowest predicted course evaluation score to highest predicted course 
+evaluation score?
+Instructions
+
+Teaching, Tenure Track, Tenured
+Tenure track, Tenured
+Tenure Track, Tenured, Teaching
+Teaching, Tenured, Tenure Track
+Well!
+
+In general, the interpretation of the coefficients in multiple regression is slightly 
+different from that of simple regression. 
+
+The estimate for bty_avg reflects how much higher a group of professors is expected to 
+score if they have a beauty rating that is one point higher while holding all other 
+variables constant. 
+
+In this case, that translates into considering only professors of the same rank with 
+bty_avg scores that are one point apart.
+THE SEARCH FOR THE BEST MODEL
+You will start with a full model that predicts professor score based on rank, ethnicity, 
+gender, language of the university where they got their degree, age, proportion of students
+that filled out evaluations, class size, course level, number of professors, number of 
+credits, average beauty rating, outfit, and picture color.
+
+Note you do not included the pic_outfit or pic_color variables in the full model because 
+the original study states that these variables were used in a different analysis evaluating
+whether they're related to how highly the six students involved in the study score the 
+professors' beauty (not related to how the students evaluate their professors in class).
+Instructions
+
+Before running the model, think about which variable you would expect to have the highest
+p-value in this model and why.
+
+Run the full model, the code is displayed in the editor.
+
+Print the summary of the m_full model.
+# The full model:
+m_full <- lm(score ~ rank + ethnicity + gender + language + age + cls_perc_eval + cls_students + cls_level + cls_profs + cls_credits + bty_avg, data = evals)
+
+# View the regression output:
+summary(m_full)
+## 
+## Call:
+## lm(formula = score ~ rank + ethnicity + gender + language + age + 
+##     cls_perc_eval + cls_students + cls_level + cls_profs + cls_credits + 
+##     bty_avg, data = evals)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -1.84482 -0.31367  0.08559  0.35732  1.10105 
+## 
+## Coefficients:
+##                         Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)            3.5305036  0.2408200  14.660  < 2e-16 ***
+## ranktenure track      -0.1070121  0.0820250  -1.305 0.192687    
+## ranktenured           -0.0450371  0.0652185  -0.691 0.490199    
+## ethnicitynot minority  0.1869649  0.0775329   2.411 0.016290 *  
+## gendermale             0.1786166  0.0515346   3.466 0.000579 ***
+## languagenon-english   -0.1268254  0.1080358  -1.174 0.241048    
+## age                   -0.0066498  0.0030830  -2.157 0.031542 *  
+## cls_perc_eval          0.0056996  0.0015514   3.674 0.000268 ***
+## cls_students           0.0004455  0.0003585   1.243 0.214596    
+## cls_levelupper         0.0187105  0.0555833   0.337 0.736560    
+## cls_profssingle       -0.0085751  0.0513527  -0.167 0.867458    
+## cls_creditsone credit  0.5087427  0.1170130   4.348  1.7e-05 ***
+## bty_avg                0.0612651  0.0166755   3.674 0.000268 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.504 on 450 degrees of freedom
+## Multiple R-squared:  0.1635, Adjusted R-squared:  0.1412 
+## F-statistic: 7.331 on 12 and 450 DF,  p-value: 2.406e-12
+Make sure to check your suspicions on which variable you expected to have the highest
+p-value in this model.
+Brainstorming
+
+Which of the following is the correct interpretation of the coefficient associated 
+with the ethnicity variable.
+
+Non-minority professors are expected on average to score...
+
+Note: your model m_full is still loaded in the workspace. Check the summary.
+Instructions
+
+0.19 points lower than minority professors, all else held constant.
+0.19 points higher than minority professors, all else held constant. (correct)
+0.02 points lower than minority professors, all else held constant.
+0.02 points higher than minority professors, all else held constant.
+ELIMINATING VARIABLES FROM THE MODEL – P-VALUE SELECTION
+Now you will create a new model, where you will drop the variable with the highest
+p-value in the m_full model.
+Instructions
+
+Create the model m_new, where the variable with the highest p-value of the m_full
+is left out.
+
+Have a look at the summary of the m_new model. 
+
+Did the coefficients and significance of the other explanatory variables change?
+# The full model
+m_full <- lm(score ~ rank + ethnicity + gender + language + age + cls_perc_eval + cls_students + cls_level + cls_profs + cls_credits + bty_avg, data = evals)
+
+# The new model
+m_new <- lm(score ~ rank + ethnicity + gender + language + age + cls_perc_eval + cls_students + cls_level + cls_credits + bty_avg, data = evals)
+
+# View the regression output
+summary(m_new)
+## 
+## Call:
+## lm(formula = score ~ rank + ethnicity + gender + language + age + 
+##     cls_perc_eval + cls_students + cls_level + cls_credits + 
+##     bty_avg, data = evals)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -1.85048 -0.31394  0.08052  0.35956  1.10356 
+## 
+## Coefficients:
+##                         Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)            3.5286297  0.2402990  14.684  < 2e-16 ***
+## ranktenure track      -0.1073638  0.0819096  -1.311 0.190606    
+## ranktenured           -0.0453744  0.0651169  -0.697 0.486278    
+## ethnicitynot minority  0.1893718  0.0760992   2.488 0.013189 *  
+## gendermale             0.1780270  0.0513581   3.466 0.000578 ***
+## languagenon-english   -0.1265737  0.1079088  -1.173 0.241427    
+## age                   -0.0066619  0.0030788  -2.164 0.031006 *  
+## cls_perc_eval          0.0056790  0.0015448   3.676 0.000265 ***
+## cls_students           0.0004493  0.0003573   1.257 0.209319    
+## cls_levelupper         0.0183743  0.0554870   0.331 0.740687    
+## cls_creditsone credit  0.5109162  0.1161614   4.398 1.36e-05 ***
+## bty_avg                0.0611497  0.0166432   3.674 0.000267 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.5035 on 451 degrees of freedom
+## Multiple R-squared:  0.1635, Adjusted R-squared:  0.1431 
+## F-statistic: 8.012 on 11 and 451 DF,  p-value: 8.303e-13
+Note:
+
+If you look at the summary, you see that the coefficients and p-values of some variables
+changed. 
+
+One of the things that makes multiple regression interesting is that coefficient estimates
+depend on the other variables that are included in the model.
+ELIMINATING VARIABLES FROM THE MODEL – ADJUSTED R-SQUARED SELECTION
+Now you will create a new model, where you will drop the variable that when dropped yields
+the highest improvement in the adjusted R2.
+Instructions
+
+Create a new model, m1, where you remove rank from the list of explanatory variables. 
+
+Check out the adjusted R2 of this new model and compare it to the adjusted R2 of the full model.
+
+If you don't want to view the entire model output, but just the adjusted R-squared, use 
+
+summary(m1)$adj.r.squared.
+
+Create another new model, m2, where you remove ethnicity from the list of explanatory variables.
+
+Check out the adjusted R2 of this new model and compare it to the adjusted R2 of the full model.
+
+Repeat until you have tried removing each variable from the full model m_full at a time, 
+and determine the removal of which variable yields the highest improvement in the adjusted R-sqared.
+
+Make note of this variable (you will be asked about it in the following session).
+# The full model:
+m_full <- lm(score ~ rank + ethnicity + gender + language + age + cls_perc_eval + cls_students + cls_level + cls_profs + cls_credits + bty_avg, data = evals)
+summary(m_full)$adj.r.squared
+## [1] 0.1412172
+# Remove rank:
+m1 <- lm(score ~ ethnicity + gender + language + age + cls_perc_eval + cls_students + cls_level + cls_profs + cls_credits + bty_avg, data = evals)
+summary(m1)$adj.r.squared
+## [1] 0.1417823
+# Remove ethnicity:
+m2 <- lm(score ~ rank + gender + language + age + cls_perc_eval + cls_students + cls_level + cls_profs + cls_credits + bty_avg, data = evals)
+summary(m2)$adj.r.squared
+## [1] 0.1320486
+# Remove gender:
+m3 <- lm(score ~ rank + ethnicity + language + age + cls_perc_eval + cls_students + cls_level + cls_profs + cls_credits + bty_avg, data = evals)
+summary(m3)$adj.r.squared
+## [1] 0.1202468
+# Remove language:
+m4 <- lm(score ~ rank + ethnicity + gender + age + cls_perc_eval + cls_students + cls_level + cls_profs + cls_credits + bty_avg, data = evals)
+summary(m4)$adj.r.squared
+## [1] 0.1404972
+# Remove age:
+m5 <- lm(score ~ rank + ethnicity + gender + language + cls_perc_eval + cls_students + cls_level + cls_profs + cls_credits + bty_avg, data = evals)
+summary(m5)$adj.r.squared
+## [1] 0.1342627
+# Remove cls_perc_eval:
+m6 <- lm(score ~ rank + ethnicity + gender + language + age + cls_students + cls_level + cls_profs + cls_credits + bty_avg, data = evals)
+summary(m6)$adj.r.squared
+## [1] 0.1174213
+# Remove cls_students:
+m7 <- lm(score ~ rank + ethnicity + gender + language + age + cls_perc_eval + cls_level + cls_profs + cls_credits + bty_avg, data = evals)
+summary(m7)$adj.r.squared
+## [1] 0.1401804
+# Remove cls_level:
+m8 <- lm(score ~ rank + ethnicity + gender + language + age + cls_perc_eval + cls_students + cls_profs + cls_credits + bty_avg, data = evals)
+summary(m8)$adj.r.squared
+## [1] 0.1429056
+# Remove cls_profs:
+m9 <- lm(score ~ rank + ethnicity + gender + language + age + cls_perc_eval + cls_students + cls_level + cls_credits + bty_avg, data = evals)
+summary(m9)$adj.r.squared
+## [1] 0.1430683
+# Remove cls_credits:
+m10 <- lm(score ~ rank + ethnicity + gender + language + age + cls_perc_eval + cls_students + cls_level + cls_profs + bty_avg, data = evals)
+summary(m10)$adj.r.squared
+## [1] 0.107127
+# Remove bty_avg:
+m11 <- lm(score ~ rank + ethnicity + gender + language + age + cls_perc_eval + cls_students + cls_level + cls_profs + cls_credits, data = evals)
+summary(m11)$adj.r.squared
+## [1] 0.1174189
+Take some time to reflect on this final model. 
+
+Based on your final model, what are the characteristics of a professor and course 
+at University of Texas at Austin that would be associated with a high evaluation score? 
+
+Would you be comfortable generalizing your conclusions to apply to professors 
+generally (at any university)? Why or why not?
+
+
+Elimination of which variable from the full model yielded the highest adjusted R-squared?
+
+Instructions
+
+  bty_avg
+  cls_profs
+  cls_students
+  rank
