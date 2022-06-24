@@ -1,52 +1,4 @@
 
-\documentclass[a4paper,12pt]{article}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\usepackage{eurosym}
-\usepackage{vmargin}
-\usepackage{amsmath}
-\usepackage{graphics}
-\usepackage{framed}
-\usepackage{epsfig}
-\usepackage{subfigure}
-\usepackage{fancyhdr}
-
-\setcounter{MaxMatrixCols}{10}
-%TCIDATA{OutputFilter=LATEX.DLL}
-%TCIDATA{Version=5.00.0.2570}
-%TCIDATA{<META NAME="SaveForMode"CONTENT="1">}
-%TCIDATA{LastRevised=Wednesday, February 23, 201113:24:34}
-%TCIDATA{<META NAME="GraphicsSave" CONTENT="32">}
-%TCIDATA{Language=American English}
-
-\pagestyle{fancy}
-\setmarginsrb{20mm}{0mm}{20mm}{25mm}{12mm}{11mm}{0mm}{11mm}
-\lhead{MA4128} \rhead{Kevin O'Brien} \chead{Assumptions for Linear Models} %\input{tcilatex}
-
-\begin{document}
-
-\section{Bivariate data}
-\subsection{What is Bivariate data?}
-
-A dataset with two variables contains what is called bivariate data. For example, the heights and weights of people (e.g. for the purposes of determining the extent to which taller people weigh more). Common bivariate statistical analyses include
-\begin{itemize}
-\item Correlation Analysis
-\item Simple Linear Regression
-\end{itemize}
-
-\subsection{Scatter Plot} A scatter plot of two variables shows the values of one variable on the Y axis and the values of the other variable on the X axis. Scatter plots are well suited for revealing the relationship between two variables.Scatterplots can be implemented in \texttt{R} using the command \texttt{\textbf{plot()}}
-
-\subsubsection*{Exercise:} Let us construct scatter-plots for the \textbf{\textit{Immer}} and \textbf{\textit{Iris}} data sets.
-
-\begin{framed}
-\begin{verbatim}
-plot(immer$Y1,immer$Y2)
-
-# First and Third Columns of iris
-plot(iris[,1],iris[,3])
-\end{verbatim}
-\end{framed}
-More complex scatterplots, with better visual aesthetics, can be constructed. We will look at this more later on in the semester.
-
 \subsection{Correlation}
 \begin{itemize}
 \item Recall that correlation describes the strength of a relationship between two numeric variables, and that the \textbf{\textit{Pearson product-moment correlation coefficient}} is a measure of the strength of the linear relationship between two variables.
@@ -61,6 +13,7 @@ More complex scatterplots, with better visual aesthetics, can be constructed. We
 
 \item Importantly it is assumed that the relationship in question is supposed to be linear. Some variables will in fact have a non-linear relationship (more on that later)
 \end{itemize}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection*{Implementation}
 The relevant \texttt{R} command to compute the correlation coefficient estimate is simply \texttt{\textbf{cor()}}.
 
